@@ -8,6 +8,9 @@ use App\Livewire\Pages\Entities\Divisions\CreateDivisions;
 use App\Livewire\Pages\Entities\Divisions\EditDivisions;
 use App\Livewire\Pages\Entities\Divisions\ListsDivisions;
 use App\Livewire\Pages\Entities\ListsEntities;
+use App\Livewire\Pages\Entities\Offices\CreateOffices;
+use App\Livewire\Pages\Entities\Offices\EditOffices;
+use App\Livewire\Pages\Entities\Offices\ListsOffices;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +35,12 @@ Route::middleware('auth')->group(function () {
             Route::get('/', ListsDivisions::class)->name('divisions');
             Route::get('/add', CreateDivisions::class)->name('add-division');
             Route::get('/{division}/edit', EditDivisions::class)->name('edit-division');
+        });
+
+        Route::group(['prefix' => 'offices'], function () {
+            Route::get('/', ListsOffices::class)->name('offices');
+            Route::get('/add', CreateOffices::class)->name('add-office');
+            Route::get('/{office}/edit', EditOffices::class)->name('edit-office');
         });
 
     });

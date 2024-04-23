@@ -13,8 +13,14 @@
 
                 <x-pages.menu.menu-link
                         icon=""
-                        name="Division"
+                        name="Bureau"
                         :route="route('divisions')"
+                />
+
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Division"
+                        :route="route('offices')"
                 />
             </x-pages.menu.menu-link-sub>
         </ul>

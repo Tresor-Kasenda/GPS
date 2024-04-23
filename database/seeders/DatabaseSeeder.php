@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -16,8 +18,9 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
-            DirectionSeeder::class,
-            DivisionSeeder::class
+            // DirectionSeeder::class,
+            // DivisionSeeder::class
+            OfficeSeeder::class
         ]);
     }
 }
