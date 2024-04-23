@@ -10,6 +10,13 @@
             <div class="nk-sidebar-content" data-simplebar>
                 <div class="nk-sidebar-menu">
                     <ul class="nk-menu apps-menu">
+
+                        <x-pages.side-link
+                                :title="__('Gestion Engagement')"
+                                :route="route('engagements-lists')"
+                                icon="user-list"
+                        />
+
                         <x-pages.side-link
                                 :title="__('Gestion Entiter')"
                                 :route="route('entities-lists')"

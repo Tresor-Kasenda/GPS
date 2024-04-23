@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             // DirectionSeeder::class,
             // DivisionSeeder::class
             //OfficeSeeder::class
-            GradeSeeder::class
+            //GradeSeeder::class
+            PersonSeeder::class
         ]);
     }
 }

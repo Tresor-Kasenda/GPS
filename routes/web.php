@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Pages\Engagements\ListsEngagements;
+use App\Livewire\Pages\Engagements\Persons\CreatePersons;
+use App\Livewire\Pages\Engagements\Persons\EditPersons;
+use App\Livewire\Pages\Engagements\Persons\ListsPersons;
+use App\Livewire\Pages\Engagements\Persons\ShowPersons;
 use App\Livewire\Pages\Entities\Directions\CreateDirections;
 use App\Livewire\Pages\Entities\Directions\EditDirections;
 use App\Livewire\Pages\Entities\Directions\ListsDirections;
@@ -59,6 +64,17 @@ Route::middleware('auth')->group(function () {
             Route::get('/', ListsPositions::class)->name('positions');
             Route::get('/add', CreatePositions::class)->name('add-position');
             Route::get('/{position}/edit', EditPositions::class)->name('edit-position');
+        });
+    });
+
+    Route::group(['prefix' => 'engagements'], function () {
+        Route::get('/', ListsEngagements::class)->name('engagements-lists');
+
+        Route::group(['prefix' => 'persons'], function () {
+            Route::get('/', ListsPersons::class)->name('persons');
+            Route::get('/add', CreatePersons::class)->name('add-person');
+            Route::get('/{person}/show', ShowPersons::class)->name('show-person');
+            Route::get('/{person}/edit', EditPersons::class)->name('edit-person');
         });
     });
 });
