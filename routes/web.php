@@ -14,6 +14,9 @@ use App\Livewire\Pages\Entities\ListsEntities;
 use App\Livewire\Pages\Entities\Offices\CreateOffices;
 use App\Livewire\Pages\Entities\Offices\EditOffices;
 use App\Livewire\Pages\Entities\Offices\ListsOffices;
+use App\Livewire\Pages\Entities\Positions\CreatePositions;
+use App\Livewire\Pages\Entities\Positions\EditPositions;
+use App\Livewire\Pages\Entities\Positions\ListsPositions;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,6 +55,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/{grade}/edit', EditGrades::class)->name('edit-grade');
         });
 
+        Route::group(['prefix' => 'positions'], function () {
+            Route::get('/', ListsPositions::class)->name('positions');
+            Route::get('/add', CreatePositions::class)->name('add-position');
+            Route::get('/{position}/edit', EditPositions::class)->name('edit-position');
+        });
     });
 });
 

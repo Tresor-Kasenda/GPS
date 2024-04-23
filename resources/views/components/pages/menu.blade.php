@@ -27,6 +27,11 @@
                         name="Grades"
                         :route="route('grades')"
                 />
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Fonction"
+                        :route="route('positions')"
+                />
             </x-pages.menu.menu-link-sub>
         </ul>
     </div>
