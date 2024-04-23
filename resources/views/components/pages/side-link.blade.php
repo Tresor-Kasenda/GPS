@@ -1,6 +1,7 @@
 @props([
     'title',
-    'route'
+    'route',
+    'icon'
 ])
 <li
         @class([
@@ -9,6 +10,6 @@
         ])
 >
     <a href="{{ $route }}" class="nk-menu-link" title="{{ $title }}">
-        {{ $slot }}
+        <span class="nk-menu-icon"><em class="icon ni ni-{{ $icon }}"></em></span>
     </a>
 </li>

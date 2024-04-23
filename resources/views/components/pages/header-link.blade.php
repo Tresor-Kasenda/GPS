@@ -3,7 +3,7 @@
     'icon'
 ])
 <li>
-    <a {{ $attributes }}>
+    <a {{ $attributes }} wire:navigate>
         <em class="icon ni ni-{{ $icon }}"></em>
         <span>{{ $name }}</span>
     </a>

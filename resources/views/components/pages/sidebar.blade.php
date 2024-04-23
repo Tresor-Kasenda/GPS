@@ -10,7 +10,11 @@
             <div class="nk-sidebar-content" data-simplebar>
                 <div class="nk-sidebar-menu">
                     <ul class="nk-menu apps-menu">
-
+                        <x-pages.side-link
+                                :title="__('Gestion Entiter')"
+                                :route="route('entities-lists')"
+                                icon="folders"
+                        />
                     </ul>
                 </div>
                 <div class="nk-sidebar-footer">
