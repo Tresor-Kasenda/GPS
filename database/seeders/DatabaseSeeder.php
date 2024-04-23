@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // DirectionSeeder::class,
             // DivisionSeeder::class
-            OfficeSeeder::class
+            //OfficeSeeder::class
+            GradeSeeder::class
         ]);
     }
 }

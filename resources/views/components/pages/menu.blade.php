@@ -13,14 +13,19 @@
 
                 <x-pages.menu.menu-link
                         icon=""
-                        name="Bureau"
+                        name="Division"
                         :route="route('divisions')"
                 />
 
                 <x-pages.menu.menu-link
                         icon=""
-                        name="Division"
+                        name="Bureau"
                         :route="route('offices')"
+                />
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Grades"
+                        :route="route('grades')"
                 />
             </x-pages.menu.menu-link-sub>
         </ul>
