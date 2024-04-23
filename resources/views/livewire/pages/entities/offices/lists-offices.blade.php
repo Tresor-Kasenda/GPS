@@ -70,7 +70,7 @@
                                             <ul class="link-list-opt no-bdr">
                                                 <li>
                                                     <a
-                                                            href="{{ route('edit-division', $office->id) }}">
+                                                            href="{{ route('edit-office', $office->id) }}">
                                                         <em class="icon ni ni-edit-fill"></em>
                                                         <span>Editer</span>
                                                     </a>

@@ -25,7 +25,7 @@ class EditOffices extends Component
     #[Validate('nullable')]
     public string|null $designation = '';
 
-    #[Validate('required|exists:division,id')]
+    #[Validate('required|exists:divisions,id')]
     public int|string $division_id = '';
 
     public function mount(Office $office): void
