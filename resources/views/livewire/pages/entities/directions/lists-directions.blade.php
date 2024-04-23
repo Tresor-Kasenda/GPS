@@ -62,17 +62,11 @@
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <ul class="link-list-opt no-bdr">
                                                 <li>
-                                                    <a wire:navigate
-                                                       href="{{ route('edit-direction', $direction->id) }}">
+                                                    <a
+                                                            href="{{ route('edit-direction', $direction->id) }}">
                                                         <em class="icon ni ni-edit-fill"></em>
                                                         <span>Editer</span>
                                                     </a>
-                                                </li>
-                                                <li>
-                                                    <button class="btn" wire:click="delete({{ $direction->id }})">
-                                                        <em class="icon ni ni-trash-empty"></em>
-                                                        <span>Supprimer</span>
-                                                    </button>
                                                 </li>
                                             </ul>
                                         </div>

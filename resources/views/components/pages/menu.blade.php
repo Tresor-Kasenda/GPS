@@ -10,6 +10,12 @@
                         name="Direction"
                         :route="route('directions')"
                 />
+
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Division"
+                        :route="route('divisions')"
+                />
             </x-pages.menu.menu-link-sub>
         </ul>
     </div>
