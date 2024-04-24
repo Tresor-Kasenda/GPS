@@ -13,16 +13,16 @@ use Livewire\Component;
 #[Title('Creation des grades')]
 class CreateGrades extends Component
 {
-    #[Validate('required|min:3|string')]
+    #[Validate('required|min:3|string|unique:grades,priority')]
     public string $priority = '';
 
-    #[Validate('required|min:3|string')]
+    #[Validate('required|min:3|string|unique:grades,level')]
     public string $level = '';
 
     #[Validate('required|min:3|string')]
     public string|null $tier = '';
 
-    #[Validate('required|string|unique:grades,id')]
+    #[Validate('required|string|unique:grades,code')]
     public string|null $code = '';
 
     #[Validate('nullable')]

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Pages\Engagements\Assignments\CreateAssignments;
+use App\Livewire\Pages\Engagements\Assignments\EditAssignments;
+use App\Livewire\Pages\Engagements\Assignments\ListsAssignments;
 use App\Livewire\Pages\Engagements\Hirings\CreateHirings;
 use App\Livewire\Pages\Engagements\Hirings\EditHirings;
 use App\Livewire\Pages\Engagements\Hirings\ListsHirings;
@@ -85,6 +88,12 @@ Route::middleware('auth')->group(function () {
             Route::get('/', ListsHirings::class)->name('hirings');
             Route::get('/add', CreateHirings::class)->name('add-hiring');
             Route::get('/{hiring}/edit', EditHirings::class)->name('edit-hiring');
+        });
+
+        Route::group(['prefix' => 'attributions'], function () {
+            Route::get('/', ListsAssignments::class)->name('assignments');
+            Route::get('/add', CreateAssignments::class)->name('add-assignment');
+            Route::get('/{assignment}/edit', EditAssignments::class)->name('edit-assignment');
         });
     });
 });

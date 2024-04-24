@@ -21,6 +21,12 @@
                         :route="route('hirings')"
                 />
 
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Attribution Grade"
+                        :route="route('assignments')"
+                />
+
             </x-pages.menu.menu-link-sub>
 
             <x-pages.menu.menu-link-sub icon="menu" title="Gestion Entites" :route="route('entities-lists')">
