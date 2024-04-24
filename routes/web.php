@@ -84,7 +84,6 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => 'hiring'], function () {
             Route::get('/', ListsHirings::class)->name('hirings');
             Route::get('/add', CreateHirings::class)->name('add-hiring');
-            Route::get('/{hiring}/show', ShowHirings::class)->name('show-hiring');
             Route::get('/{hiring}/edit', EditHirings::class)->name('edit-hiring');
         });
     });
