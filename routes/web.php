@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Pages\Engagements\Hirings\CreateHirings;
+use App\Livewire\Pages\Engagements\Hirings\EditHirings;
+use App\Livewire\Pages\Engagements\Hirings\ListsHirings;
+use App\Livewire\Pages\Engagements\Hirings\ShowHirings;
 use App\Livewire\Pages\Engagements\ListsEngagements;
 use App\Livewire\Pages\Engagements\Persons\CreatePersons;
 use App\Livewire\Pages\Engagements\Persons\EditPersons;
@@ -75,6 +79,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/add', CreatePersons::class)->name('add-person');
             Route::get('/{person}/show', ShowPersons::class)->name('show-person');
             Route::get('/{person}/edit', EditPersons::class)->name('edit-person');
+        });
+
+        Route::group(['prefix' => 'hiring'], function () {
+            Route::get('/', ListsHirings::class)->name('hirings');
+            Route::get('/add', CreateHirings::class)->name('add-hiring');
+            Route::get('/{hiring}/show', ShowHirings::class)->name('show-hiring');
+            Route::get('/{hiring}/edit', EditHirings::class)->name('edit-hiring');
         });
     });
 });

@@ -2,7 +2,6 @@
         x-data="{
        init() {
            flatpickr(this.$refs.myDatePicker, {
-               minDate: 'today',
                dateFormat: 'Y-m-d',
                enableTime: false,
                onChange: (selectedDates, dateStr, instance) => {

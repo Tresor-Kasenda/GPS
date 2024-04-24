@@ -1,20 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\Gender;
 use App\Enums\MaritalStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Image\Enums\Fit;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Person extends Model implements HasMedia
+class Person extends Model
 {
     use HasFactory;
-    use InteractsWithMedia;
 
     /**
      * @var array<string, string>
@@ -33,12 +31,9 @@ class Person extends Model implements HasMedia
         'identity_piece',
     ];
 
-    public function registerMediaConversions(Media $media = null): void
+    public function hiring(): HasOne
     {
-        $this
-            ->addMediaConversion('preview')
-            ->fit(Fit::Contain, 300, 300)
-            ->nonQueued();
+        return $this->hasOne(Hiring::class);
     }
 
     public function birthday()

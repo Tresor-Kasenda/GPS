@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             // DivisionSeeder::class
             //OfficeSeeder::class
             //GradeSeeder::class
-            PersonSeeder::class
+            // PersonSeeder::class
+            HiringSeeder::class
         ]);
     }
 }

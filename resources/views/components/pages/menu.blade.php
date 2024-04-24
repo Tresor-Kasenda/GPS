@@ -15,6 +15,12 @@
                         :route="route('persons')"
                 />
 
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Agent (Engagement)"
+                        :route="route('hirings')"
+                />
+
             </x-pages.menu.menu-link-sub>
 
             <x-pages.menu.menu-link-sub icon="menu" title="Gestion Entites" :route="route('entities-lists')">
