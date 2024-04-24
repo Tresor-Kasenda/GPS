@@ -35,7 +35,6 @@
                         name="Bureau"
                         :route="route('offices')"
                 />
-                <li class="divider"></li>
                 <x-pages.menu.menu-link
                         icon=""
                         name="Grades"

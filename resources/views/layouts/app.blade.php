@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="">
     <title>Dashboard | CMS | DashLite Admin Template</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 
 <body class="nk-body npc-default has-apps-sidebar has-sidebar ">
@@ -35,6 +36,7 @@
 
 <script src="{{ asset('js/bundle.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>
+@stack('scripts')
 </body>
 
 </html>
