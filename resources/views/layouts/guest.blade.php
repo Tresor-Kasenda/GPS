@@ -22,8 +22,10 @@
                 <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
                     <div class="brand-logo pb-4 text-center">
                         <a href="{{ route('login') }}" class="logo-link">
-                            <img class="logo-light logo-img logo-img-lg" src="" srcset=" 2x" alt="logo">
-                            <img class="logo-dark logo-img logo-img-lg" src="" srcset=" 2x" alt="logo-dark">
+                            <img class="logo-light logo-img logo-img-lg" src="{{ asset('images/logo.jpg') }}"
+                                 srcset="{{ asset('images/logo.jpg') }} 2x" alt="logo">
+                            <img class="logo-dark logo-img logo-img-lg" src="{{ asset('images/logo.jpg') }}"
+                                 srcset="{{ asset('images/logo.jpg') }} 2x" alt="logo-dark">
                         </a>
                     </div>
                     <div class="card card-bordered">
@@ -69,7 +71,5 @@
     </div>
 </div>
 
-<script src="./assets/js/bundle.js?ver=3.1.2"></script>
-<script src="./assets/js/scripts.js?ver=3.1.2"></script>
 </body>
 </html>

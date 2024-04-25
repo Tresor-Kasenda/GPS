@@ -1,8 +1,10 @@
 <div class="nk-apps-sidebar is-dark">
     <div class="nk-apps-brand">
         <a href="{{ route('dashboard') }}" class="logo-link">
-            <img class="logo-light logo-img" src="" srcset=" 2x" alt="logo">
-            <img class="logo-dark logo-img" src="" srcset="2x" alt="logo-dark">
+            <img class="logo-light logo-img" src="{{ asset('images/logo.jpg') }}"
+                 srcset="{{ asset('images/logo.jpg') }} 2x" alt="logo">
+            <img class="logo-dark logo-img" src="{{ asset('images/logo.jpg') }}"
+                 srcset="{{ asset('images/logo.jpg') }} 2x" alt="logo-dark">
         </a>
     </div>
     <div class="nk-sidebar-element">
@@ -37,34 +39,51 @@
             <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
                 <a href="#" class="toggle" data-target="profileDD">
                     <div class="user-avatar">
-                        <span>AB</span>
+                        <span>{{ str(str()->substr(auth()->user()->name, 0, 2))->upper() }}</span>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-md m-1 nk-sidebar-profile-dropdown" data-content="profileDD">
                     <div class="dropdown-inner user-card-wrap d-none d-md-block">
                         <div class="user-card">
                             <div class="user-avatar">
-                                <span>AB</span>
+                                <span>{{ str(str()->substr(auth()->user()->name, 0, 2))->upper() }}</span>
                             </div>
                             <div class="user-info">
-                                <span class="lead-text">Abu Bin Ishtiyak</span>
-                                <span class="sub-text text-soft">info@softnio.com</span>
+                                <span class="lead-text">{{ auth()->user()->name }}</span>
+                                <span class="sub-text text-soft">{{ auth()->user()->email }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="dropdown-inner">
                         <ul class="link-list">
-                            <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a>
+                            <li>
+                                <a href="{{ route('profile.edit') }}">
+                                    <em class="icon ni ni-user-alt"></em>
+                                    <span>View Profile</span>
+                                </a>
                             </li>
-                            <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a>
+                            <li>
+                                <a href="#">
+                                    <em class="icon ni ni-setting-alt"></em>
+                                    <span>Account Setting</span>
+                                </a>
                             </li>
-                            <li><a href="html/user-profile-activity.html"><em
-                                            class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                            <li>
+                                <a href="#">
+                                    <em class="icon ni ni-activity-alt"></em>
+                                    <span>Login Activity</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="dropdown-inner">
                         <ul class="link-list">
-                            <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                            <li>
+                                <a href="#">
+                                    <em class="icon ni ni-signout"></em>
+                                    <span>Sign out</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

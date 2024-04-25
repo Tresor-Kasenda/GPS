@@ -22,7 +22,8 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-contents.forms.text-label for="person_id">Person</x-contents.forms.text-label>
-                            <select id="person_id" readonly="" name="person_id" wire:model.live="person_id"
+                            <select data-search="on" id="person_id" readonly="" name="person_id"
+                                    wire:model.live="person_id"
                                     class="form-select js-select2" data-placeholder="person_id">
                                 @foreach($peoples as $person)
                                     <option wire:key="{{ $person->id }}" value="{{ $person->id }}">

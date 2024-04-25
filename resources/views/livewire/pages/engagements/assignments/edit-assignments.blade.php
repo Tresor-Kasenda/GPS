@@ -13,7 +13,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-contents.forms.text-label for="hiring_id">Agent</x-contents.forms.text-label>
-                            <select id="hiring_id" name="hiring_id" wire:model.live="hiring_id"
+                            <select data-search="on" id="hiring_id" name="hiring_id" wire:model.live="hiring_id"
                                     class="form-select js-select2" data-placeholder="hiring_id">
                                 @foreach($hirings as $hiring)
                                     <option wire:key="{{ $hiring->id }}" value="{{ $hiring->id }}">
@@ -28,7 +28,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-contents.forms.text-label for="grade_id">Grade</x-contents.forms.text-label>
-                            <select id="grade_id" name="grade_id" wire:model.live="grade_id"
+                            <select data-search="on" id="grade_id" name="grade_id" wire:model.live="grade_id"
                                     class="form-select js-select2" data-placeholder="grade_id">
 
                                 @foreach($grades as $grade)
@@ -59,7 +59,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-contents.forms.text-label for="reason">Raison</x-contents.forms.text-label>
-                            <select id="reason" name="reason" wire:model.live="reason"
+                            <select data-search="on" id="reason" name="reason" wire:model.live="reason"
                                     class="form-select js-select2" data-placeholder="reason">
                                 @foreach(ReasonEnum::cases() as $reason)
                                     <option wire:key="{{ $reason->value }}" value="{{ $reason->value }}">

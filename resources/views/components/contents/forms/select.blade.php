@@ -7,7 +7,7 @@
 ])
 
 <div {{ $attributes->merge(['class' => 'form-control-wrap']) }}>
-    <select class="form-select js-select2">
+    <select class="form-select js-select2" data-search="on">
         @if($placeholder)
             <option selected>{{ $placeholder }}</option>
         @endif

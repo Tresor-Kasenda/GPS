@@ -27,6 +27,12 @@
                         :route="route('assignments')"
                 />
 
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Admission Sous Status"
+                        :route="route('admissions')"
+                />
+
             </x-pages.menu.menu-link-sub>
 
             <x-pages.menu.menu-link-sub icon="menu" title="Gestion Entites" :route="route('entities-lists')">

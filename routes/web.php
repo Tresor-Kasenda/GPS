@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Pages\Engagements\Admissions\CreateAdmissions;
+use App\Livewire\Pages\Engagements\Admissions\EditAdmissions;
+use App\Livewire\Pages\Engagements\Admissions\ListsAdmissions;
 use App\Livewire\Pages\Engagements\Assignments\CreateAssignments;
 use App\Livewire\Pages\Engagements\Assignments\EditAssignments;
 use App\Livewire\Pages\Engagements\Assignments\ListsAssignments;
@@ -94,6 +97,12 @@ Route::middleware('auth')->group(function () {
             Route::get('/', ListsAssignments::class)->name('assignments');
             Route::get('/add', CreateAssignments::class)->name('add-assignment');
             Route::get('/{assignment}/edit', EditAssignments::class)->name('edit-assignment');
+        });
+
+        Route::group(['prefix' => 'admissionSub'], function () {
+            Route::get('/', ListsAdmissions::class)->name('admissions');
+            Route::get('/add', CreateAdmissions::class)->name('add-admission');
+            Route::get('/{admission}/edit', EditAdmissions::class)->name('edit-admission');
         });
     });
 });

@@ -52,7 +52,8 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-contents.forms.text-label for="gender">Genre</x-contents.forms.text-label>
-                            <select id="gender" name="gender" wire:model.live="gender" class="form-select js-select2"
+                            <select data-search="on" id="gender" name="gender" wire:model.live="gender"
+                                    class="form-select js-select2"
                                     data-placeholder="gender">
                                 @foreach($genders as $gender)
                                     <option wire:key="{{ $gender }}" value="{{ $gender }}">{{ $gender }}</option>
@@ -65,7 +66,8 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-contents.forms.text-label for="marital_status">Etat civil</x-contents.forms.text-label>
-                            <select id="marital_status" name="marital_status" wire:model.live="marital_status"
+                            <select data-search="on" id="marital_status" name="marital_status"
+                                    wire:model.live="marital_status"
                                     class="form-select js-select2" data-placeholder="marital_status">
                                 @foreach($maritals as $marital)
                                     <option wire:key="{{ $marital }}" value="{{ $marital }}">{{ $marital }}</option>

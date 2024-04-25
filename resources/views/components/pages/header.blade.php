@@ -3,16 +3,17 @@
     <div class="container-fluid">
         <div class="nk-header-wrap">
             <div class="nk-menu-trigger d-xl-none ms-n1">
-                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
-                            class="icon ni ni-menu"></em></a>
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu">
+                    <em class="icon ni ni-menu"></em>
+                </a>
             </div>
             <div class="nk-header-app-name">
                 <div class="nk-header-app-logo">
-                    <em class="icon ni ni-dashlite bg-purple-dim"></em>
+                    <img src="{{ asset('images/logo.jpg') }}" alt="Image de l'organisation">
                 </div>
                 <div class="nk-header-app-info">
                     <span class="sub-text">DashLite</span>
-                    <span class="lead-text">Dashboard</span>
+                    <span class="lead-text">{{ auth()->user()?->name }}</span>
                 </div>
             </div>
             <div class="nk-header-tools">
@@ -48,7 +49,12 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    <li>
+                                        <a href="#">
+                                            <em class="icon ni ni-signout"></em>
+                                            <span>Sign out</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
