@@ -6,6 +6,7 @@ namespace App\Livewire\Pages\Engagements\Admissions;
 
 use App\Models\AdmissionSub;
 use App\Models\Direction;
+use App\Models\Division;
 use App\Models\Hiring;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -26,10 +27,10 @@ class EditAdmissions extends Component
     public string|int|null $hiring_id = '';
 
     #[Validate('required|int|exists:directions,id')]
-    public string|int|null $direction_id = '';
+    public string|int|null $direction = '';
 
     #[Validate('required|int|exists:divisions,id')]
-    public string|int|null $division_id = '';
+    public string|int|null $division = '';
 
     #[Validate('required|int|exists:offices,id')]
     public string|int|null $office_id = '';
@@ -40,6 +41,11 @@ class EditAdmissions extends Component
     #[Validate('nullable')]
     public $document = '';
 
+    public $divisions;
+
+    public $offices;
+
+
     public function mount(AdmissionSub $admission): void
     {
         $this->hiring_id = $admission->hiring_id;
@@ -48,6 +54,9 @@ class EditAdmissions extends Component
         $this->office_id = $admission->office_id;
         $this->date_admission = $admission->date_admission->format('Y-m-d');
         $this->document = $admission->documet;
+
+        $this->divisions = collect();
+        $this->offices = collect();
     }
 
     public function render(): View
@@ -58,6 +67,15 @@ class EditAdmissions extends Component
         ]);
     }
 
+    public function updatedDirection($state): void
+    {
+        $this->divisions = Division::query()->where('direction_id', '=', $state)->get();
+    }
+
+    public function updatedDivision($state): void
+    {
+        $this->divisions = Division::query()->where('direction_id', '=', $state)->get();
+    }
 
     public function submit(): void
     {
