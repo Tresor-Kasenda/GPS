@@ -32,6 +32,10 @@ use App\Livewire\Pages\Entities\Offices\ListsOffices;
 use App\Livewire\Pages\Entities\Positions\CreatePositions;
 use App\Livewire\Pages\Entities\Positions\EditPositions;
 use App\Livewire\Pages\Entities\Positions\ListsPositions;
+use App\Livewire\Pages\Movements\Affectations\CreateAffectations;
+use App\Livewire\Pages\Movements\Affectations\EditAffectations;
+use App\Livewire\Pages\Movements\Affectations\ListsAffectations;
+use App\Livewire\Pages\Movements\ListsMovements;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -103,6 +107,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/', ListsAdmissions::class)->name('admissions');
             Route::get('/add', CreateAdmissions::class)->name('add-admission');
             Route::get('/{admission}/edit', EditAdmissions::class)->name('edit-admission');
+        });
+    });
+
+    Route::group(['prefix' => 'movement'], function () {
+        Route::get('/', ListsMovements::class)->name('movements-lists');
+
+        Route::group(['prefix' => 'affectations'], function () {
+            Route::get('/', ListsAffectations::class)->name('affectations');
+            Route::get('/add', CreateAffectations::class)->name('add-affectation');
+            Route::get('/{affectation}/edit', EditAffectations::class)->name('edit-affectation');
         });
     });
 });

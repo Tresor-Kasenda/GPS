@@ -14,6 +14,12 @@
                     <ul class="nk-menu apps-menu">
 
                         <x-pages.side-link
+                                :title="__('Mouvement Agent')"
+                                :route="route('movements-lists')"
+                                icon="reload"
+                        />
+
+                        <x-pages.side-link
                                 :title="__('Gestion Engagement')"
                                 :route="route('engagements-lists')"
                                 icon="user-list"

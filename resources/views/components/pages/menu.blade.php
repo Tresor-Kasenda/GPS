@@ -5,7 +5,19 @@
                 <h6 class="overline-title text-primary-alt">Accueil</h6>
             </li>
             <x-pages.menu.menu-link-sub
-                    icon="account-setting"
+                    icon="reload"
+                    title="Gestion Mouvement Agent"
+                    :route="route('entities-lists')"
+            >
+                <x-pages.menu.menu-link
+                        icon=""
+                        name="Affectation"
+                        :route="route('affectations')"
+                />
+
+            </x-pages.menu.menu-link-sub>
+            <x-pages.menu.menu-link-sub
+                    icon="user-list"
                     title="Gestion Engagement"
                     :route="route('entities-lists')"
             >
@@ -35,7 +47,7 @@
 
             </x-pages.menu.menu-link-sub>
 
-            <x-pages.menu.menu-link-sub icon="menu" title="Gestion Entites" :route="route('entities-lists')">
+            <x-pages.menu.menu-link-sub icon="folders" title="Gestion Entites" :route="route('entities-lists')">
                 <x-pages.menu.menu-link
                         icon=""
                         name="Direction"

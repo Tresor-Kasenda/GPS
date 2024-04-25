@@ -76,8 +76,8 @@ class CreateAdmissions extends Component
 
         AdmissionSub::query()->create([
             'hiring_id' => $this->hiring_id,
-            'direction_id' => $this->direction_id,
-            'division_id' => $this->division_id,
+            'direction_id' => $this->direction,
+            'division_id' => $this->division,
             'office_id' => $this->office_id,
             'date_admission' => $this->date_admission,
             'document' => $path,
