@@ -112,7 +112,7 @@
 .nav-tabs .nav-link:after,
 .progress-bar, .dot-primary,
 .alert-fill.alert-primary,
-.bg-primary,
+.badge-primary,
 .icon-circle,
 .noUi-connect,
 .nk-msg-menu-item a:after,
@@ -158,7 +158,8 @@
 .nav-tabs .nav-item.active .nav-link,
 .nk-menu-footer .nk-menu-icon,
 .nk-menu-footer .nk-menu-link:hover,
-.nk-footer-copyright a:hover .page-link:hover,
+.nk-footer-copyright a:hover,
+.page-link:hover,
 .list-plain a:hover,
 .link-check li a:hover,
 .link-list a:hover,
@@ -235,7 +236,7 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
     background-color: #015ad3 !important;
 }
 
-.bg-primary-dim {
+.bg-primary-dim, .dual-listbox .dual-listbox__item:active, .dual-listbox .dual-listbox__item.dual-listbox__item--selected {
     background-color: #e6f1ff !important;
 }
 
@@ -264,6 +265,10 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
 
 .dropdown-menu-s1 {
     border-top-color: #0971fe;
+}
+
+.nk-iv-wg2-amount.ui-v2 {
+    border-bottom-color: #0971fe;
 }
 
 .page-item.active .page-link,
@@ -404,8 +409,7 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle,
-.btn-primary.disabled, .btn-primary:disabled,
-.invest-amount-control:checked ~ .invest-amount-label {
+.btn-primary.disabled, .btn-primary:disabled {
     background-color: #0971fe;
     border-color: #0971fe;
 }
@@ -469,17 +473,13 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
     background-color: #e6f1ff;
 }
 
-.is-theme .nk-sidebar-footer, .nk-apps-sidebar.is-theme, .is-theme .nk-sidebar-profile-fixed {
+.is-theme .nk-sidebar-footer, .is-theme .nk-sidebar-profile-fixed {
     background: #0a2d6c;
     border-color: #0f419a;
 }
 
 .is-theme .nk-menu-footer .nk-menu-link, .is-theme .sub-text, .is-theme .lead-text span {
     color: #a9cdff;
-}
-
-.apps-menu .nk-menu-link:before {
-    background: #0971fe;
 }
 
 .nav-switch-s2 .nav-link:hover, .nav-switch-s2 .nav-link:focus {

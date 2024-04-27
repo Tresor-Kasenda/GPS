@@ -27,9 +27,6 @@
                               fill="currentColor"/>
                     </svg>
                 </div>
-                @if (Route::has('login'))
-                    <livewire:welcome.navigation/>
-                @endif
             </header>
 
             <main class="mt-6">
