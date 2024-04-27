@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Livewire\Pages\Engagements\Hirings\ShowHirings;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

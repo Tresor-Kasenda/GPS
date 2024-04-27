@@ -1,2 +1,3 @@
-@import "dashlite.css";
-@import "skins/theme-blue.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

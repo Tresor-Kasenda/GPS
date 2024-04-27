@@ -1,75 +1,30 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="js">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <base href="">
     <meta charset="utf-8">
-    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-          content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
-    <link rel="shortcut icon" href="">
-    <title>Login | DashLite Admin Template</title>
-    @vite(['resources/css/app.css'])
-</head>
 
-<body class="nk-body npc-default pg-auth">
-<div class="nk-app-root">
-    <div class="nk-main ">
-        <div class="nk-wrap nk-wrap-nosidebar">
-            <div class="nk-content ">
-                <div class="nk-block nk-block-middle nk-auth-body  wide-xs">
-                    <div class="brand-logo pb-4 text-center">
-                        <a href="{{ route('login') }}" class="logo-link">
-                            <img class="logo-light logo-img logo-img-lg" src="{{ asset('images/logo.jpg') }}"
-                                 srcset="{{ asset('images/logo.jpg') }} 2x" alt="logo">
-                            <img class="logo-dark logo-img logo-img-lg" src="{{ asset('images/logo.jpg') }}"
-                                 srcset="{{ asset('images/logo.jpg') }} 2x" alt="logo-dark">
-                        </a>
-                    </div>
-                    <div class="card card-bordered">
-                        <div class="card-inner card-inner-lg">
-                            <div class="nk-block-head">
-                                <div class="nk-block-head-content">
-                                    <h4 class="nk-block-title">Sign-In</h4>
-                                    <div class="nk-block-des">
-                                        <p>Access the Dashlite panel using your email and passcode.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {{ $slot }}
-                        </div>
-                    </div>
-                </div>
-                <div class="nk-footer nk-auth-footer-full">
-                    <div class="container wide-lg">
-                        <div class="row g-3">
-                            <div class="col-lg-6 order-lg-last">
-                                <ul class="nav nav-sm justify-content-center justify-content-lg-end">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Terms & Condition</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Privacy Policy</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Help</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="nk-block-content text-center text-lg-left">
-                                    <p class="text-soft">&copy; 2022 Dashlite. All Rights Reserved.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="font-sans text-gray-900 antialiased">
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <div>
+        <a href="/">
+            <x-application-logo class="w-20 h-20 fill-current text-gray-500"/>
+        </a>
+    </div>
+
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        {{ $slot }}
     </div>
 </div>
-
 </body>
 </html>
