@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="">
     <title>{{ config('app.name') }} | {{ $title }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -38,5 +39,6 @@
 
 <script src="{{ asset('js/bundle.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>
+@stack('scripts')
 </body>
 </html>
