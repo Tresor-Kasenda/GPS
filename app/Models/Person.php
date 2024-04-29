@@ -36,7 +36,7 @@ final class Person extends Model
         return $this->hasOne(Hiring::class);
     }
 
-    public function birthday()
+    public function birthday(): string
     {
         return $this->birthdate->format('Y-m-d');
     }

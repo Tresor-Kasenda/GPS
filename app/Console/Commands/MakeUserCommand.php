@@ -18,7 +18,10 @@ final class MakeUserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:make-user';
+    protected $signature = 'app:make-user
+                        {--name= : Name of the user}
+                        {--email= : Email of the user}
+                        {--password= : The password for the user (min. 8 characters)}';
 
     /**
      * The console command description.
@@ -34,21 +37,21 @@ final class MakeUserCommand extends Command
     {
         $name = text(
             'Name',
-            'Enter the name of user',
+            "Saisir le nom",
             required: true,
             validate: ['name' => 'required|max:255']
         );
 
         $email = text(
             'E-mail',
-            'Enter the email of user',
+            "Saisir l'email",
             required: true,
             validate: ['name' => 'required|email|unique:users']
         );
 
         $password = password(
             'Password',
-            'Enter the password of user',
+            "Saisir le mot de passe",
             required: true,
             validate: ['required', 'min:8', Password::defaults()]
         );
@@ -56,11 +59,12 @@ final class MakeUserCommand extends Command
         $user = User::query()->create([
             'name' => $name,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'email_verified_at' => now()
         ]);
 
         event(new Registered($user));
 
-        $this->components->info("User {$user->name} has been created");
+        $this->components->info('Success! Your account has been created ' . $user?->email . ' with successfully');
     }
 }
