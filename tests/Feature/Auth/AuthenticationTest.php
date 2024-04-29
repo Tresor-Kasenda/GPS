@@ -1,27 +1,21 @@
 <?php
 
 use App\Models\User;
-use Livewire\Volt\Volt;
+use function Pest\Laravel\post;
 
 test('login screen can be rendered', function () {
-    $response = $this->get('/login');
-
-    $response
+    $this->get('/login')
         ->assertOk()
-        ->assertSeeVolt('pages.auth.login');
+        ->assertSee('login');
 });
 
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    $component = Volt::test('pages.auth.login')
-        ->set('form.email', $user->email)
-        ->set('form.password', 'password');
-
-    $component->call('login');
-
-    $component
-        ->assertHasNoErrors()
+    post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ])
         ->assertRedirect(route('dashboard', absolute: false));
 
     $this->assertAuthenticated();
@@ -30,15 +24,11 @@ test('users can authenticate using the login screen', function () {
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $component = Volt::test('pages.auth.login')
-        ->set('form.email', $user->email)
-        ->set('form.password', 'wrong-password');
-
-    $component->call('login');
-
-    $component
-        ->assertHasErrors()
-        ->assertNoRedirect();
+    post('/login', [
+        'email' => $user->email,
+        'password' => 'wrong-password',
+    ])
+        ->assertRedirect();
 
     $this->assertGuest();
 });
@@ -48,11 +38,9 @@ test('navigation menu can be rendered', function () {
 
     $this->actingAs($user);
 
-    $response = $this->get('/dashboard');
-
-    $response
+    $this->get('/dashboard')
         ->assertOk()
-        ->assertSeeVolt('layout.navigation');
+        ->assertSee('dashboard');
 });
 
 test('users can logout', function () {
@@ -60,12 +48,7 @@ test('users can logout', function () {
 
     $this->actingAs($user);
 
-    $component = Volt::test('layout.navigation');
-
-    $component->call('logout');
-
-    $component
-        ->assertHasNoErrors()
+    post('logout')
         ->assertRedirect('/');
 
     $this->assertGuest();
