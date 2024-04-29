@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\Gender;
@@ -11,7 +13,7 @@ use Illuminate\Support\Arr;
 /**
  * @extends Factory<Person>
  */
-class PersonFactory extends Factory
+final class PersonFactory extends Factory
 {
     /**
      * Define the model's default state.

@@ -8,7 +8,7 @@ use App\Models\Division;
 use App\Models\Office;
 use Illuminate\Database\Seeder;
 
-class OfficeSeeder extends Seeder
+final class OfficeSeeder extends Seeder
 {
     /**
      * Run the database seeds.

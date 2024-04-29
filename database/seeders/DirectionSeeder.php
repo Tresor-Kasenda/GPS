@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use App\Models\Direction;
 use Illuminate\Database\Seeder;
 
-class DirectionSeeder extends Seeder
+final class DirectionSeeder extends Seeder
 {
     /**
      * Run the database seeds.

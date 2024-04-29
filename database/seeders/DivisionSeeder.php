@@ -8,7 +8,7 @@ use App\Models\Direction;
 use App\Models\Division;
 use Illuminate\Database\Seeder;
 
-class DivisionSeeder extends Seeder
+final class DivisionSeeder extends Seeder
 {
     /**
      * Run the database seeds.

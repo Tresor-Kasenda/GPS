@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use function Pest\Laravel\post;
 
-test('login screen can be rendered', function () {
+test('login screen can be rendered', function (): void {
     $this->get('/login')
         ->assertOk()
         ->assertSee('login');
 });
 
-test('users can authenticate using the login screen', function () {
+test('users can authenticate using the login screen', function (): void {
     $user = User::factory()->create();
 
     post('/login', [
@@ -21,7 +23,7 @@ test('users can authenticate using the login screen', function () {
     $this->assertAuthenticated();
 });
 
-test('users can not authenticate with invalid password', function () {
+test('users can not authenticate with invalid password', function (): void {
     $user = User::factory()->create();
 
     post('/login', [
@@ -33,7 +35,7 @@ test('users can not authenticate with invalid password', function () {
     $this->assertGuest();
 });
 
-test('navigation menu can be rendered', function () {
+test('navigation menu can be rendered', function (): void {
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -43,7 +45,7 @@ test('navigation menu can be rendered', function () {
         ->assertSee('dashboard');
 });
 
-test('users can logout', function () {
+test('users can logout', function (): void {
     $user = User::factory()->create();
 
     $this->actingAs($user);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Direction;
@@ -9,7 +11,7 @@ use Illuminate\Support\Str;
 /**
  * @extends Factory<Direction>
  */
-class DirectionFactory extends Factory
+final class DirectionFactory extends Factory
 {
     /**
      * Define the model's default state.

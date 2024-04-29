@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class DatabaseSeeder extends Seeder
+final class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             //OfficeSeeder::class
             //GradeSeeder::class
             // PersonSeeder::class
-//            HiringSeeder::class
+            //            HiringSeeder::class
             AdmissionSubSeeder::class
         ]);
     }

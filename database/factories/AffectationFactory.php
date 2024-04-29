@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Affectation;
@@ -13,7 +15,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Affectation>
  */
-class AffectationFactory extends Factory
+final class AffectationFactory extends Factory
 {
     /**
      * Define the model's default state.

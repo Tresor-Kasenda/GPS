@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Grade;
@@ -10,7 +12,7 @@ use Illuminate\Support\Str;
 /**
  * @extends Factory<Grade>
  */
-class GradeFactory extends Factory
+final class GradeFactory extends Factory
 {
     /**
      * Define the model's default state.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Hiring;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Hiring>
  */
-class HiringFactory extends Factory
+final class HiringFactory extends Factory
 {
     /**
      * Define the model's default state.

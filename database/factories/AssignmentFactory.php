@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\ReasonEnum;
@@ -12,7 +14,7 @@ use Illuminate\Support\Arr;
 /**
  * @extends Factory<Assignment>
  */
-class AssignmentFactory extends Factory
+final class AssignmentFactory extends Factory
 {
     /**
      * Define the model's default state.

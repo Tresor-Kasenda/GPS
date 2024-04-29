@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\User;
@@ -9,7 +11,7 @@ use Illuminate\Validation\Rules\Password;
 use function Laravel\Prompts\password;
 use function Laravel\Prompts\text;
 
-class MakeUserCommand extends Command
+final class MakeUserCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -59,6 +61,6 @@ class MakeUserCommand extends Command
 
         event(new Registered($user));
 
-        $this->components->info("User $user->name has been created");
+        $this->components->info("User {$user->name} has been created");
     }
 }

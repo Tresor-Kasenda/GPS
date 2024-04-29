@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\AdmissionSub;
@@ -12,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<AdmissionSub>
  */
-class AdmissionSubFactory extends Factory
+final class AdmissionSubFactory extends Factory
 {
     /**
      * Define the model's default state.

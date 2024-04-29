@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Hiring;
 use Illuminate\Database\Seeder;
 
-class HiringSeeder extends Seeder
+final class HiringSeeder extends Seeder
 {
     /**
      * Run the database seeds.
