@@ -1,10 +1,14 @@
+@props([
+    'min_date' => null,
+    'time' => false
+])
 <div
         x-data="{
        init() {
            flatpickr(this.$refs.myDatePicker, {
-               minDate: 'today',
+               minDate: '{{ $min_date }}',
                dateFormat: 'Y-m-d',
-               enableTime: false,
+               enableTime: {{ $time }},
                onChange: (selectedDates, dateStr, instance) => {
                    this.$dispatch('input', dateStr)
                },
