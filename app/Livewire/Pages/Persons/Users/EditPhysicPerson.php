@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Pages\Persons\Users;
 
 use App\Enums\Gender;
@@ -14,7 +16,7 @@ use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
 #[Title('Editer une personne physique')]
-class EditPhysicPerson extends Component
+final class EditPhysicPerson extends Component
 {
     use WithFileUploads;
 
@@ -35,7 +37,7 @@ class EditPhysicPerson extends Component
     #[Validate('required|string|in:Marié(e),Célibataire,Divorcé(e),Veuve/Veuf,Neutre')]
     public string|null $marital_status = '';
 
-    #[Validate('required|date')]
+    #[Validate('required|date|before:-18 years')]
     public string|null $birthdate = '';
 
     #[Validate('required|string|max:255|min:3|alpha')]

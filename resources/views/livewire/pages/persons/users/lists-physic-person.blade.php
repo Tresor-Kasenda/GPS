@@ -22,10 +22,16 @@
                 </thead>
                 <tbody>
                 @foreach($persons as $person)
-                    <x-ui.table.tr>
+                    <x-ui.table.tr wire:loading.class.delay="opacity-20" wire:key="table-{{ $person->id }}">
                         <x-ui.table.td class="nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid3-{{ $person->id }}">
+                                <input
+                                        type="checkbox"
+                                        wire:model="selected"
+                                        class="custom-control-input"
+                                        id="uid3-{{ $person->id }}"
+                                        value="{{ $person->id }}"
+                                >
                                 <label class="custom-control-label" for="uid3-{{ $person->id }}"></label>
                             </div>
                         </x-ui.table.td>
@@ -48,7 +54,7 @@
                                 </span>
                             </div>
                             <div>
-                                <span style="font-size: smaller;">{{ $person->gender }} </span>|</span>
+                                <span style="font-size: smaller;">{{ $person->gender }} </span>|
                                 <span style="font-size: smaller;"> {{ $person->marital_status }} </span>
                             </div>
                         </x-ui.table.td>
@@ -119,7 +125,7 @@
                                         />
                                         <x-ui.table.action.link-down
                                                 icon="user-add"
-                                                :href="route('persons.edit-physic-person', $person->id)"
+                                                :href="route('persons.hiring-physic-person', $person->id)"
                                                 :action="__('Engagement')"
                                         />
                                     </x-ui.table.action>

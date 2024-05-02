@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Pages\Persons\Users;
 
 use App\Models\Person;
@@ -10,8 +12,10 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Liste des personnes physique')]
-class ListsPhysicPerson extends Component
+final class ListsPhysicPerson extends Component
 {
+    public array $selected = [];
+
     public function render(): View
     {
         return view('livewire.pages.persons.users.lists-physic-person', [
@@ -19,7 +23,7 @@ class ListsPhysicPerson extends Component
         ]);
     }
 
-    public function deletePerson(int $person)
+    public function deletePerson(int $person): void
     {
         dd($person);
     }
