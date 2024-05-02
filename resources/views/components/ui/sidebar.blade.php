@@ -5,7 +5,8 @@
         <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Pesonnes Physiques')"/>
         <x-ui.block.sidebar.link-sub :route="route('dashboard')" :name="__('Charges Sociales')"/>
         <x-ui.block.sidebar.link-sub :route="route('dashboard')" :name="__('Etudes Faites')"/>
-        <x-ui.block.sidebar.link-sub :route="route('dashboard')" :name="__('Expérience Professionnelle')"/>
+        <x-ui.block.sidebar.link-sub :route="route('persons.lists-experience')"
+                                     :name="__('Expérience Professionnelle')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Engagement')" icon="user-list">

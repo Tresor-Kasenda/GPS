@@ -2,7 +2,7 @@
     <x-ui.content.block-head :title="__('Nouvelle Engagement')">
         <x-ui.block.button.link
                 icon="arrow-long-left"
-                :route="route('persons.lists-physic-person')"
+                :route="route('engagement.lists-hiring')"
                 :action="__('Retour')"
         />
     </x-ui.content.block-head>
@@ -41,6 +41,7 @@
                             <x-ui.forms.input.error :messages="$errors->get('date_commitment')" class="mt-2"/>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="date_retirement">Date Retraite</x-ui.forms.input.label>
@@ -71,6 +72,7 @@
                             <x-ui.forms.input.error :messages="$errors->get('matriculate')" class="mt-2"/>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="carriers_state">
@@ -104,9 +106,11 @@
                             <x-ui.forms.input.error :messages="$errors->get('document')" class="mt-2"/>
                         </div>
                     </div>
+
                     <div class="col-12">
                         <x-ui.block.button.submit :action="__('Enregistrer')"/>
                     </div>
+
                 </div>
             </x-ui.forms.layout>
         </x-ui.block.card>

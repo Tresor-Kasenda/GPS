@@ -17,6 +17,8 @@ class HiringPhysicPerson extends Component
 {
     use WithFileUploads;
 
+    public Person $person;
+
     #[Validate('required|date|date_format:Y-m-d|after:now')]
     public string $date_commitment = '';
 

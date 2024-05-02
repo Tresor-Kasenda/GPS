@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Livewire\Pages\Experiences\CreateExperience;
+use App\Livewire\Pages\Experiences\ListsExperience;
 use App\Livewire\Pages\Persons\Hirings\CreateHirings;
 use App\Livewire\Pages\Persons\Hirings\EditHirings;
 use App\Livewire\Pages\Persons\Hirings\ListsHirings;
@@ -26,6 +28,11 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/{person}/edit', EditPhysicPerson::class)->name('edit-physic-person');
             Route::get('/{person}/show', ShowPhysicPerson::class)->name('show-physic-person');
             Route::get('/{person}/hiring', HiringPhysicPerson::class)->name('hiring-physic-person');
+        });
+
+        Route::group(['prefix' => 'experience'], function () {
+            Route::get('/', ListsExperience::class)->name('lists-experience');
+            Route::get('/{person}/experience', CreateExperience::class)->name('create-experience');
         });
 
     });

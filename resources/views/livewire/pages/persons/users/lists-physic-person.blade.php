@@ -120,7 +120,7 @@
                                         />
                                         <x-ui.table.action.link-down
                                                 icon="briefcase"
-                                                :href="route('persons.edit-physic-person', $person->id)"
+                                                :href="route('persons.create-experience', $person->id)"
                                                 :action="__('Expérience Professionnelle')"
                                         />
                                         <x-ui.table.action.link-down
