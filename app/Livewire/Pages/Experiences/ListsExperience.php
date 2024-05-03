@@ -12,6 +12,8 @@ use Livewire\Component;
 #[Title('Liste des experience professionnelle')]
 class ListsExperience extends Component
 {
+    public $selected = [];
+
     public function render(): View
     {
         return view('livewire.pages.experiences.lists-experience', [

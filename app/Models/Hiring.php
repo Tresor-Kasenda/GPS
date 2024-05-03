@@ -27,14 +27,16 @@ final class Hiring extends Model
         return $this->belongsTo(Person::class);
     }
 
-    public function dateEngagement()
+    public function dateEngagement(): string
     {
         return $this->date_commitment->format('d/m/Y');
     }
 
-    public function dateRetraite()
+    public function getRetirementAttribute(): string
     {
-        return $this->date_retirement->format('d/m/Y');
+        return $this->date_retirement !== '' ?
+            $this->date_retirement->format('d/m/Y') :
+            '';
     }
 
     public function assignments(): HasMany

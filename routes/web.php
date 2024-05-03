@@ -7,6 +7,8 @@ use App\Livewire\Pages\Experiences\ListsExperience;
 use App\Livewire\Pages\Persons\Hirings\CreateHirings;
 use App\Livewire\Pages\Persons\Hirings\EditHirings;
 use App\Livewire\Pages\Persons\Hirings\ListsHirings;
+use App\Livewire\Pages\Persons\Qualifications\CreateQualifications;
+use App\Livewire\Pages\Persons\Qualifications\ListsQualifications;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
@@ -32,7 +34,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
 
         Route::group(['prefix' => 'experience'], function () {
             Route::get('/', ListsExperience::class)->name('lists-experience');
-            Route::get('/{person}/experience', CreateExperience::class)->name('create-experience');
+            Route::get('/{person}/add', CreateExperience::class)->name('create-experience');
+        });
+
+        Route::group(['prefix' => 'qualification'], function () {
+            Route::get('/', ListsQualifications::class)->name('lists-qualifications');
+            Route::get('/{person}/add', CreateQualifications::class)->name('create-qualifications');
         });
 
     });
@@ -43,6 +50,10 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/add', CreateHirings::class)->name('create-hiring');
             Route::get('/{hiring}/edit', EditHirings::class)->name('edit-hiring');
         });
+    });
+
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+
     });
 });
 

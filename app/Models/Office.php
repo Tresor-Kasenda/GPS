@@ -12,6 +12,9 @@ final class Office extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string<string, string>[]
+     */
     protected $fillable = [
         'division_id',
         'priority',
@@ -19,6 +22,9 @@ final class Office extends Model
         'designation',
     ];
 
+    /**
+     * @return BelongsTo
+     */
     public function division(): BelongsTo
     {
         return $this->belongsTo(Division::class);

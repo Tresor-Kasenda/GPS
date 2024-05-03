@@ -60,7 +60,9 @@
                                 <span>{{ $hiring->dateEngagement() }}</span>
                             </div>
                             <div>
-                                <span style="font-size: smaller; font-style: italic;">{{ $hiring->dateRetraite() }}</span>
+                                <span style="font-size: smaller; font-style: italic;">
+                                    {{ $hiring->getRetirementAttribute() }}
+                                </span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">

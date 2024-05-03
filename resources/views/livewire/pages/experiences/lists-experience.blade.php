@@ -26,7 +26,7 @@
                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                 <input
                                         type="checkbox"
-                                        wire:model="selected"
+                                        wire:model.live="selected"
                                         class="custom-control-input"
                                         id="uid3-{{ $experience->id }}"
                                         value="{{ $experience->id }}"

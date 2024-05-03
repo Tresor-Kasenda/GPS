@@ -65,7 +65,7 @@ class CreateExperience extends Component
                 'document' => $path,
             ]);
 
-        $this->dispatch('success', "Une experience professionnelle pour {$this->person->name} a ete ajouter");
+        $this->dispatch('message', title: "Une experience professionnelle pour {$this->person->name} a ete ajouter");
 
         $this->redirect(route('persons.lists-experience', absolute: false));
     }

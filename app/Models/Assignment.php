@@ -31,7 +31,7 @@ final class Assignment extends Model
         return $this->belongsTo(Grade::class);
     }
 
-    public function dateAttribution()
+    public function dateAttribution(): string
     {
         return $this->date_assignment->format('d/m/Y');
     }

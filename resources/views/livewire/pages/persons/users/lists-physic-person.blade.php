@@ -115,7 +115,7 @@
                                         />
                                         <x-ui.table.action.link-down
                                                 icon="award"
-                                                :href="route('persons.edit-physic-person', $person->id)"
+                                                :href="route('persons.create-qualifications', $person->id)"
                                                 :action="__('Etudes Faites')"
                                         />
                                         <x-ui.table.action.link-down
