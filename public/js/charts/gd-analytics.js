@@ -225,7 +225,7 @@
             });
         }
     }
-    ;
+
     NioApp.coms.docReady.push(jqvmap_init);
 
     // Charts
@@ -276,7 +276,6 @@
                 options: {
                     legend: {
                         display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
                         labels: {
                             boxWidth: 12,
                             padding: 20,
@@ -445,7 +444,6 @@
                 options: {
                     legend: {
                         display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
                         labels: {
                             boxWidth: 12,
                             padding: 20,
@@ -559,7 +557,6 @@
                 options: {
                     legend: {
                         display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
                         labels: {
                             boxWidth: 12,
                             padding: 20,
@@ -691,7 +688,6 @@
                 options: {
                     legend: {
                         display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
                         labels: {
                             boxWidth: 12,
                             padding: 20,

@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Liste des personnes physique')]
+#[Title('List des persons physique')]
 final class ListsPhysicPerson extends Component
 {
     public array $selected = [];

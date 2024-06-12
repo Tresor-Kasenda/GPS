@@ -9,8 +9,8 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Liste des experience professionnelle')]
-class ListsExperience extends Component
+#[Title('List des experience professional')]
+final class ListsExperience extends Component
 {
     public $selected = [];
 

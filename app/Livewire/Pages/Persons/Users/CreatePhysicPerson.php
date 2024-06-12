@@ -15,7 +15,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
-#[Title('Ajouter un personnel')]
+#[Title('Add un personnel')]
 final class CreatePhysicPerson extends Component
 {
     use WithFileUploads;
@@ -53,8 +53,8 @@ final class CreatePhysicPerson extends Component
     #[Validate('nullable|string|max:255|min:6|unique:people,identity_piece')]
     public string|null $identity_piece = '';
 
-    public $genders;
-    public $maritals;
+    public array $genders = [];
+    public array $maritals = [];
 
     public function mount(): void
     {
@@ -71,7 +71,9 @@ final class CreatePhysicPerson extends Component
     {
         $this->validate();
 
-        $path = $this->profile_picture->storePublicly('/', ['disk' => 'public']);
+        $path = $this->profile_picture !== ''
+            ? $this->profile_picture->storePublicly('/', ['disk' => 'public'])
+            : '';
 
         Person::query()->create([
             'name' => $this->name,
@@ -86,6 +88,8 @@ final class CreatePhysicPerson extends Component
             'identity_piece' => $this->identity_piece,
             'profile_picture' => $path
         ]);
+
+        $this->dispatch('message', title: "Operation executer avec success");
 
         $this->redirect(route('persons.lists-physic-person'));
     }

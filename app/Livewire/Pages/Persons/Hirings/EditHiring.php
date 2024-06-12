@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Livewire\Pages\Persons\Users;
+namespace App\Livewire\Pages\Persons\Hirings;
 
 use App\Models\Hiring;
-use App\Models\Person;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -12,12 +11,12 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
-#[Title('Nouvelle engagement')]
-class HiringPhysicPerson extends Component
+#[Title('Edited Engagement')]
+final class EditHiring extends Component
 {
     use WithFileUploads;
 
-    public Person $person;
+    public Hiring $hiring;
 
     #[Validate('required|date|date_format:Y-m-d|after:now')]
     public string $date_commitment = '';
@@ -25,51 +24,47 @@ class HiringPhysicPerson extends Component
     #[Validate('nullable|date|date_format:Y-m-d|after:date_commitment')]
     public string $date_retirement = '';
 
-    #[Validate('required|string|min:6|unique:hirings,matriculate')]
+    #[Validate('required|string')]
     public string $matriculate = '';
 
     #[Validate('required|string')]
     public string $carriers_state = '';
 
-    #[Validate('nullable|file')]
+    #[Validate('nullable')]
     public $document = '';
 
-    public function mount(Person $person): void
+    public function mount(Hiring $hiring): void
     {
-        $this->person = $person;
+        $this->date_commitment = $hiring->date_commitment->format('Y-m-d');
+
+        if ($this->date_retirement) {
+            $this->date_retirement = $hiring->date_retirement->format('Y-m-d');
+        }
+
+        $this->matriculate = $hiring->matriculate;
+        $this->carriers_state = $hiring->carriers_state;
     }
 
     public function render(): View
     {
-        return view('livewire.pages.persons.users.hiring-physic-person');
+        return view('livewire.pages.persons.hirings.edit-hirings');
     }
 
     public function submit(): void
     {
         $this->validate();
 
-        $agent = Hiring::query()->where('person_id', $this->person->id)->first();
-
-        if ($agent) {
-            session()->flash('status', 'Cette personne exists deja dans la base des donnees');
-            return;
-        }
-
         $path = $this->document !== ""
             ? $this->document->storePublicly('/documents', ['disk' => 'public'])
-            : '';
-
-        Hiring::query()->create([
-            'person_id' => $this->person->id,
+            : $this->hiring->document;
+        $this->hiring->update([
             'date_commitment' => $this->date_commitment,
             'date_retirement' => $this->date_retirement,
+            'matriculate' => $this->matriculate,
             'carriers_state' => $this->carriers_state,
             'document' => $path,
-            'matriculate' => str($this->matriculate)->upper(),
         ]);
 
-        $this->dispatch('message', title: "Operation executer avec success", params: ['type' => 'info']);
-
-        $this->redirect(route('engagement.lists-hiring', absolute: true));
+        $this->redirect(route('engagement.lists-hiring', absolute: false));
     }
 }

@@ -83,6 +83,7 @@
                             <x-ui.forms.datepicker
                                     id="birthdate"
                                     name="birthdate"
+                                    time="false"
                                     wire:model.live="birthdate"
                                     placeholder="Saisissez la date de naissance"
                             />

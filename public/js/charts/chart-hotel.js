@@ -3,207 +3,26 @@
 !function (NioApp, $) {
     "use strict";
 
-    //////// for developer - barchart ////////
-    // Avilable options to pass from outside
-    // labels: array,
-    // stacked: false - boolean,
-    // legend: false - boolean,
-    // dataUnit: string, (Used in tooltip or other section for display)
-    // datasets: [{label : string, color: string (color code with # or other format), data: array}]
-    var barChartData = {
-        labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
-        dataUnit: 'People',
-        datasets: [{
-            label: "join",
-            color: "#9cabff",
-            data: [110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95, 75, 90, 75, 90]
-        }, {
-            label: "join",
-            color: "#9cabff",
-            data: [110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95, 75, 90, 75, 90]
-        }]
-    };
-    var barChartMultiple = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        dataUnit: 'USD',
-        datasets: [{
-            label: "Income",
-            color: "#9cabff",
-            data: [110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95]
-        }, {
-            label: "Expense",
-            color: "#f4aaa4",
-            data: [75, 90, 110, 80, 125, 55, 95, 75, 90, 110, 80, 125]
-        }]
-    };
-    var barChartStacked = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        stacked: true,
-        dataUnit: 'USD',
-        datasets: [{
-            label: "Income",
-            color: "#9cabff",
-            data: [110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95]
-        }, {
-            label: "Expense",
-            color: "#f4aaa4",
-            data: [75, 90, 110, 80, 125, 55, 95, 75, 90, 110, 80, 125]
-        }]
-    };
-
-    function barChart(selector, set_data) {
-        var $selector = selector ? $(selector) : $('.bar-chart');
-        $selector.each(function () {
-            var $self = $(this),
-                _self_id = $self.attr('id'),
-                _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data,
-                _d_legend = typeof _get_data.legend === 'undefined' ? false : _get_data.legend;
-            var selectCanvas = document.getElementById(_self_id).getContext("2d");
-            var chart_data = [];
-            for (var i = 0; i < _get_data.datasets.length; i++) {
-                chart_data.push({
-                    label: _get_data.datasets[i].label,
-                    data: _get_data.datasets[i].data,
-                    // Styles
-                    backgroundColor: _get_data.datasets[i].color,
-                    borderWidth: 2,
-                    borderColor: 'transparent',
-                    hoverBorderColor: 'transparent',
-                    borderSkipped: 'bottom',
-                    barPercentage: .6,
-                    categoryPercentage: .7
-                });
-            }
-            var chart = new Chart(selectCanvas, {
-                type: 'bar',
-                data: {
-                    labels: _get_data.labels,
-                    datasets: chart_data
-                },
-                options: {
-                    legend: {
-                        display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
-                        labels: {
-                            boxWidth: 30,
-                            padding: 20,
-                            fontColor: '#6783b8'
-                        }
-                    },
-                    maintainAspectRatio: false,
-                    tooltips: {
-                        enabled: true,
-                        rtl: NioApp.State.isRTL,
-                        callbacks: {
-                            title: function title(tooltipItem, data) {
-                                return data.datasets[tooltipItem[0].datasetIndex].label;
-                            },
-                            label: function label(tooltipItem, data) {
-                                return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
-                            }
-                        },
-                        backgroundColor: '#eff6ff',
-                        titleFontSize: 13,
-                        titleFontColor: '#6783b8',
-                        titleMarginBottom: 6,
-                        bodyFontColor: '#9eaecf',
-                        bodyFontSize: 12,
-                        bodySpacing: 4,
-                        yPadding: 10,
-                        xPadding: 10,
-                        footerMarginTop: 0,
-                        displayColors: false
-                    },
-                    scales: {
-                        yAxes: [{
-                            display: true,
-                            stacked: _get_data.stacked ? _get_data.stacked : false,
-                            position: NioApp.State.isRTL ? "right" : "left",
-                            ticks: {
-                                beginAtZero: true,
-                                fontSize: 12,
-                                fontColor: '#9eaecf',
-                                padding: 5
-                            },
-                            gridLines: {
-                                color: NioApp.hexRGB("#526484", .2),
-                                tickMarkLength: 0,
-                                zeroLineColor: NioApp.hexRGB("#526484", .2)
-                            }
-                        }],
-                        xAxes: [{
-                            display: true,
-                            stacked: _get_data.stacked ? _get_data.stacked : false,
-                            ticks: {
-                                fontSize: 12,
-                                fontColor: '#9eaecf',
-                                source: 'auto',
-                                padding: 5,
-                                reverse: NioApp.State.isRTL
-                            },
-                            gridLines: {
-                                color: "transparent",
-                                tickMarkLength: 10,
-                                zeroLineColor: 'transparent'
-                            }
-                        }]
-                    }
-                }
-            });
-        });
-    }
-
-    // init bar chart
-    barChart();
-
-    //////// for developer - linechart ////////
+    //////// for developer - User Balance ////////
     // Avilable options to pass from outside
     // labels: array,
     // legend: false - boolean,
     // dataUnit: string, (Used in tooltip or other section for display)
     // datasets: [{label : string, color: string (color code with # or other format), data: array}]
-    var solidLineChart = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        dataUnit: 'BTC',
-        lineTension: .4,
-        legend: true,
+    var analyticAuData = {
+        labels: ["01 Jan", "02 Jan", "03 Jan", "04 Jan", "05 Jan", "06 Jan", "07 Jan", "08 Jan", "09 Jan", "10 Jan", "11 Jan", "12 Jan", "13 Jan", "14 Jan", "15 Jan", "16 Jan", "17 Jan", "18 Jan", "19 Jan", "20 Jan", "21 Jan", "22 Jan", "23 Jan", "24 Jan", "25 Jan", "26 Jan", "27 Jan", "28 Jan", "29 Jan", "30 Jan"],
+        dataUnit: 'Revenue',
+        lineTension: .1,
         datasets: [{
-            label: "Total Received",
-            color: "#5ce0aa",
-            background: 'transparent',
-            data: [110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95]
-        }, {
-            label: "Total Send",
-            color: "#798bff",
-            background: 'transparent',
-            data: [80, 54, 105, 120, 82, 85, 60, 80, 54, 105, 120, 82]
-        }]
-    };
-    var filledLineChart = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        dataUnit: 'BTC',
-        lineTension: .4,
-        datasets: [{
-            label: "Total Received",
-            color: "#798bff",
-            background: NioApp.hexRGB('#798bff', .4),
-            data: [110, 80, 125, 65, 95, 75, 90, 110, 80, 125, 70, 95]
-        }]
-    };
-    var straightLineChart = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        dataUnit: 'BTC',
-        lineTension: 0,
-        datasets: [{
-            label: "Total Received",
-            color: "#798bff",
-            background: NioApp.hexRGB('#798bff', .3),
-            data: [110, 80, 125, 55, 95, 75, 90, 110, 80, 125, 55, 95]
+            label: "Revenue",
+            color: "#9cabff",
+            background: "#9cabff",
+            data: [1110, 1220, 1310, 980, 900, 770, 1060, 830, 690, 730, 790, 950, 1100, 800, 1250, 850, 950, 450, 900, 1000, 1200, 1250, 900, 950, 1300, 1200, 1250, 650, 950, 750]
         }]
     };
 
-    function lineChart(selector, set_data) {
-        var $selector = selector ? $(selector) : $('.line-chart');
+    function analyticsAu(selector, set_data) {
+        var $selector = selector ? $(selector) : $('.analytics-au-chart');
         $selector.each(function () {
             var $self = $(this),
                 _self_id = $self.attr('id'),
@@ -217,8 +36,132 @@
                     backgroundColor: _get_data.datasets[i].background,
                     borderWidth: 2,
                     borderColor: _get_data.datasets[i].color,
-                    pointBorderColor: _get_data.datasets[i].color,
-                    pointBackgroundColor: '#fff',
+                    data: _get_data.datasets[i].data,
+                    barPercentage: .7,
+                    categoryPercentage: .7
+                });
+            }
+            var chart = new Chart(selectCanvas, {
+                type: 'bar',
+                data: {
+                    labels: _get_data.labels,
+                    datasets: chart_data
+                },
+                options: {
+                    legend: {
+                        display: _get_data.legend ? _get_data.legend : false,
+                        labels: {
+                            boxWidth: 12,
+                            padding: 20,
+                            fontColor: '#6783b8'
+                        }
+                    },
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        enabled: true,
+                        rtl: NioApp.State.isRTL,
+                        callbacks: {
+                            title: function title(tooltipItem, data) {
+                                return false; //data['labels'][tooltipItem[0]['index']];
+                            },
+
+                            label: function label(tooltipItem, data) {
+                                return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']];
+                            }
+                        },
+                        backgroundColor: '#eff6ff',
+                        titleFontSize: 9,
+                        titleFontColor: '#6783b8',
+                        titleMarginBottom: 6,
+                        bodyFontColor: '#9eaecf',
+                        bodyFontSize: 9,
+                        bodySpacing: 4,
+                        yPadding: 6,
+                        xPadding: 6,
+                        footerMarginTop: 0,
+                        displayColors: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            position: NioApp.State.isRTL ? "right" : "left",
+                            ticks: {
+                                beginAtZero: false,
+                                fontSize: 12,
+                                fontColor: '#9eaecf',
+                                padding: 0,
+                                display: false,
+                                stepSize: 300
+                            },
+                            gridLines: {
+                                color: NioApp.hexRGB("#526484", .2),
+                                tickMarkLength: 0,
+                                zeroLineColor: NioApp.hexRGB("#526484", .2)
+                            }
+                        }],
+                        xAxes: [{
+                            display: false,
+                            ticks: {
+                                fontSize: 12,
+                                fontColor: '#9eaecf',
+                                source: 'auto',
+                                padding: 0,
+                                reverse: NioApp.State.isRTL
+                            },
+                            gridLines: {
+                                color: "transparent",
+                                tickMarkLength: 0,
+                                zeroLineColor: 'transparent',
+                                offsetGridLines: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    }
+
+    // init chart
+    NioApp.coms.docReady.push(function () {
+        analyticsAu();
+    });
+    var analyticOvData = {
+        labels: ["01 Jan", "02 Jan", "03 Jan", "04 Jan", "05 Jan", "06 Jan", "07 Jan", "08 Jan", "09 Jan", "10 Jan", "11 Jan", "12 Jan", "13 Jan", "14 Jan", "15 Jan", "16 Jan", "17 Jan", "18 Jan", "19 Jan", "20 Jan", "21 Jan", "22 Jan", "23 Jan", "24 Jan", "25 Jan", "26 Jan", "27 Jan", "28 Jan", "29 Jan", "30 Jan"],
+        dataUnit: 'People',
+        lineTension: .1,
+        datasets: [{
+            label: "Current Month",
+            color: "#e85347",
+            dash: [5],
+            background: "transparent",
+            data: [3910, 4420, 4110, 5180, 4400, 5170, 6460, 8830, 5290, 5430, 4690, 4350, 4600, 5200, 5650, 6850, 6950, 4150, 4300, 6000, 6800, 2250, 6900, 7950, 6900, 4200, 6250, 7650, 8950, 9750]
+        }, {
+            label: "Current Month",
+            color: "#798bff",
+            dash: 0,
+            background: NioApp.hexRGB('#798bff', .15),
+            data: [4110, 4220, 4810, 5480, 4600, 5670, 6660, 4830, 5590, 5730, 4790, 4950, 5100, 5800, 5950, 5850, 5950, 4450, 4900, 8000, 7200, 7250, 7900, 8950, 6300, 7200, 7250, 7650, 6950, 4750]
+        }]
+    };
+
+    function analyticsLineLarge(selector, set_data) {
+        var $selector = selector ? $(selector) : $('.analytics-line-large');
+        $selector.each(function () {
+            var $self = $(this),
+                _self_id = $self.attr('id'),
+                _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data;
+            var selectCanvas = document.getElementById(_self_id).getContext("2d");
+            var chart_data = [];
+            for (var i = 0; i < _get_data.datasets.length; i++) {
+                chart_data.push({
+                    label: _get_data.datasets[i].label,
+                    tension: _get_data.lineTension,
+                    backgroundColor: _get_data.datasets[i].background,
+                    borderWidth: 2,
+                    borderDash: _get_data.datasets[i].dash,
+                    borderColor: _get_data.datasets[i].color,
+                    pointBorderColor: 'transparent',
+                    pointBackgroundColor: 'transparent',
                     pointHoverBackgroundColor: "#fff",
                     pointHoverBorderColor: _get_data.datasets[i].color,
                     pointBorderWidth: 2,
@@ -238,7 +181,6 @@
                 options: {
                     legend: {
                         display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
                         labels: {
                             boxWidth: 12,
                             padding: 20,
@@ -254,10 +196,12 @@
                                 return data['labels'][tooltipItem[0]['index']];
                             },
                             label: function label(tooltipItem, data) {
-                                return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
+                                return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']];
                             }
                         },
-                        backgroundColor: '#eff6ff',
+                        backgroundColor: '#fff',
+                        borderColor: '#eff6ff',
+                        borderWidth: 2,
                         titleFontSize: 13,
                         titleFontColor: '#6783b8',
                         titleMarginBottom: 6,
@@ -274,10 +218,11 @@
                             display: true,
                             position: NioApp.State.isRTL ? "right" : "left",
                             ticks: {
-                                beginAtZero: false,
+                                beginAtZero: true,
                                 fontSize: 12,
                                 fontColor: '#9eaecf',
-                                padding: 10
+                                padding: 8,
+                                stepSize: 2400
                             },
                             gridLines: {
                                 color: NioApp.hexRGB("#526484", .2),
@@ -286,18 +231,18 @@
                             }
                         }],
                         xAxes: [{
-                            display: true,
+                            display: false,
                             ticks: {
                                 fontSize: 12,
                                 fontColor: '#9eaecf',
                                 source: 'auto',
-                                padding: 5,
+                                padding: 0,
                                 reverse: NioApp.State.isRTL
                             },
                             gridLines: {
                                 color: "transparent",
-                                tickMarkLength: 10,
-                                zeroLineColor: NioApp.hexRGB("#526484", .2),
+                                tickMarkLength: 0,
+                                zeroLineColor: 'transparent',
                                 offsetGridLines: true
                             }
                         }]
@@ -307,104 +252,23 @@
         });
     }
 
-    // init line chart
-    lineChart();
-
-    //////// for developer - pieChart ////////
-    // Avilable options to pass from outside
-    // labels: array,
-    // legend: false - boolean,
-    // dataUnit: string, (Used in tooltip or other section for display)
-    // datasets: [{label : string, color: string (color code with # or other format), data: array}]
-    var pieChartData = {
-        labels: ["Send", "Receive", "Withdraw"],
-        dataUnit: 'BTC',
+    // init chart
+    NioApp.coms.docReady.push(function () {
+        analyticsLineLarge();
+    });
+    var BookingData = {
+        labels: ["Single", "Double", "Dlux", "Suit"],
+        dataUnit: 'People',
         legend: false,
         datasets: [{
             borderColor: "#fff",
-            background: ["#9cabff", "#f4aaa4", "#8feac5"],
-            data: [110, 80, 125]
+            background: ["#798bff", "#1ee0ac", "#f9db7b", "#ffa353"],
+            data: [3305, 859, 482, 138]
         }]
     };
 
-    function pieChart(selector, set_data) {
-        var $selector = selector ? $(selector) : $('.pie-chart');
-        $selector.each(function () {
-            var $self = $(this),
-                _self_id = $self.attr('id'),
-                _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data;
-            var selectCanvas = document.getElementById(_self_id).getContext("2d");
-            var chart_data = [];
-            for (var i = 0; i < _get_data.datasets.length; i++) {
-                chart_data.push({
-                    backgroundColor: _get_data.datasets[i].background,
-                    borderWidth: 2,
-                    borderColor: _get_data.datasets[i].borderColor,
-                    hoverBorderColor: _get_data.datasets[i].borderColor,
-                    data: _get_data.datasets[i].data
-                });
-            }
-            var chart = new Chart(selectCanvas, {
-                type: 'pie',
-                data: {
-                    labels: _get_data.labels,
-                    datasets: chart_data
-                },
-                options: {
-                    legend: {
-                        display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
-                        labels: {
-                            boxWidth: 12,
-                            padding: 20,
-                            fontColor: '#6783b8'
-                        }
-                    },
-                    rotation: -.2,
-                    maintainAspectRatio: false,
-                    tooltips: {
-                        enabled: true,
-                        rtl: NioApp.State.isRTL,
-                        callbacks: {
-                            title: function title(tooltipItem, data) {
-                                return data['labels'][tooltipItem[0]['index']];
-                            },
-                            label: function label(tooltipItem, data) {
-                                return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
-                            }
-                        },
-                        backgroundColor: '#eff6ff',
-                        titleFontSize: 13,
-                        titleFontColor: '#6783b8',
-                        titleMarginBottom: 6,
-                        bodyFontColor: '#9eaecf',
-                        bodyFontSize: 12,
-                        bodySpacing: 4,
-                        yPadding: 10,
-                        xPadding: 10,
-                        footerMarginTop: 0,
-                        displayColors: false
-                    }
-                }
-            });
-        });
-    }
-
-    // init pie chart
-    pieChart();
-    var doughnutChartData = {
-        labels: ["Send", "Receive", "Withdraw"],
-        dataUnit: 'BTC',
-        legend: false,
-        datasets: [{
-            borderColor: "#fff",
-            background: ["#9cabff", "#f4aaa4", "#8feac5"],
-            data: [110, 80, 125]
-        }]
-    };
-
-    function doughnutChart(selector, set_data) {
-        var $selector = selector ? $(selector) : $('.doughnut-chart');
+    function analyticsDoughnut(selector, set_data) {
+        var $selector = selector ? $(selector) : $('.analytics-doughnut');
         $selector.each(function () {
             var $self = $(this),
                 _self_id = $self.attr('id'),
@@ -429,15 +293,14 @@
                 options: {
                     legend: {
                         display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
                         labels: {
                             boxWidth: 12,
                             padding: 20,
                             fontColor: '#6783b8'
                         }
                     },
-                    rotation: 1,
-                    cutoutPercentage: 40,
+                    rotation: -1.5,
+                    cutoutPercentage: 70,
                     maintainAspectRatio: false,
                     tooltips: {
                         enabled: true,
@@ -450,7 +313,9 @@
                                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
                             }
                         },
-                        backgroundColor: '#eff6ff',
+                        backgroundColor: '#fff',
+                        borderColor: '#eff6ff',
+                        borderWidth: 2,
                         titleFontSize: 13,
                         titleFontColor: '#6783b8',
                         titleMarginBottom: 6,
@@ -467,38 +332,69 @@
         });
     }
 
-    // init doughnut chart
-    doughnutChart();
-    var polarChartData = {
-        labels: ["Send", "Receive", "Withdraw"],
-        dataUnit: 'BTC',
-        legend: false,
+    // init chart
+    NioApp.coms.docReady.push(function () {
+        analyticsDoughnut();
+    });
+    var totalRoom = {
+        labels: ["01 Jan", "02 Jan", "03 Jan", "04 Jan", "05 Jan", "06 Jan", "07 Jan"],
+        dataUnit: 'Room',
+        stacked: true,
         datasets: [{
-            borderColor: "#fff",
-            background: [NioApp.hexRGB("#9cabff", .8), NioApp.hexRGB("#f4aaa4", .8), NioApp.hexRGB("#8feac5", .8)],
-            data: [110, 80, 125]
+            label: "User",
+            color: [NioApp.hexRGB("#6576ff", .2), NioApp.hexRGB("#6576ff", .2), NioApp.hexRGB("#6576ff", .2), NioApp.hexRGB("#6576ff", .2), NioApp.hexRGB("#6576ff", .2), NioApp.hexRGB("#6576ff", .2), "#6576ff"],
+            // @v2.0
+            data: [12, 15, 6, 5, 15, 7, 8]
+        }]
+    };
+    var totalBooking = {
+        labels: ["01 Jan", "02 Jan", "03 Jan", "04 Jan", "05 Jan", "06 Jan", "07 Jan"],
+        dataUnit: 'Room',
+        stacked: true,
+        datasets: [{
+            label: "User",
+            color: [NioApp.hexRGB("#816bff", .2), NioApp.hexRGB("#816bff", .2), NioApp.hexRGB("#816bff", .2), NioApp.hexRGB("#816bff", .2), NioApp.hexRGB("#816bff", .2), NioApp.hexRGB("#816bff", .2), "#816bff"],
+            // @v2.0
+            data: [120, 150, 80, 69, 50, 105, 75]
+        }]
+    };
+    var totalExpenses = {
+        labels: ["01 Jan", "02 Jan", "03 Jan", "04 Jan", "05 Jan", "06 Jan", "07 Jan"],
+        dataUnit: 'USD',
+        stacked: true,
+        datasets: [{
+            label: "Expenses",
+            color: [NioApp.hexRGB("#559bfb", .2), NioApp.hexRGB("#559bfb", .2), NioApp.hexRGB("#559bfb", .2), NioApp.hexRGB("#559bfb", .2), NioApp.hexRGB("#559bfb", .2), NioApp.hexRGB("#559bfb", .2), "#559bfb"],
+            // @v2.0
+            data: [600, 700, 800, 500, 600, 500, 1200]
         }]
     };
 
-    function polarAreaChart(selector, set_data) {
-        var $selector = selector ? $(selector) : $('.polar-chart');
+    function ivDataChart(selector, set_data) {
+        var $selector = selector ? $(selector) : $('.iv-data-chart');
         $selector.each(function () {
             var $self = $(this),
                 _self_id = $self.attr('id'),
-                _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data;
+                _get_data = typeof set_data === 'undefined' ? eval(_self_id) : set_data,
+                _d_legend = typeof _get_data.legend === 'undefined' ? false : _get_data.legend;
             var selectCanvas = document.getElementById(_self_id).getContext("2d");
             var chart_data = [];
             for (var i = 0; i < _get_data.datasets.length; i++) {
                 chart_data.push({
-                    backgroundColor: _get_data.datasets[i].background,
+                    label: _get_data.datasets[i].label,
+                    data: _get_data.datasets[i].data,
+                    // Styles
+                    backgroundColor: _get_data.datasets[i].color,
                     borderWidth: 2,
-                    borderColor: _get_data.datasets[i].borderColor,
-                    hoverBorderColor: _get_data.datasets[i].borderColor,
-                    data: _get_data.datasets[i].data
+                    borderColor: 'transparent',
+                    hoverBorderColor: 'transparent',
+                    borderSkipped: 'bottom',
+                    barPercentage: .7,
+                    categoryPercentage: .7
                 });
             }
             var chart = new Chart(selectCanvas, {
-                type: 'polarArea',
+                type: 'bar',
                 data: {
                     labels: _get_data.labels,
                     datasets: chart_data
@@ -506,9 +402,8 @@
                 options: {
                     legend: {
                         display: _get_data.legend ? _get_data.legend : false,
-                        rtl: NioApp.State.isRTL,
                         labels: {
-                            boxWidth: 12,
+                            boxWidth: 30,
                             padding: 20,
                             fontColor: '#6783b8'
                         }
@@ -519,29 +414,47 @@
                         rtl: NioApp.State.isRTL,
                         callbacks: {
                             title: function title(tooltipItem, data) {
-                                return data['labels'][tooltipItem[0]['index']];
+                                return false;
                             },
                             label: function label(tooltipItem, data) {
-                                return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
+                                return data['labels'][tooltipItem['index']] + ' ' + data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']];
                             }
                         },
                         backgroundColor: '#eff6ff',
-                        titleFontSize: 13,
+                        titleFontSize: 11,
                         titleFontColor: '#6783b8',
-                        titleMarginBottom: 6,
+                        titleMarginBottom: 4,
                         bodyFontColor: '#9eaecf',
-                        bodyFontSize: 12,
-                        bodySpacing: 4,
-                        yPadding: 10,
-                        xPadding: 10,
+                        bodyFontSize: 10,
+                        bodySpacing: 3,
+                        yPadding: 8,
+                        xPadding: 8,
                         footerMarginTop: 0,
                         displayColors: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: false,
+                            stacked: _get_data.stacked ? _get_data.stacked : false,
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        xAxes: [{
+                            display: false,
+                            stacked: _get_data.stacked ? _get_data.stacked : false,
+                            ticks: {
+                                reverse: NioApp.State.isRTL
+                            }
+                        }]
                     }
                 }
             });
         });
     }
 
-    // init line chart
-    polarAreaChart();
+    // init chart
+    NioApp.coms.docReady.push(function () {
+        ivDataChart();
+    });
 }(NioApp, jQuery);

@@ -12,8 +12,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
-#[Title('AJouter une experience professionnelle')]
-class CreateExperience extends Component
+#[Title('AJouter une experience professional')]
+final class CreateExperience extends Component
 {
     use WithFileUploads;
 

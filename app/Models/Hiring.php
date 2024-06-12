@@ -7,7 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Hiring extends Model
 {
@@ -37,11 +36,6 @@ final class Hiring extends Model
         return $this->date_retirement !== '' ?
             $this->date_retirement->format('d/m/Y') :
             '';
-    }
-
-    public function assignments(): HasMany
-    {
-        return $this->hasMany(Assignment::class);
     }
 
     protected function casts(): array

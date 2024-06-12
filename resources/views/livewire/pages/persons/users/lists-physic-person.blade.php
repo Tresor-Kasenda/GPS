@@ -42,6 +42,7 @@
                                             src="{{ asset('storage/'.$person->profile_picture) }}"
                                             alt="{{ $person->username }}"
                                             srcset="{{ asset('storage/'.$person->profile_picture) }}"
+                                            class="thumb"
                                     >
                                 </div>
                             </div>

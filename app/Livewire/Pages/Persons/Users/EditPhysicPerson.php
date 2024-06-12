@@ -15,7 +15,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
-#[Title('Editer une personne physique')]
+#[Title('Edited une person physique')]
 final class EditPhysicPerson extends Component
 {
     use WithFileUploads;
@@ -95,6 +95,7 @@ final class EditPhysicPerson extends Component
             'address' => $this->address,
             'identity_piece' => $this->identity_piece
         ]);
+
         $this->dispatch('errors', "Une mise a jours effectuer avec success");
 
         $this->redirect(route('persons.lists-physic-person', absolute: false));

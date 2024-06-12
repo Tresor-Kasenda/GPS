@@ -12,7 +12,9 @@
     <meta name="description"
           content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <link rel="shortcut icon" href="">
-    <title>{{ config('app.name') }} | {{ $title }}</title>
+    <title>
+        {{ config('app.name') }} | {{ $title }}
+    </title>
     @vite(['resources/css/app.css'])
 </head>
 
