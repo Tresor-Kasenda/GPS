@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\ReasonEnum;
+use App\Enums\ReasonAssignmentEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,7 +40,7 @@ final class Assignment extends Model
     {
         return [
             'date_assignment' => 'date',
-            'reason' => ReasonEnum::class,
+            'reason' => ReasonAssignmentEnum::class,
             'hiring_id' => 'integer',
             'grade_id' => 'integer',
         ];

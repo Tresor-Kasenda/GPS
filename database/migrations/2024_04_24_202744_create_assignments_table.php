@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\ReasonEnum;
+use App\Enums\ReasonAssignmentEnum;
 use App\Models\Grade;
 use App\Models\Hiring;
 use Illuminate\Database\Migrations\Migration;
@@ -24,8 +24,11 @@ return new class () extends Migration {
                 ->constrained()
                 ->onUpdate('cascade');
             $table->date('date_assignment');
-            $table->enum('reason', [ReasonEnum::INITIAL->value, ReasonEnum::EVOLUTION->value])
-                ->default(ReasonEnum::INITIAL->value);
+            $table->enum('reason', [
+                ReasonAssignmentEnum::INITIAL->value,
+                ReasonAssignmentEnum::EVOLUTION->value
+            ])
+                ->default(ReasonAssignmentEnum::INITIAL->value);
             $table->string('document')->nullable();
             $table->timestamps();
         });

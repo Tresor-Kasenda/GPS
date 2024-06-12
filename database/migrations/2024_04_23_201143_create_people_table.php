@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\Gender;
 use App\Enums\MaritalStatus;
+use App\Enums\UserStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,7 +26,6 @@ return new class () extends Migration {
                 'Femme',
                 'Neutre'
             ])->default(Gender::OTHER->value);
-
             $table->enum('marital_status', [
                 'Marié(e)',
                 'Célibataire',
@@ -34,6 +34,15 @@ return new class () extends Migration {
                 'Neutre'
             ])->default(MaritalStatus::NEUTRAL->value);
 
+            $table->enum('status', [
+                'en attente',
+                'engagement en cours',
+                'démission',
+                'décedé',
+                'retraité',
+                'revoqué'
+            ])->default(UserStatus::PENDING->value);
+
             $table->date('birthdate')->nullable();
             $table->string('birthplace')->nullable();
             $table->string('phone_number')->unique()->nullable();
@@ -41,6 +50,7 @@ return new class () extends Migration {
             $table->string('profile_picture')->nullable();
             $table->string('identity_piece')->unique()->nullable();
             $table->timestamps();
+
         });
     }
 

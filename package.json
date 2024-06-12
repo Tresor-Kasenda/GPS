@@ -19,6 +19,7 @@
     "filepond": "^4.31.1",
     "flatpickr": "^4.6.13",
     "postcss": "^8.4.38",
+    "prettier-plugin-blade": "^2.1.16",
     "push.js": "^1.0.12",
     "tailwindcss": "^3.4.3",
     "toastr": "^2.1.4"

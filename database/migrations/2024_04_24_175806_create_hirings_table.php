@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\StateCarrier;
 use App\Models\Person;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,9 +20,13 @@ return new class () extends Migration {
                 ->constrained()
                 ->onDelete('cascade');
             $table->date('date_commitment');
-            $table->date('date_retirement')->nullable();
+            $table->integer('seniority')->nullable();
             $table->string('matriculate')->unique();
-            $table->string('carriers_state')->nullable();
+            $table->enum('carriers_state', [
+                'active',
+                'inactive',
+                'passif',
+            ])->default(StateCarrier::ACTIVE->value);
             $table->mediumText('document')->nullable();
             $table->timestamps();
         });

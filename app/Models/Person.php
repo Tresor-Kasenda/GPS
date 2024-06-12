@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\Gender;
 use App\Enums\MaritalStatus;
+use App\Enums\UserStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -29,6 +30,7 @@ final class Person extends Model
         'address',
         'profile_picture',
         'identity_piece',
+        'status'
     ];
 
     public function hiring(): HasOne
@@ -49,7 +51,8 @@ final class Person extends Model
         return [
             'gender' => Gender::class,
             'marital_status' => MaritalStatus::class,
-            'birthdate' => 'date'
+            'birthdate' => 'date',
+            'status' => UserStatus::class
         ];
     }
 }
