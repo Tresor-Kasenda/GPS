@@ -33,7 +33,7 @@ final class Hiring extends Model
 
     public function getRetirementAttribute(): string
     {
-        return $this->date_retirement !== '' ?
+        return '' !== $this->date_retirement ?
             $this->date_retirement->format('d/m/Y') :
             '';
     }

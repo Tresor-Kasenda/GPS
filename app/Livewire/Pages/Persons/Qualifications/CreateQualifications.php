@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Pages\Persons\Qualifications;
 
 use Illuminate\View\View;
@@ -9,7 +11,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('')]
-class CreateQualifications extends Component
+final class CreateQualifications extends Component
 {
     public function render(): View
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Pages\Persons\Users;
 
 use App\Models\Hiring;
@@ -13,7 +15,7 @@ use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
 #[Title('Nouvelle engagement')]
-class HiringPhysicPerson extends Component
+final class HiringPhysicPerson extends Component
 {
     use WithFileUploads;
 
@@ -55,7 +57,7 @@ class HiringPhysicPerson extends Component
             return;
         }
 
-        $path = $this->document !== ""
+        $path = "" !== $this->document
             ? $this->document->storePublicly('/documents', ['disk' => 'public'])
             : '';
 

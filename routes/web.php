@@ -32,12 +32,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/{person}/hiring', HiringPhysicPerson::class)->name('hiring-physic-person');
         });
 
-        Route::group(['prefix' => 'experience'], function () {
+        Route::group(['prefix' => 'experience'], function (): void {
             Route::get('/', ListsExperience::class)->name('lists-experience');
             Route::get('/{person}/add', CreateExperience::class)->name('create-experience');
         });
 
-        Route::group(['prefix' => 'qualification'], function () {
+        Route::group(['prefix' => 'qualification'], function (): void {
             Route::get('/', ListsQualifications::class)->name('lists-qualifications');
             Route::get('/{person}/add', CreateQualifications::class)->name('create-qualifications');
         });
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
         });
     });
 
-    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function (): void {
 
     });
 });

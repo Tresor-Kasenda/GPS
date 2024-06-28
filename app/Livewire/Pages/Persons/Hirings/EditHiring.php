@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Pages\Persons\Hirings;
 
 use App\Models\Hiring;
@@ -54,7 +56,7 @@ final class EditHiring extends Component
     {
         $this->validate();
 
-        $path = $this->document !== ""
+        $path = "" !== $this->document
             ? $this->document->storePublicly('/documents', ['disk' => 'public'])
             : $this->hiring->document;
         $this->hiring->update([

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Pages\Experiences;
 
 use App\Models\Experience;
@@ -49,7 +51,7 @@ final class CreateExperience extends Component
     {
         $this->validate();
 
-        $path = $this->document !== ""
+        $path = "" !== $this->document
             ? $this->document->storePublicly('/documents', ['disk' => 'public'])
             : '';
 

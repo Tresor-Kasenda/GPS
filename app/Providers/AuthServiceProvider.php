@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Models\Permission;
@@ -9,14 +11,14 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
-class AuthServiceProvider extends ServiceProvider
+final class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
      */
     public function register(): void
     {
-        //
+
     }
 
     /**
@@ -28,15 +30,11 @@ class AuthServiceProvider extends ServiceProvider
 
         if (!app()->runningInConsole()) {
             foreach ($this->getPermissions() as $permission) {
-                Gate::define($permission->name, function (User $user) use ($permission) {
-                    return $user->hasPermissionTo($permission);
-                });
+                Gate::define($permission->name, fn(User $user) => $user->hasPermissionTo($permission));
             }
 
             foreach ($this->getRoles() as $role) {
-                Gate::define($role->name, function (User $user) use ($role) {
-                    return $user->hasRole($role);
-                });
+                Gate::define($role->name, fn(User $user) => $user->hasRole($role));
             }
         }
     }

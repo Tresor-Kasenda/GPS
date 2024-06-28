@@ -14,8 +14,8 @@ use Illuminate\Notifications\Notifiable;
 final class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory;
-    use Notifiable;
     use HasRole;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
