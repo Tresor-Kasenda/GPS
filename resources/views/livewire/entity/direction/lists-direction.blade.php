@@ -56,12 +56,12 @@
                                     <x-ui.table.action>
                                         <x-ui.table.action.link-down
                                             icon="edit"
-                                            :href="route('persons.edit-physic-person', $direction->id)"
+                                            :href="route('entity.edit-direction', $direction->id)"
                                             :action="__('Modifier')"
                                         />
                                         <li>
                                             <button type="button" class="btn"
-                                                    wire:click="$wire.deletePerson({{ $direction->id }})">
+                                                    wire:click="deleteDirection({{ $direction->id }})">
                                                 <em class="icon ni ni-trash"></em>
                                                 <span>Supprimer</span>
                                             </button>

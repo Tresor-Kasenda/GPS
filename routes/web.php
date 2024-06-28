@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Livewire\Entity\Direction\CreateDirection;
+use App\Livewire\Entity\Direction\EditDirection;
 use App\Livewire\Entity\Direction\ListsDirection;
 use App\Livewire\Pages\Experiences\CreateExperience;
 use App\Livewire\Pages\Experiences\ListsExperience;
@@ -28,6 +29,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
         Route::group(['prefix' => 'direction'], function () {
             Route::get('/', ListsDirection::class)->name('lists-direction');
             Route::get('/add', CreateDirection::class)->name('create-direction');
+            Route::get('/{direction}/edit', EditDirection::class)->name('edit-direction');
         });
     });
 

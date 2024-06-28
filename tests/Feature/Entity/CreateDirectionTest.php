@@ -3,6 +3,7 @@
 use App\Livewire\Entity\Direction\CreateDirection;
 use App\Models\Direction;
 use App\Models\User;
+use function Pest\Laravel\assertDatabaseHas;
 
 beforeEach(function () {
     $this->actingAs(User::factory()->create());
@@ -77,6 +78,12 @@ describe('Create Direction', function () {
             ->set('designation', 'Direction A')
             ->call('submit')
             ->assertDispatched('message', title: 'Direction ajoutée avec succès');
+
+        assertDatabaseHas('directions', [
+            'priority' => '1',
+            'abbreviation' => 'A',
+            'designation' => 'Direction A',
+        ]);
     });
 
 });

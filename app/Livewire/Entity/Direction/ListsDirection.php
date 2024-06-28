@@ -20,4 +20,9 @@ class ListsDirection extends Component
                 ->get()
         ]);
     }
+
+    public function deleteDirection(string $direction)
+    {
+        dd($direction);
+    }
 }
