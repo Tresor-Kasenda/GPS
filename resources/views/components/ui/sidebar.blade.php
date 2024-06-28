@@ -3,10 +3,6 @@
 
     <x-ui.block.sidebar.menu-link :title="__('Personne Physique')" icon="user">
         <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Pesonnes Physiques')"/>
-        <x-ui.block.sidebar.link-sub :route="route('dashboard')" :name="__('Charges Sociales')"/>
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-qualifications')" :name="__('Etudes Faites')"/>
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-experience')"
-                                     :name="__('Expérience Professionnelle')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Engagement')" icon="user-list">
@@ -31,19 +27,29 @@
 
     <x-ui.block.sidebar.separator-link :name="__('GESTION ENTITE')"/>
 
-    <x-ui.block.sidebar.menu-link :title="__('Service')" icon="bookmark">
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouveau Service')"/>
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Services')"/>
+    <x-ui.block.sidebar.menu-link :title="__('Direction')" icon="bookmark">
+        <x-ui.block.sidebar.link-sub :route="route('entity.create-direction')" :name="__('Nouvelle Direction')"/>
+        <x-ui.block.sidebar.link-sub :route="route('entity.lists-direction')" :name="__('Liste de Directions')"/>
     </x-ui.block.sidebar.menu-link>
 
-    <x-ui.block.sidebar.menu-link :title="__('Grade')" icon="arrow-up">
+    <x-ui.block.sidebar.menu-link :title="__('Division')" icon="bookmark">
+        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouvelle Division')"/>
+        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Divisions')"/>
+    </x-ui.block.sidebar.menu-link>
+
+    <x-ui.block.sidebar.menu-link :title="__('Bureau')" icon="arrow-up">
+        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouveau Bureau')"/>
+        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Bureaux')"/>
+    </x-ui.block.sidebar.menu-link>
+
+    <x-ui.block.sidebar.menu-link :title="__('Grade')" icon="block-over">
         <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouveau Grade')"/>
         <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Grades')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Fonction')" icon="align-center">
         <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouvelle Fonction')"/>
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Fonction')"/>
+        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Fonctions')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.separator-link :name="__('PARAMETRE')"/>

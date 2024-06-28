@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Livewire\Entity\Direction\CreateDirection;
+use App\Livewire\Entity\Direction\ListsDirection;
 use App\Livewire\Pages\Experiences\CreateExperience;
 use App\Livewire\Pages\Experiences\ListsExperience;
 use App\Livewire\Pages\Persons\Hirings\CreateHiring;
@@ -21,6 +23,13 @@ Route::redirect('/', '/login')->name('welcome');
 Route::group(['middleware' => ['auth', 'verified']], function (): void {
 
     Route::view('dashboard', 'dashboard')->name('dashboard');
+
+    Route::group(['prefix' => 'entity', 'as' => 'entity.'], function (): void {
+        Route::group(['prefix' => 'direction'], function () {
+            Route::get('/', ListsDirection::class)->name('lists-direction');
+            Route::get('/add', CreateDirection::class)->name('create-direction');
+        });
+    });
 
     Route::group(['prefix' => 'persons', 'as' => 'persons.'], function (): void {
 

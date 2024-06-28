@@ -24,13 +24,13 @@ final class Person extends Model
         'firstname',
         'gender',
         'marital_status',
+        'status',
         'birthdate',
         'birthplace',
         'phone_number',
         'address',
         'profile_picture',
-        'identity_piece',
-        'status'
+        'identity_piece'
     ];
 
     public function hiring(): HasOne

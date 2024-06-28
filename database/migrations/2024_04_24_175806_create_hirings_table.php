@@ -21,7 +21,7 @@ return new class () extends Migration {
                 ->onDelete('cascade');
             $table->date('date_commitment');
             $table->integer('seniority')->nullable();
-            $table->string('matriculate')->unique();
+            $table->string('matriculate')->unique()->default('000000');
             $table->enum('carriers_state', [
                 'active',
                 'inactive',
