@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Livewire\Entity\Divisions\CreateOffice;
 use App\Models\Division;
 use App\Models\User;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->actingAs(User::factory()->create());
 });
 
-it('creates office with valid data', function () {
+it('creates office with valid data', function (): void {
     $division = Division::factory()->create();
 
     Livewire::test(CreateOffice::class, ['division' => $division])
@@ -27,7 +29,7 @@ it('creates office with valid data', function () {
     ]);
 });
 
-it('does not create office with invalid data', function () {
+it('does not create office with invalid data', function (): void {
     $division = Division::factory()->create();
 
     Livewire::test(CreateOffice::class, ['division' => $division])
@@ -44,7 +46,7 @@ it('does not create office with invalid data', function () {
     ]);
 });
 
-it('does not create office with duplicate data', function () {
+it('does not create office with duplicate data', function (): void {
     $division = Division::factory()->create();
     $division->offices()->create([
         'priority' => '1',

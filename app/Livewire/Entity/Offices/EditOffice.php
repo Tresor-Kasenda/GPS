@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Offices;
 
 use App\Models\Office;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Edtion d\'un bureau')]
-class EditOffice extends Component
+final class EditOffice extends Component
 {
     public Office $office;
 

@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Livewire\Entity\Divisions\EditDivision;
 use App\Models\Division;
 use App\Models\User;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->actingAs(User::factory()->create());
 });
 
-it('updates division with valid data', function () {
+it('updates division with valid data', function (): void {
     $division = Division::factory()->create();
 
     Livewire::test(EditDivision::class, ['division' => $division])
@@ -28,7 +30,7 @@ it('updates division with valid data', function () {
     ]);
 });
 
-it('does not update division with invalid data', function () {
+it('does not update division with invalid data', function (): void {
     $division = Division::factory()->create();
 
     Livewire::test(EditDivision::class, ['division' => $division])
@@ -46,7 +48,7 @@ it('does not update division with invalid data', function () {
     ]);
 });
 
-it('does not update division with duplicate data', function () {
+it('does not update division with duplicate data', function (): void {
     $divisionA = Division::factory()->create(['priority' => '1', 'abbreviation' => 'A', 'designation' => 'Division A']);
     $divisionB = Division::factory()->create(['priority' => '2', 'abbreviation' => 'B', 'designation' => 'Division B']);
 

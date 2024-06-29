@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Livewire\Entity\Offices\EditOffice;
 use App\Models\Office;
 use App\Models\User;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->actingAs(User::factory()->create());
 });
 
-it('updates office with valid data', function () {
+it('updates office with valid data', function (): void {
     $office = Office::factory()->create();
 
     Livewire::test(EditOffice::class, ['office' => $office])
@@ -28,7 +30,7 @@ it('updates office with valid data', function () {
     ]);
 });
 
-it('does not update office with invalid data', function () {
+it('does not update office with invalid data', function (): void {
     $office = Office::factory()->create();
 
     Livewire::test(EditOffice::class, ['office' => $office])
@@ -46,7 +48,7 @@ it('does not update office with invalid data', function () {
     ]);
 });
 
-it('does not update office with duplicate data', function () {
+it('does not update office with duplicate data', function (): void {
     $officeA = Office::factory()->create(['priority' => '1', 'abbreviation' => 'A', 'designation' => 'Office A']);
     $officeB = Office::factory()->create(['priority' => '2', 'abbreviation' => 'B', 'designation' => 'Office B']);
 
@@ -65,7 +67,7 @@ it('does not update office with duplicate data', function () {
     ]);
 });
 
-it('redirects to the office list after updating the office', function () {
+it('redirects to the office list after updating the office', function (): void {
     $office = Office::factory()->create();
 
     Livewire::test(EditOffice::class, ['office' => $office])
@@ -76,7 +78,7 @@ it('redirects to the office list after updating the office', function () {
         ->assertRedirect(route('entity.lists-office'));
 });
 
-it('does not update office invalid data', function ($priority, $abbreviation, $designation) {
+it('does not update office invalid data', function ($priority, $abbreviation, $designation): void {
     $office = Office::factory()->create();
 
     Livewire::test(EditOffice::class, ['office' => $office])
