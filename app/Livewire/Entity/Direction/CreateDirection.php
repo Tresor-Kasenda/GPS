@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Direction;
 
 use App\Models\Direction;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Ajouter une Direction')]
-class CreateDirection extends Component
+final class CreateDirection extends Component
 {
     #[Validate('required|string|unique:directions,priority')]
     public string|null $priority = '';

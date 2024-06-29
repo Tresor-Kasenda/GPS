@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Direction;
 
 use App\Models\Direction;
@@ -10,7 +12,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Listes des directions')]
-class ListsDirection extends Component
+final class ListsDirection extends Component
 {
     public function render(): View
     {
@@ -21,7 +23,7 @@ class ListsDirection extends Component
         ]);
     }
 
-    public function deleteDirection(string $direction)
+    public function deleteDirection(string $direction): void
     {
         dd($direction);
     }

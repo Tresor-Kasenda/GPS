@@ -69,7 +69,7 @@
                                         <li class="divider"></li>
                                         <x-ui.table.action.link-down
                                             icon="bookmark"
-                                            :href="route('persons.hiring-physic-person', $direction->id)"
+                                            :href="route('entity.division-create', $direction->id)"
                                             :action="__('Ajouter une division')"
                                         />
                                     </x-ui.table.action>

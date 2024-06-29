@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Livewire\Entity\Direction\CreateDirection;
 use App\Models\Direction;
 use App\Models\User;
 use function Pest\Laravel\assertDatabaseHas;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->actingAs(User::factory()->create());
 });
 
-describe('Create Direction', function () {
-    test('create direction', function () {
+describe('Create Direction', function (): void {
+    test('create direction', function (): void {
         $direction = Direction::factory()->create();
 
         Livewire::test(CreateDirection::class)
@@ -26,7 +28,7 @@ describe('Create Direction', function () {
         ]);
     });
 
-    test('create direction with validation', function () {
+    test('create direction with validation', function (): void {
         Livewire::test(CreateDirection::class)
             ->set('priority')
             ->set('abbreviation')
@@ -41,7 +43,7 @@ describe('Create Direction', function () {
         expect(Direction::count())->toBe(0);
     });
 
-    test('create direction with unique validation', function () {
+    test('create direction with unique validation', function (): void {
         $direction = Direction::factory()->create();
 
         Livewire::test(CreateDirection::class)
@@ -56,7 +58,7 @@ describe('Create Direction', function () {
     });
 
     // validation using datasets pestphp
-    test('create direction with validation using datasets', function ($priority, $abbreviation, $designation) {
+    test('create direction with validation using datasets', function ($priority, $abbreviation, $designation): void {
         Livewire::test(CreateDirection::class)
             ->set('priority', $priority)
             ->set('abbreviation', $abbreviation)
@@ -71,7 +73,7 @@ describe('Create Direction', function () {
     ]);
 
     // assert dispatch event after create direction
-    test('create direction with dispatch event', function () {
+    test('create direction with dispatch event', function (): void {
         Livewire::test(CreateDirection::class)
             ->set('priority', '1')
             ->set('abbreviation', 'A')

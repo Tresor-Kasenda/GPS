@@ -3,8 +3,15 @@
 declare(strict_types=1);
 
 use App\Livewire\Entity\Direction\CreateDirection;
+use App\Livewire\Entity\Direction\CreateDirectionDivision;
 use App\Livewire\Entity\Direction\EditDirection;
 use App\Livewire\Entity\Direction\ListsDirection;
+use App\Livewire\Entity\Divisions\CreateDivision;
+use App\Livewire\Entity\Divisions\CreateOffice;
+use App\Livewire\Entity\Divisions\EditDivision;
+use App\Livewire\Entity\Divisions\ListsDivision;
+use App\Livewire\Entity\Offices\EditOffice;
+use App\Livewire\Entity\Offices\ListsOffice;
 use App\Livewire\Pages\Experiences\CreateExperience;
 use App\Livewire\Pages\Experiences\ListsExperience;
 use App\Livewire\Pages\Persons\Hirings\CreateHiring;
@@ -26,10 +33,22 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 
     Route::group(['prefix' => 'entity', 'as' => 'entity.'], function (): void {
-        Route::group(['prefix' => 'direction'], function () {
+        Route::group(['prefix' => 'direction'], function (): void {
             Route::get('/', ListsDirection::class)->name('lists-direction');
             Route::get('/add', CreateDirection::class)->name('create-direction');
             Route::get('/{direction}/edit', EditDirection::class)->name('edit-direction');
+            Route::get('/add/{direction}/division', CreateDirectionDivision::class)->name('division-create');
+        });
+
+        Route::group(['prefix' => 'divisions'], function (): void {
+            Route::get('/', ListsDivision::class)->name('lists-division');
+            Route::get('/{division}/edit', EditDivision::class)->name('edit-division');
+            Route::get('/add/{division}/office', CreateOffice::class)->name('create-office');
+        });
+
+        Route::group(['prefix' => 'offices'], function (): void {
+            Route::get('/', ListsOffice::class)->name('lists-office');
+            Route::get('/{office}/edit', EditOffice::class)->name('edit-office');
         });
     });
 

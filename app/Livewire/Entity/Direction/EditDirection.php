@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Direction;
 
 use App\Models\Direction;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Edition de la direction')]
-class EditDirection extends Component
+final class EditDirection extends Component
 {
     public Direction $direction;
 

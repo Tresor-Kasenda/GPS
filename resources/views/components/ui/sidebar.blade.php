@@ -33,13 +33,11 @@
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Division')" icon="bookmark">
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouvelle Division')"/>
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Divisions')"/>
+        <x-ui.block.sidebar.link-sub :route="route('entity.lists-division')" :name="__('Liste de Divisions')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Bureau')" icon="arrow-up">
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouveau Bureau')"/>
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Bureaux')"/>
+        <x-ui.block.sidebar.link-sub :route="route('entity.lists-office')" :name="__('Liste de Bureaux')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Grade')" icon="block-over">
