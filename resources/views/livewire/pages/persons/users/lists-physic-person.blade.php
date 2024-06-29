@@ -1,6 +1,6 @@
 <div>
     <x-ui.content.block-head :title="__('Liste des personnels')">
-        <x-ui.block.button.link :route="route('persons.add-physic-person')" :action="__('Ajoutez une Personne')"/>
+        <x-ui.block.button.link :route="route('persons.add-physic-person')" :action="__('Ajoutez une Personne')" />
     </x-ui.content.block-head>
 
     <x-ui.content.container>
@@ -14,11 +14,11 @@
                         <label class="custom-control-label" for="uid"></label>
                     </div>
                 </x-ui.table.t-head>
-                <x-ui.table.t-head class="tb-col-md" :title="__('Profile')"/>
-                <x-ui.table.t-head class="tb-col-md" :title="__('Nom, Sexe et Etat-Civil')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Naissance')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Adresse et Contact')"/>
-                <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
+                <x-ui.table.t-head class="tb-col-md" :title="__('Profile')" />
+                <x-ui.table.t-head class="tb-col-md" :title="__('Nom, Sexe et Etat-Civil')" />
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Naissance')" />
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Adresse et Contact')" />
+                <x-ui.table.t-head class=" tb-col-md" :title="__('Action')" />
                 </thead>
                 <tbody>
                 @foreach($persons as $person)
@@ -26,11 +26,11 @@
                         <x-ui.table.td class="nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                 <input
-                                        type="checkbox"
-                                        wire:model="selected"
-                                        class="custom-control-input"
-                                        id="uid3-{{ $person->id }}"
-                                        value="{{ $person->id }}"
+                                    type="checkbox"
+                                    wire:model="selected"
+                                    class="custom-control-input"
+                                    id="uid3-{{ $person->id }}"
+                                    value="{{ $person->id }}"
                                 >
                                 <label class="custom-control-label" for="uid3-{{ $person->id }}"></label>
                             </div>
@@ -39,10 +39,10 @@
                             <div class="user-card">
                                 <div class="user-avatar">
                                     <img
-                                            src="{{ asset('storage/'.$person->profile_picture) }}"
-                                            alt="{{ $person->username }}"
-                                            srcset="{{ asset('storage/'.$person->profile_picture) }}"
-                                            class="thumb"
+                                        src="{{ asset('storage/'.$person->profile_picture) }}"
+                                        alt="{{ $person->username }}"
+                                        srcset="{{ asset('storage/'.$person->profile_picture) }}"
+                                        class="thumb"
                                     >
                                 </div>
                             </div>
@@ -92,14 +92,14 @@
                                 <li>
                                     <x-ui.table.action>
                                         <x-ui.table.action.link-down
-                                                icon="eye"
-                                                :href="route('persons.show-physic-person', $person->id)"
-                                                :action="__('Voir fiche')"
+                                            icon="eye"
+                                            :href="route('persons.show-physic-person', $person->id)"
+                                            :action="__('Voir fiche')"
                                         />
                                         <x-ui.table.action.link-down
-                                                icon="edit"
-                                                :href="route('persons.edit-physic-person', $person->id)"
-                                                :action="__('Modifier')"
+                                            icon="edit"
+                                            :href="route('persons.edit-physic-person', $person->id)"
+                                            :action="__('Modifier')"
                                         />
                                         <li>
                                             <button type="button" class="btn"
@@ -110,24 +110,9 @@
                                         </li>
                                         <li class="divider"></li>
                                         <x-ui.table.action.link-down
-                                                icon="users"
-                                                :href="route('persons.edit-physic-person', $person->id)"
-                                                :action="__('Charge Sociale')"
-                                        />
-                                        <x-ui.table.action.link-down
-                                                icon="award"
-                                                :href="route('persons.create-qualifications', $person->id)"
-                                                :action="__('Etudes Faites')"
-                                        />
-                                        <x-ui.table.action.link-down
-                                                icon="briefcase"
-                                                :href="route('persons.create-experience', $person->id)"
-                                                :action="__('Expérience Professionnelle')"
-                                        />
-                                        <x-ui.table.action.link-down
-                                                icon="user-add"
-                                                :href="route('persons.hiring-physic-person', $person->id)"
-                                                :action="__('Engagement')"
+                                            icon="user-add"
+                                            :href="route('persons.hiring-physic-person', $person->id)"
+                                            :action="__('Engagement')"
                                         />
                                     </x-ui.table.action>
                                 </li>
