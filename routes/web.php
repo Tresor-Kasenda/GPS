@@ -9,6 +9,9 @@ use App\Livewire\Entity\Direction\ListsDirection;
 use App\Livewire\Entity\Divisions\CreateOffice;
 use App\Livewire\Entity\Divisions\EditDivision;
 use App\Livewire\Entity\Divisions\ListsDivision;
+use App\Livewire\Entity\Grades\CreateGrades;
+use App\Livewire\Entity\Grades\EditGrades;
+use App\Livewire\Entity\Grades\ListsGrades;
 use App\Livewire\Entity\Offices\EditOffice;
 use App\Livewire\Entity\Offices\ListsOffice;
 use App\Livewire\Pages\Experiences\CreateExperience;
@@ -48,6 +51,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
         Route::group(['prefix' => 'offices'], function (): void {
             Route::get('/', ListsOffice::class)->name('lists-office');
             Route::get('/{office}/edit', EditOffice::class)->name('edit-office');
+        });
+
+        Route::group(['prefix' => 'grades'], function () {
+            Route::get('/', ListsGrades::class)->name('lists-grades');
+            Route::get('/add', CreateGrades::class)->name('create-grades');
+            Route::get('/{grade}/edit', EditGrades::class)->name('edit-grades');
         });
     });
 
