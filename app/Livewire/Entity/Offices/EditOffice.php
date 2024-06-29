@@ -10,11 +10,10 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('')]
+#[Title('Edtion d\'un bureau')]
 class EditOffice extends Component
 {
     public Office $office;
-
 
     #[Validate('required|string', onUpdate: true)]
     public string|null $priority = '';
