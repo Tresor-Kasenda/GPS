@@ -1,12 +1,10 @@
-import './bootstrap';
+import "./bootstrap";
+import { notification } from "./notification.js";
 
-import * as notification from './notification';
-
-document.addEventListener('livewire:init', () => {
-    window.Livewire.on('message', (event) => {
-        const title = event.title
-        notification.default(title, 'success');
-        notification.push(title);
+document.addEventListener("livewire:init", () => {
+    window.Livewire.on("message", (event) => {
+        const title = event.title;
+        notification(title, "success");
     });
 });
 

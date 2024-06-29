@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 use App\Livewire\Entity\Direction\CreateDirectionDivision;
 use App\Models\Direction;
-use App\Models\User;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
-
-beforeEach(function (): void {
-    $this->actingAs(User::factory()->create());
-});
 
 it('creates division with valid data', function (): void {
     $direction = Direction::factory()->create();

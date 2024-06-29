@@ -17,10 +17,10 @@ final class CreateOffice extends Component
 {
     public Division $division;
 
-    #[Validate('required|string|unique:divisions,priority')]
+    #[Validate('required|string|unique:offices,priority')]
     public string|null $priority = '';
 
-    #[Validate('required|string|unique:divisions,abbreviation')]
+    #[Validate('required|string|unique:offices,abbreviation')]
     public string|null $abbreviation = '';
 
     #[Validate('required|string')]

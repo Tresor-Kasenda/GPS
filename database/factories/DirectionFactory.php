@@ -22,7 +22,7 @@ final class DirectionFactory extends Factory
     {
         return [
             'priority' => Str::random(5),
-            'abbreviation' => $this->faker->word(),
+            'abbreviation' => $this->faker->title,
             'designation' => $this->faker->realText(),
         ];
     }
