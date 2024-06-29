@@ -46,8 +46,8 @@
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Fonction')" icon="align-center">
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Nouvelle Fonction')" />
-        <x-ui.block.sidebar.link-sub :route="route('engagement.lists-hiring')" :name="__('Liste de Fonctions')" />
+        <x-ui.block.sidebar.link-sub :route="route('entity.lists-position')" :name="__('Liste de Fonctions')" />
+        <x-ui.block.sidebar.link-sub :route="route('entity.create-position')" :name="__('Nouvelle Fonction')" />
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.separator-link :name="__('PARAMETRE')" />

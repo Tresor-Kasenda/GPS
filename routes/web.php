@@ -14,6 +14,9 @@ use App\Livewire\Entity\Grades\EditGrades;
 use App\Livewire\Entity\Grades\ListsGrades;
 use App\Livewire\Entity\Offices\EditOffice;
 use App\Livewire\Entity\Offices\ListsOffice;
+use App\Livewire\Entity\Positions\CreatePosition;
+use App\Livewire\Entity\Positions\EditPosition;
+use App\Livewire\Entity\Positions\ListsPosition;
 use App\Livewire\Pages\Experiences\CreateExperience;
 use App\Livewire\Pages\Experiences\ListsExperience;
 use App\Livewire\Pages\Persons\Hirings\CreateHiring;
@@ -57,6 +60,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsGrades::class)->name('lists-grades');
             Route::get('/add', CreateGrades::class)->name('create-grades');
             Route::get('/{grade}/edit', EditGrades::class)->name('edit-grades');
+        });
+
+        Route::group(['prefix' => 'position'], function () {
+            Route::get('/', ListsPosition::class)->name('lists-position');
+            Route::get('/add', CreatePosition::class)->name('create-position');
+            Route::get('/{position}/edit', EditPosition::class)->name('edit-position');
         });
     });
 
