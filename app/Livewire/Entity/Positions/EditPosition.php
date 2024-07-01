@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Positions;
 
 use App\Models\Position;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('')]
-class EditPosition extends Component
+final class EditPosition extends Component
 {
     public Position $position;
 

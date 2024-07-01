@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Grades;
 
 use App\Models\Grade;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Edition de grade')]
-class EditGrades extends Component
+final class EditGrades extends Component
 {
     public Grade $grade;
 

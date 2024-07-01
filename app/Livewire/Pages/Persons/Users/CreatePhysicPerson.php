@@ -6,6 +6,7 @@ namespace App\Livewire\Pages\Persons\Users;
 
 use App\Enums\Gender;
 use App\Enums\MaritalStatus;
+use App\Enums\UserStatus;
 use App\Models\Person;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -29,10 +30,10 @@ final class CreatePhysicPerson extends Component
     #[Validate('required|string|max:255|min:3')]
     public string|null $firstname = '';
 
-    #[Validate("required|string|in:Homme,Femme,Neutre")]
+    #[Validate("required|string|in:" . Gender::class)]
     public string|null $gender = '';
 
-    #[Validate('required|string|in:Marié(e),Célibataire,Divorcé(e),Veuve/Veuf,Neutre')]
+    #[Validate('required|string|in:' . MaritalStatus::class)]
     public string|null $marital_status = '';
 
     #[Validate('required|date|before:-18 years')]
@@ -81,6 +82,7 @@ final class CreatePhysicPerson extends Component
             'firstname' => $this->firstname,
             'gender' => $this->gender,
             'marital_status' => $this->marital_status,
+            'status' => UserStatus::PENDING->value,
             'birthdate' => $this->birthdate,
             'birthplace' => $this->birthplace,
             'phone_number' => $this->phone_number,

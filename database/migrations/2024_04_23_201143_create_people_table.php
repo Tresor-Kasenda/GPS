@@ -35,12 +35,12 @@ return new class () extends Migration {
             ])->default(MaritalStatus::NEUTRAL->value);
 
             $table->enum('status', [
-                'en attente',
-                'engagement en cours',
-                'démission',
-                'décedé',
-                'retraité',
-                'revoqué'
+                "en_attente_d_engagement",
+                "engagement_en_cours",
+                "demission",
+                "decede",
+                "retraite",
+                "revoque"
             ])->default(UserStatus::PENDING->value);
 
             $table->date('birthdate')->nullable();

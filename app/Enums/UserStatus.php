@@ -6,12 +6,12 @@ namespace App\Enums;
 
 enum UserStatus: string
 {
-    case PENDING = 'en attente';
-    case PROGRESSING = 'engagement en cours';
-    case RESIGNATION = 'démission';
-    case DECEASED = 'décedé';
-    case RETIRED = 'retraité';
-    case REVOKED = 'revoqué';
+    case PENDING = "en_attente_d_engagement";
+    case PROGRESSING = "engagement_en_cours";
+    case RESIGNATION = "démission";
+    case DECEASED = "décedé";
+    case RETIRED = "retraité";
+    case REVOKED = "revoqué";
 
     public static function toSelectArray(): array
     {

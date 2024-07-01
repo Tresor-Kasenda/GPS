@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Positions;
 
 use App\Models\Position;
@@ -10,7 +12,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Liste des fonctions')]
-class ListsPosition extends Component
+final class ListsPosition extends Component
 {
     public function render(): View
     {

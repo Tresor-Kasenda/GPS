@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Grades;
 
 use App\Models\Grade;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Creation des grade')]
-class CreateGrades extends Component
+final class CreateGrades extends Component
 {
     #[Validate('required|string|unique:grades,priority')]
     public string|null $priority = '';

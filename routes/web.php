@@ -17,13 +17,9 @@ use App\Livewire\Entity\Offices\ListsOffice;
 use App\Livewire\Entity\Positions\CreatePosition;
 use App\Livewire\Entity\Positions\EditPosition;
 use App\Livewire\Entity\Positions\ListsPosition;
-use App\Livewire\Pages\Experiences\CreateExperience;
-use App\Livewire\Pages\Experiences\ListsExperience;
 use App\Livewire\Pages\Persons\Hirings\CreateHiring;
 use App\Livewire\Pages\Persons\Hirings\EditHiring;
 use App\Livewire\Pages\Persons\Hirings\ListsHiring;
-use App\Livewire\Pages\Persons\Qualifications\CreateQualifications;
-use App\Livewire\Pages\Persons\Qualifications\ListsQualifications;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
@@ -56,13 +52,13 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/{office}/edit', EditOffice::class)->name('edit-office');
         });
 
-        Route::group(['prefix' => 'grades'], function () {
+        Route::group(['prefix' => 'grades'], function (): void {
             Route::get('/', ListsGrades::class)->name('lists-grades');
             Route::get('/add', CreateGrades::class)->name('create-grades');
             Route::get('/{grade}/edit', EditGrades::class)->name('edit-grades');
         });
 
-        Route::group(['prefix' => 'position'], function () {
+        Route::group(['prefix' => 'position'], function (): void {
             Route::get('/', ListsPosition::class)->name('lists-position');
             Route::get('/add', CreatePosition::class)->name('create-position');
             Route::get('/{position}/edit', EditPosition::class)->name('edit-position');
@@ -70,23 +66,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     });
 
     Route::group(['prefix' => 'persons', 'as' => 'persons.'], function (): void {
-
         Route::group(['prefix' => 'users'], function (): void {
             Route::get('/', ListsPhysicPerson::class)->name('lists-physic-person');
             Route::get('/add', CreatePhysicPerson::class)->name('add-physic-person');
             Route::get('/{person}/edit', EditPhysicPerson::class)->name('edit-physic-person');
             Route::get('/{person}/show', ShowPhysicPerson::class)->name('show-physic-person');
             Route::get('/{person}/hiring', HiringPhysicPerson::class)->name('hiring-physic-person');
-        });
-
-        Route::group(['prefix' => 'experience'], function (): void {
-            Route::get('/', ListsExperience::class)->name('lists-experience');
-            Route::get('/{person}/add', CreateExperience::class)->name('create-experience');
-        });
-
-        Route::group(['prefix' => 'qualification'], function (): void {
-            Route::get('/', ListsQualifications::class)->name('lists-qualifications');
-            Route::get('/{person}/add', CreateQualifications::class)->name('create-qualifications');
         });
     });
 

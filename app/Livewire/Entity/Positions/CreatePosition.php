@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Entity\Positions;
 
 use App\Models\Position;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 #[Layout('layouts.app')]
 #[Title('Ajouter une fonction')]
-class CreatePosition extends Component
+final class CreatePosition extends Component
 {
     #[Validate('required|string|unique:positions,priority')]
     public string|null $priority = '';
