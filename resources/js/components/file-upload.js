@@ -35,6 +35,9 @@ export default () => ({
         );
 
         const inputElement = this.$refs.input;
+        const uploadMethod = inputElement.getAttribute("data-upload-method");
+        const removeMethod = inputElement.getAttribute("data-remove-method");
+        
         FilePond.create(inputElement, {
             labelIdle: `Drag & Drop your files or <span class="filepond--label-action">Browse</span>`,
             imagePreviewMaxFileSize: this.maxSize,
@@ -48,7 +51,15 @@ export default () => ({
             allowImagePreview: true,
             allowImageResize: true,
             imageResizeTargetHeight: 700,
-            allowImageTransform: true
+            allowImageTransform: true,
+            server: {
+                process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                    eval(uploadMethod);
+                },
+                revert: (filename, load) => {
+                    eval(removeMethod);
+                }
+            }
         });
     }
 })
