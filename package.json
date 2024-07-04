@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@tailwindcss/forms": "^0.5.7",
+        "async-alpine": "^1.2.2",
         "filepond": "^4.31.1",
         "filepond-plugin-file-poster": "^2.5.1",
         "filepond-plugin-file-validate-size": "^2.2.8",

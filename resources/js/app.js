@@ -12,4 +12,3 @@ document.addEventListener("livewire:init", () => {
 
 Alpine.data("datepicker", datePicker);
 Alpine.data("fileUpload", fileUpload);
-

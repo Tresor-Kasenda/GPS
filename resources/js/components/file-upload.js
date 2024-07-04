@@ -37,7 +37,7 @@ export default () => ({
         const inputElement = this.$refs.input;
         const uploadMethod = inputElement.getAttribute("data-upload-method");
         const removeMethod = inputElement.getAttribute("data-remove-method");
-        
+
         FilePond.create(inputElement, {
             labelIdle: `Drag & Drop your files or <span class="filepond--label-action">Browse</span>`,
             imagePreviewMaxFileSize: this.maxSize,
