@@ -30,10 +30,10 @@ final class CreatePhysicPerson extends Component
     #[Validate('required|string|max:255|min:3')]
     public string|null $firstname = '';
 
-    #[Validate("required|string|in:" . Gender::class)]
+    #[Validate("required|string|in:Homme,Femme,Neutre")]
     public string|null $gender = '';
 
-    #[Validate('required|string|in:' . MaritalStatus::class)]
+    #[Validate('required|string|in:Marié(e),Célibataire,Divorcé(e),Veuve/Veuf')]
     public string|null $marital_status = '';
 
     #[Validate('required|date|before:-18 years')]

@@ -161,12 +161,8 @@
                             </x-ui.forms.input.label>
 
                             <x-ui.forms.file-upload
-                                multiple
-                                allowImagePreview
-                                imagePreviewMaxHeight="400"
-                                allowFileTypeValidation
-                                allowFileSizeValidation
-                                maxFileSize="5mb"
+                                multiple="true"
+                                :max-file-size="5"
                                 wire:model="profile_picture"
                             />
 

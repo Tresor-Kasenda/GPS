@@ -2,33 +2,15 @@
     'min_date' => null,
     'time' => false
 ])
-<div
-        x-data="{
-       init() {
-           flatpickr(this.$refs.myDatePicker, {
-               minDate: '{{ $min_date }}',
-               dateFormat: 'Y-m-d',
-               enableTime: {{ $time }},
-               onChange: (selectedDates, dateStr, instance) => {
-                   this.$dispatch('input', dateStr)
-               },
-           })
-       }
-    }"
->
+<div x-data="datepicker">
     <input
-            native="false"
-            readonly
-            type="text"
-            x-ref="myDatePicker" {{ $attributes->merge(['class' => 'form-control']) }}
+        x-ref="dateInput"
+        native="false"
+        readonly
+        type="text"
+        date-format="{{ $time ? 'Y-m-d H:i' : 'Y-m-d' }}"
+        date-min-date="{{ $min_date }}"
+        date-time="{{ $time }}"
+        {{ $attributes->merge(['class' => 'form-control']) }}
     />
-
 </div>
-
-@push('styles')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-@endpush
-
-@push('scripts')
-    <script data-navigate-track src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-@endpush

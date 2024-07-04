@@ -1,27 +1,35 @@
 {
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build"
-  },
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.2",
-    "alpinejs": "^3.4.2",
-    "autoprefixer": "^10.4.2",
-    "laravel-vite-plugin": "^1.0",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.1.0",
-    "vite": "^5.0"
-  },
-  "dependencies": {
-    "@tailwindcss/forms": "^0.5.7",
-    "filepond": "^4.31.1",
-    "flatpickr": "^4.6.13",
-    "postcss": "^8.4.38",
-    "prettier-plugin-blade": "^2.1.16",
-    "push.js": "^1.0.12",
-    "tailwindcss": "^3.4.3",
-    "toastr": "^2.1.4"
-  }
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.2",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.31",
+        "tailwindcss": "^3.1.0",
+        "vite": "^5.0"
+    },
+    "dependencies": {
+        "@tailwindcss/forms": "^0.5.7",
+        "filepond": "^4.31.1",
+        "filepond-plugin-file-poster": "^2.5.1",
+        "filepond-plugin-file-validate-size": "^2.2.8",
+        "filepond-plugin-file-validate-type": "^1.2.9",
+        "filepond-plugin-image-crop": "^2.0.6",
+        "filepond-plugin-image-edit": "^1.6.3",
+        "filepond-plugin-image-preview": "^4.6.12",
+        "filepond-plugin-image-resize": "^2.0.10",
+        "filepond-plugin-image-transform": "^3.8.7",
+        "flatpickr": "^4.6.13",
+        "postcss": "^8.4.38",
+        "prettier-plugin-blade": "^2.1.16",
+        "push.js": "^1.0.12",
+        "tailwindcss": "^3.4.3",
+        "toastr": "^2.1.4"
+    }
 }
