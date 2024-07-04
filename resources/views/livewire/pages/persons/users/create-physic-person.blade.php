@@ -85,6 +85,7 @@
                                 id="birthdate"
                                 name="birthdate"
                                 time="false"
+                                date-format="Y-m-d"
                                 wire:model.live="birthdate"
                                 placeholder="Saisissez la date de naissance"
                             />

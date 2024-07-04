@@ -1,6 +1,7 @@
 @props([
     'min_date' => null,
-    'time' => false
+    'time' => false,
+    'dateFormat' => null,
 ])
 <div x-data="datepicker">
     <input
@@ -8,7 +9,7 @@
         native="false"
         readonly
         type="text"
-        date-format="{{ $time ? 'Y-m-d H:i' : 'Y-m-d' }}"
+        date-format="{{ $dateFormat }}"
         date-min-date="{{ $min_date }}"
         date-time="{{ $time }}"
         {{ $attributes->merge(['class' => 'form-control']) }}
