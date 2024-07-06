@@ -72,9 +72,9 @@ final class CreatePhysicPerson extends Component
     {
         $this->validate();
 
-        $path = '' !== $this->profile_picture
+        $path = "" !== $this->profile_picture
             ? $this->profile_picture->storePublicly('/', ['disk' => 'public'])
-            : '';
+            : "";
 
         Person::query()->create([
             'name' => $this->name,

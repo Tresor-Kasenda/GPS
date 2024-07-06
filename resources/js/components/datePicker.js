@@ -6,7 +6,7 @@ export default function datePicker() {
             const dateInput = this.$refs.dateInput;
             flatpickr(dateInput, {
                 minDate: dateInput.getAttribute("date-min-date"),
-                enableTime: dateInput.getAttribute("date-time") === "true",
+                enableTime: dateInput.getAttribute("time") === "true",
                 dateFormat: dateInput.getAttribute("date-format"),
                 onChange: (selectedDates, dateStr) => {
                     this.$dispatch("input", dateStr);

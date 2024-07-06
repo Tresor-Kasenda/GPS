@@ -9,6 +9,7 @@
         native="false"
         readonly
         type="text"
+        time="{{ $time }}"
         date-format="{{ $dateFormat }}"
         date-min-date="{{ $min_date }}"
         date-time="{{ $time }}"

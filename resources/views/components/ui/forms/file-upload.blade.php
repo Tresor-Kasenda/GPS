@@ -2,7 +2,7 @@
     'maxFileSize' => 3,
     'maxFiles' => 3,
     'multiple' => false,
-    'fileTypes' => 'image/jpg,image/jpeg,image/png,image/gif,image/svg',
+    'fileTypes' => null,
 ])
 <div
     wire:ignore

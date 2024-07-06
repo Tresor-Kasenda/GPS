@@ -164,6 +164,7 @@
                             <x-ui.forms.file-upload
                                 multiple="true"
                                 :max-file-size="5"
+                                file-types="'image/jpg,image/jpeg,image/png,image/gif,image/svg'"
                                 wire:model="profile_picture"
                             />
 
