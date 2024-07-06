@@ -2,92 +2,20 @@
 @import "dashlite.css";
 @import "skins/theme-blue.css";
 /* Customizes the input field */
-.flatpickr-input {
-    border: 2px solid #4CAF50;
+
+.flatpickr-calendar {
     border-radius: 4px;
+    border: 1px solid #dbdfea;
+    box-shadow: none;
 }
 
 .flatpickr-current-month {
+    font-size: 17px;
+    font-weight: 700;
+    font-family: Roboto, sans-serif;
+}
+
+.flatpickr-rContainer {
     font-size: 15px;
     font-family: Roboto, sans-serif;
-    padding: 10px 0 10px 0;
-    display: flex;
-    justify-content: space-around;
-}
-
-.flatpickr-monthDropdown-months {
-    font-size: 15px;
-    font-family: Roboto, sans-serif;
-    padding: 10px 0 10px 0;
-}
-
-/* Customizes the calendar dropdown */
-.flatpickr-calendar {
-    background-color: #ffffff;
-    border-radius: 4px;
-    direction: ltr;
-    border: 1px solid #dbdfea;
-}
-
-/* Customizes the color of the selected date */
-.flatpickr-day.selected {
-    background: #4CAF50;
-    color: white;
-}
-
-/* Customizes the color of the today date */
-.flatpickr-day.today {
-    background: #B3E5FC; /* Lighter blue for hover state */
-    color: #333333;
-}
-
-/* Customizes the hover state of date cells */
-.flatpickr-day:hover {
-    background: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-/* Focus state for the input field */
-.flatpickr-input:focus {
-    border-color: #007BFF; /* Blue border for focus state */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    transition: all 0.3s;
-}
-
-/* Style for disabled dates */
-.flatpickr-day.disabled {
-    background: #E9ECEF; /* Light gray background */
-    color: #6C757D; /* Dark gray text */
-    cursor: not-allowed;
-}
-
-/* Style for weekend dates */
-.flatpickr-day.weekend {
-    background: #FFF3CD; /* Light yellow background */
-    color: #856404; /* Brown text */
-}
-
-/* Customize navigation arrows */
-.flatpickr-prev-month, .flatpickr-next-month {
-    color: #007BFF; /* Blue arrows */
-    cursor: pointer;
-}
-
-/* Set the font for the date picker input and calendar */
-.flatpickr-input,
-.flatpickr-calendar {
-    font-family: Roboto, sans-serif;
-}
-
-/* Ensure buttons and navigation arrows match your theme */
-.flatpickr-prev-month, .flatpickr-next-month {
-    color: #e4efff;
-}
-
-/* Adjust the selected and hover state colors to match the theme */
-.flatpickr-day.selected, .flatpickr-day:hover {
-    background: #e4efff;
-    color: #494747;
 }

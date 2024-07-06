@@ -6,10 +6,6 @@ import "filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css";
 import FilePondPluginFilePoster from "filepond-plugin-file-poster";
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-import FilePondPluginImageCrop from "filepond-plugin-image-crop";
-import FilePondPluginImageEdit from "filepond-plugin-image-edit";
-import FilePondPluginImageResize from "filepond-plugin-image-resize";
-import FilePondPluginImageTransform from "filepond-plugin-image-transform";
 
 // Import the plugin styles
 import "filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css";
@@ -28,10 +24,6 @@ export default () => ({
             FilePondPluginImagePreview,
             FilePondPluginFileValidateSize,
             FilePondPluginFileValidateType,
-            FilePondPluginImageCrop,
-            FilePondPluginImageEdit,
-            FilePondPluginImageResize,
-            FilePondPluginImageTransform
         );
 
         const inputElement = this.$refs.input;
@@ -46,12 +38,8 @@ export default () => ({
             allowImageEdit: true,
             maxFileSize: this.maxFiles,
             acceptedFileTypes: this.fileTypes,
-            allowImageCrop: true,
             imageResizeTargetWidth: 700,
             allowImagePreview: true,
-            allowImageResize: true,
-            imageResizeTargetHeight: 700,
-            allowImageTransform: true,
             server: {
                 process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                     eval(uploadMethod);
