@@ -61,8 +61,7 @@ final class MakeUserCommand extends Command
         $user = User::query()->create([
             'name' => $name,
             'email' => $email,
-            'password' => $password,
-            'email_verified_at' => now()
+            'password' => $password
         ]);
 
         event(new Registered($user));
