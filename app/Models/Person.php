@@ -7,6 +7,8 @@ namespace App\Models;
 use App\Enums\Gender;
 use App\Enums\MaritalStatus;
 use App\Enums\UserStatus;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -30,7 +32,7 @@ final class Person extends Model
         'phone_number',
         'address',
         'profile_picture',
-        'identity_piece'
+        'identity_piece',
     ];
 
     public function hiring(): HasOne
@@ -38,13 +40,23 @@ final class Person extends Model
         return $this->hasOne(Hiring::class);
     }
 
-    public function birthday(): string
+    protected function birthday(): Attribute
     {
-        return $this->birthdate->format('Y-m-d');
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->format('d/m/Y'),
+        );
+    }
+
+    // make some with profile_picture
+    protected function picture(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => $value ? asset('storage/'.$value) : asset('images/logo.jpg'),
+        );
     }
 
     /**
-     * @return array<string, mixed|string|array>
+     * @return array<string, mixed|string|array|bool>
      */
     protected function casts(): array
     {
@@ -52,7 +64,7 @@ final class Person extends Model
             'gender' => Gender::class,
             'marital_status' => MaritalStatus::class,
             'birthdate' => 'date',
-            'status' => UserStatus::class
+            'status' => UserStatus::class,
         ];
     }
 }

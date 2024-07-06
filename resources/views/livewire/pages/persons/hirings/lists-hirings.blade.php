@@ -14,7 +14,7 @@
                 </x-ui.table.t-head>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Profile')"/>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Nom, Prenom et Sexe')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Date Engagement et Retraite')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Date Engagement et Ancienneter')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Matricule et Etat de Carriere')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
@@ -37,9 +37,9 @@
                             <div class="user-card">
                                 <div class="user-avatar">
                                     <img
-                                            src="{{ asset('storage/'.$hiring->person->profile_picture) }}"
+                                            src="{{ $hiring->person->picture }}"
                                             alt="{{ $hiring->person->username }}"
-                                            srcset="{{ asset('storage/'.$hiring->person->profile_picture) }}"
+                                            srcset="{{ $hiring->person->picture }}"
                                     >
                                 </div>
                             </div>
@@ -57,12 +57,10 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $hiring->dateEngagement() }}</span>
+                                <span>{{ $hiring->commitment }}</span>
                             </div>
                             <div>
-                                <span style="font-size: smaller; font-style: italic;">
-                                    {{ $hiring->getRetirementAttribute() }}
-                                </span>
+                                <span>{{ $hiring->seniority }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">

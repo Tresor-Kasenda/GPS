@@ -31,29 +31,15 @@
                         <div class="form-group">
                             <x-ui.forms.input.label for="date_commitment">Date Engagement</x-ui.forms.input.label>
                             <x-ui.forms.datepicker
-                                    min_date="now"
-                                    time="false"
-                                    id="date_commitment"
-                                    name="date_commitment"
-                                    wire:model.live="date_commitment"
-                                    placeholder="Selectionnez la date d'engagemnt"
+                                min_date="today"
+                                id="date_commitment"
+                                name="date_commitment"
+                                time="false"
+                                date-format="Y-m-d"
+                                wire:model.live="date_commitment"
+                                placeholder="Selectionnez la date d'engagemnt"
                             />
                             <x-ui.forms.input.error :messages="$errors->get('date_commitment')" class="mt-2"/>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="date_retirement">Date Retraite</x-ui.forms.input.label>
-                            <x-ui.forms.datepicker
-                                    min_date="now"
-                                    time="false"
-                                    id="date_retirement"
-                                    name="date_retirement"
-                                    wire:model.live="date_retirement"
-                                    placeholder="Selectionnez la date de fin carriere"
-                            />
-                            <x-ui.forms.input.error :messages="$errors->get('date_retirement')" class="mt-2"/>
                         </div>
                     </div>
 
@@ -70,22 +56,6 @@
                                     placeholder="Saisissez le numero matricule de l'agent"
                             />
                             <x-ui.forms.input.error :messages="$errors->get('matriculate')" class="mt-2"/>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="carriers_state">
-                                Etat de Cariere
-                            </x-ui.forms.input.label>
-                            <x-ui.forms.input
-                                    type="text"
-                                    id="carriers_state"
-                                    name="carriers_state"
-                                    wire:model.live="carriers_state"
-                                    placeholder="Saisissez l'etat de carriere"
-                            />
-                            <x-ui.forms.input.error :messages="$errors->get('carriers_state')" class="mt-2"/>
                         </div>
                     </div>
 

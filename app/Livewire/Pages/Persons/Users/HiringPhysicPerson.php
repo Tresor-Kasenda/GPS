@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Persons\Users;
 
+use App\Enums\StateCarrier;
+use App\Enums\UserStatus;
 use App\Models\Hiring;
 use App\Models\Person;
 use Illuminate\View\View;
@@ -22,23 +24,20 @@ final class HiringPhysicPerson extends Component
     public Person $person;
 
     #[Validate('required|date|date_format:Y-m-d|after:now')]
-    public string $date_commitment = '';
-
-    #[Validate('nullable|date|date_format:Y-m-d|after:date_commitment')]
-    public string $date_retirement = '';
+    public ?string $date_commitment = '';
 
     #[Validate('required|string|min:6|unique:hirings,matriculate')]
-    public string $matriculate = '';
-
-    #[Validate('required|string')]
-    public string $carriers_state = '';
+    public ?string $matriculate = '';
 
     #[Validate('nullable|file')]
     public $document = '';
 
+    public array $statuses = [];
+
     public function mount(Person $person): void
     {
         $this->person = $person;
+        $this->statuses = StateCarrier::cases();
     }
 
     public function render(): View
@@ -50,28 +49,33 @@ final class HiringPhysicPerson extends Component
     {
         $this->validate();
 
-        $agent = Hiring::query()->where('person_id', $this->person->id)->first();
+        if (Hiring::where('person_id', $this->person->id)->exists()) {
 
-        if ($agent) {
-            session()->flash('status', 'Cette personne exists deja dans la base des donnees');
+            $this->dispatch('message', title: 'Cette personne exists deja dans la base des donnees');
+
             return;
         }
 
-        $path = "" !== $this->document
-            ? $this->document->storePublicly('/documents', ['disk' => 'public'])
-            : '';
+        $path = '' !== $this->document ? $this->document->storePublicly('/documents', ['disk' => 'public']) : '';
 
         Hiring::query()->create([
             'person_id' => $this->person->id,
             'date_commitment' => $this->date_commitment,
-            'date_retirement' => $this->date_retirement,
-            'carriers_state' => $this->carriers_state,
+            'matriculate' => $this->matriculate,
+            'carriers_state' => StateCarrier::ACTIVE,
             'document' => $path,
-            'matriculate' => str($this->matriculate)->upper(),
         ]);
 
-        $this->dispatch('message', title: "Operation executer avec success", params: ['type' => 'info']);
+        $this->updatePerson();
+
+        $this->dispatch('message', title: 'Operation executer avec success');
 
         $this->redirect(route('engagement.lists-hiring', absolute: true));
+    }
+
+    protected function updatePerson(): void {
+        $this->person->update([
+            'status' => UserStatus::PROGRESSING->value
+        ]);
     }
 }

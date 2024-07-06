@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Persons\Users;
 
+use App\Enums\UserStatus;
 use App\Models\Person;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -19,7 +20,10 @@ final class ListsPhysicPerson extends Component
     public function render(): View
     {
         return view('livewire.pages.persons.users.lists-physic-person', [
-            'persons' => Person::query()->orderByDesc('created_at')->get()
+            'persons' => Person::query()
+                ->where('status', '=', UserStatus::PENDING)
+                ->orderByDesc('created_at')
+                ->get(),
         ]);
     }
 
