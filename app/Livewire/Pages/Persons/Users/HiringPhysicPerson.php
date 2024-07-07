@@ -73,7 +73,8 @@ final class HiringPhysicPerson extends Component
         $this->redirect(route('engagement.lists-hiring', absolute: true));
     }
 
-    protected function updatePerson(): void {
+    protected function updatePerson(): void
+    {
         $this->person->update([
             'status' => UserStatus::PROGRESSING->value
         ]);

@@ -28,13 +28,13 @@ final class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        if (!app()->runningInConsole()) {
+        if ( ! app()->runningInConsole()) {
             foreach ($this->getPermissions() as $permission) {
-                Gate::define($permission->name, fn(User $user) => $user->hasPermissionTo($permission));
+                Gate::define($permission->name, fn (User $user) => $user->hasPermissionTo($permission));
             }
 
             foreach ($this->getRoles() as $role) {
-                Gate::define($role->name, fn(User $user) => $user->hasRole($role));
+                Gate::define($role->name, fn (User $user) => $user->hasRole($role));
             }
         }
     }

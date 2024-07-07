@@ -7,8 +7,3 @@ test('Livewire')
     ->toBeClasses()
     ->classes->toBeFinal()
     ->not->toHaveSuffix('Component');
-
-
-test('Component')
-    ->expect('App\Livewire')
-    ->toNotHaveSuffix('Component');

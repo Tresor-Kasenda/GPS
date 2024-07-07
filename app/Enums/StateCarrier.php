@@ -20,5 +20,4 @@ enum StateCarrier: string
             self::LIABILITIES,
         ];
     }
-
 }

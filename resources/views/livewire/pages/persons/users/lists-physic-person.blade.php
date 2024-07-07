@@ -1,6 +1,6 @@
 <div>
     <x-ui.content.block-head :title="__('Liste des personnels')">
-        <x-ui.block.button.link :route="route('persons.add-physic-person')" :action="__('Ajoutez une Personne')" />
+        <x-ui.block.button.link :route="route('persons.add-physic-person')" :action="__('Ajoutez une Personne')"/>
     </x-ui.content.block-head>
 
     <x-ui.content.container>
@@ -14,11 +14,11 @@
                         <label class="custom-control-label" for="uid"></label>
                     </div>
                 </x-ui.table.t-head>
-                <x-ui.table.t-head class="tb-col-md" :title="__('Profile')" />
-                <x-ui.table.t-head class="tb-col-md" :title="__('Nom, Sexe et Etat-Civil')" />
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Naissance')" />
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Adresse et Contact')" />
-                <x-ui.table.t-head class=" tb-col-md" :title="__('Action')" />
+                <x-ui.table.t-head class="tb-col-md" :title="__('Profile')"/>
+                <x-ui.table.t-head class="tb-col-md" :title="__('Nom, Sexe et Etat-Civil')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Naissance')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Adresse et Contact')"/>
+                <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
                 <tbody>
                 @foreach($persons as $person)
@@ -39,9 +39,9 @@
                             <div class="user-card">
                                 <div class="user-avatar">
                                     <img
-                                        src="{{ asset('storage/'.$person->profile_picture) }}"
+                                        src="{{ $person->picture }}"
                                         alt="{{ $person->username }}"
-                                        srcset="{{ asset('storage/'.$person->profile_picture) }}"
+                                        srcset="{{ $person->picture  }}"
                                         class="thumb"
                                     >
                                 </div>
@@ -61,7 +61,7 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $person->birthday() }}</span>
+                                <span>{{ $person->birthday }}</span>
                             </div>
                             <div>
                                 <span style="font-size: smaller; font-style: italic;">{{ $person->birthplace }}</span>
@@ -103,7 +103,7 @@
                                         />
                                         <li>
                                             <button type="button" class="btn"
-                                                    wire:click="$wire.deletePerson({{ $person->id }})">
+                                                    wire:click="deletePerson({{ $person->id }})">
                                                 <em class="icon ni ni-delete"></em>
                                                 <span>Supprimer</span>
                                             </button>

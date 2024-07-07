@@ -1,5 +1,5 @@
 import "./bootstrap";
-import { notification } from "./notification";
+import {notification} from "./notification";
 import datePicker from "./components/datePicker";
 import fileUpload from "./components/file-upload";
 import dropzone from "./components/dropzone.js";
@@ -7,7 +7,8 @@ import dropzone from "./components/dropzone.js";
 document.addEventListener("livewire:init", () => {
     window.Livewire.on("message", (event) => {
         const title = event.title;
-        notification(title, "success");
+        const type = event.type
+        notification(title, type);
     });
 });
 

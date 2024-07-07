@@ -16,6 +16,7 @@ return new class () extends Migration {
         Schema::create('divisions', function (Blueprint $table): void {
             $table->id();
             $table->foreignIdFor(Direction::class)
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
             $table->string('priority');

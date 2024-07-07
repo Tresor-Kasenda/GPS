@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Livewire\Entity\Divisions\EditDivision;
 use App\Models\Division;
 use App\Models\User;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 

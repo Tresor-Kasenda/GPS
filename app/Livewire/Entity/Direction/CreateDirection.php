@@ -35,8 +35,8 @@ final class CreateDirection extends Component
 
         Direction::query()->create($this->validate());
 
-        $this->dispatch('message', title: 'Direction ajoutée avec succès');
+        $this->dispatch('message', title: 'Direction ajoutée avec succès', type: 'success');
 
-        $this->redirect(route('entity.lists-direction'));
+        $this->redirect(route('entity.lists-direction', absolute: false));
     }
 }

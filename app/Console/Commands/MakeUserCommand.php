@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Console\Command;
 use Illuminate\Validation\Rules\Password;
 use Symfony\Component\Console\Attribute\AsCommand;
+
 use function Laravel\Prompts\password;
 use function Laravel\Prompts\text;
 
@@ -68,6 +69,6 @@ final class MakeUserCommand extends Command
 
         $loginUrl = route('login');
 
-        $this->components->info('Success! Your account has been created ' . $user?->email . ' with successfully' . " may now log in at {$loginUrl}");
+        $this->components->info('Success! Your account has been created '.$user?->email.' with successfully'." may now log in at {$loginUrl}");
     }
 }

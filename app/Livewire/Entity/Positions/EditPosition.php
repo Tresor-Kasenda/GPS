@@ -18,10 +18,10 @@ final class EditPosition extends Component
     public Position $position;
 
     #[Validate('required|string')]
-    public string|null $priority = '';
+    public ?string $priority = '';
 
     #[Validate('required|string')]
-    public string|null $description = '';
+    public ?string $description = '';
 
     public function mount(Position $position): void
     {

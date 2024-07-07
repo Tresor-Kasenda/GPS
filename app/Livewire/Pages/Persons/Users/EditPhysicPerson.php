@@ -79,9 +79,11 @@ final class EditPhysicPerson extends Component
         $this->validate();
 
         if ($this->person->identity_piece !== $this->identity_piece) {
-            $this->dispatch('errors', "L'identiter du piece d'identiter est differente");
+            $this->dispatch('message', title: "L'identiter du piece d'identiter est differente");
             return;
         }
+
+        $this->person->fill($this->validate());
 
         $this->person->update([
             'name' => $this->name,
@@ -96,7 +98,7 @@ final class EditPhysicPerson extends Component
             'identity_piece' => $this->identity_piece
         ]);
 
-        $this->dispatch('errors', "Une mise a jours effectuer avec success");
+        $this->dispatch('message', "Une mise a jours effectuer avec success");
 
         $this->redirect(route('persons.lists-physic-person', absolute: false));
     }
