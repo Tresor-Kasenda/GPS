@@ -32,7 +32,7 @@ final class CreatePosition extends Component
 
         Position::query()->create($this->validate());
 
-        $this->dispatch('message', title: "Une nouvelle fonction a ete ajouter");
+        $this->dispatch('message', title: "Une nouvelle fonction a ete ajouter", type: 'success');
 
         $this->redirect(route('entity.lists-position'));
     }

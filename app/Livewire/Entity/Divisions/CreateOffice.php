@@ -42,7 +42,7 @@ final class CreateOffice extends Component
 
         $this->division->offices()->create($this->validate());
 
-        $this->dispatch('message', title: 'Bureau ajoutée avec succès');
+        $this->dispatch('message', title: 'Bureau ajoutée avec succès', type: 'success');
 
         $this->redirect(route('entity.lists-office'));
     }

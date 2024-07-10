@@ -19,7 +19,7 @@ final class ListsHiring extends Component
     {
         return view('livewire.pages.persons.hirings.lists-hirings', [
             'hirings' => Hiring::query()
-                ->where('status', '=', StateCarrier::ACTIVE)
+                ->where('carriers_state', '=', StateCarrier::ACTIVE->value)
                 ->with('person')
                 ->orderByDesc('created_at')
                 ->get(),

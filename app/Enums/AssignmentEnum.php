@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum ReasonAssignmentEnum: string
+enum AssignmentEnum: string
 {
     case INITIAL = 'Grade Initial';
 

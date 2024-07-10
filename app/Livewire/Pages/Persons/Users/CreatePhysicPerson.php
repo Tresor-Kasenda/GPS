@@ -16,7 +16,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
-#[Title('Add un personnel')]
+#[Title('Ajouter un personnel dans la liste d\'attente')]
 final class CreatePhysicPerson extends Component
 {
     use WithFileUploads;
@@ -76,6 +76,15 @@ final class CreatePhysicPerson extends Component
             ? $this->profile_picture->storePublicly('/', ['disk' => 'public'])
             : "";
 
+        $this->storePerson($path);
+
+        $this->dispatch('message', title: "Operation executer avec success", type: 'success');
+
+        $this->redirect(route('persons.lists-physic-person'));
+    }
+
+    protected function storePerson(?string $path): void
+    {
         Person::query()->create([
             'name' => $this->name,
             'username' => $this->username,
@@ -90,9 +99,5 @@ final class CreatePhysicPerson extends Component
             'identity_piece' => $this->identity_piece,
             'profile_picture' => $path
         ]);
-
-        $this->dispatch('message', title: "Operation executer avec success");
-
-        $this->redirect(route('persons.lists-physic-person'));
     }
 }

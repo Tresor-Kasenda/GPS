@@ -68,7 +68,7 @@
                                         </li>
                                         <li class="divider"></li>
                                         <x-ui.table.action.link-down
-                                            icon="bookmark"
+                                            icon="plus"
                                             :href="route('entity.create-office', $division->id)"
                                             :action="__('Ajouter un bureau')"
                                         />

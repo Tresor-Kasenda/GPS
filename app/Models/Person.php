@@ -43,15 +43,14 @@ final class Person extends Model
     protected function birthday(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->format('d/m/Y'),
+            get: fn($value) => Carbon::parse($value)->format('d/m/Y'),
         );
     }
 
-    // make some with profile_picture
     protected function picture(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => $value ? asset('storage/'.$value) : asset('images/logo.jpg'),
+            get: fn($value) => asset('storage/' . $this->profile_picture),
         );
     }
 

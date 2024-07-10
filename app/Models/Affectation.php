@@ -13,7 +13,7 @@ final class Affectation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'person_id',
+        'hiring_id',
         'direction_id',
         'division_id',
         'office_id',
@@ -23,9 +23,9 @@ final class Affectation extends Model
         'document'
     ];
 
-    public function agent(): BelongsTo
+    public function hiring(): BelongsTo
     {
-        return $this->belongsTo(Person::class, 'person_id');
+        return $this->belongsTo(Hiring::class, 'hiring_id');
     }
 
     public function direction(): BelongsTo

@@ -42,7 +42,7 @@ final class CreateGrades extends Component
 
         Grade::query()->create($this->validate());
 
-        $this->dispatch('message', title: "Un nouveau grade a ete ajouter");
+        $this->dispatch('message', title: "Un nouveau grade a ete ajouter", type: 'success');
 
         $this->redirect(route('entity.lists-grades'));
     }

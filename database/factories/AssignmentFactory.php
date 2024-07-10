@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Enums\ReasonAssignmentEnum;
+use App\Enums\AssignmentEnum;
 use App\Models\Assignment;
 use App\Models\Grade;
 use App\Models\Hiring;
@@ -27,7 +27,7 @@ final class AssignmentFactory extends Factory
             'hiring_id' => Hiring::factory(),
             'grade_id' => Grade::factory(),
             'date_assignment' => $this->faker->date(),
-            'reason' => Arr::random(ReasonAssignmentEnum::cases()),
+            'reason' => Arr::random(AssignmentEnum::cases()),
         ];
     }
 }

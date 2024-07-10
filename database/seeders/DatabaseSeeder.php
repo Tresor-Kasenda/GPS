@@ -24,7 +24,6 @@ final class DatabaseSeeder extends Seeder
             //GradeSeeder::class
             // PersonSeeder::class
             //            HiringSeeder::class
-            AdmissionSubSeeder::class
         ]);
     }
 }

@@ -22,7 +22,7 @@
                                 wire:model.live="priority"
                                 placeholder="Ex: Direction Generale"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('priority')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('priority')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -35,7 +35,7 @@
                                 wire:model.live="level"
                                 placeholder="Ex: DRH, DAF, DG, etc."
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('level')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('level')" class="mt-2"/>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
                                 wire:model.live="code"
                                 placeholder="Ex: DI"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('code')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('code')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -62,14 +62,14 @@
                                 wire:model.live="tier"
                                 placeholder="Ex: DRH, DAF, DG, etc."
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('tier')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('tier')" class="mt-2"/>
                         </div>
                     </div>
 
                     <div class="col-lg-12 col-sm-12">
                         <div class="form-group">
                             <x-ui.forms.input.label for="description">
-                                Description de la direction
+                                Description du Grade
                             </x-ui.forms.input.label>
 
                             <x-ui.forms.textarea
@@ -79,11 +79,11 @@
                                 placeholder="Saisir le document"
                             />
 
-                            <x-ui.forms.input.error :messages="$errors->get('description')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('description')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-12">
-                        <x-ui.block.button.submit :action="__('Enregistrer')" />
+                        <x-ui.block.button.submit :action="__('Enregistrer')"/>
                     </div>
                 </div>
             </x-ui.forms.layout>

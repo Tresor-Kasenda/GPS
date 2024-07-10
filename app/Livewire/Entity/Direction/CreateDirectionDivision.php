@@ -42,7 +42,7 @@ final class CreateDirectionDivision extends Component
 
         $this->direction->divisions()->create($this->validate());
 
-        $this->dispatch('message', title: 'Division ajoutée avec succès');
+        $this->dispatch('message', title: 'Division ajoutée avec succès', type: 'success');
 
         $this->redirect(route('entity.lists-division'));
     }
