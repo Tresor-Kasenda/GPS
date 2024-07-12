@@ -23,6 +23,11 @@ final class ListsDirection extends Component
         ]);
     }
 
+    public function selected()
+    {
+
+    }
+
     public function deleteDirection(string $direction): void
     {
         dd($direction);

@@ -388,71 +388,6 @@
         }
     };
 
-    // Form Validate @v1.0
-    NioApp.Validate = function (elm, opt) {
-        if ($(elm).exists()) {
-            $(elm).each(function () {
-                var def = {
-                        errorElement: "span"
-                    },
-                    attr = opt ? extend(def, opt) : def;
-                $(this).validate(attr);
-                NioApp.Validate.OnChange('.js-select2');
-                NioApp.Validate.OnChange('.date-picker');
-                NioApp.Validate.OnChange('.js-tagify');
-            });
-        }
-    };
-
-    //On change validation for third party plugins
-    NioApp.Validate.OnChange = function (elm) {
-        $(elm).on('change', function () {
-            $(this).valid();
-        });
-    };
-    NioApp.Validate.init = function () {
-        NioApp.Validate('.form-validate', {
-            errorElement: "span",
-            errorClass: "invalid",
-            errorPlacement: function errorPlacement(error, element) {
-                if (element.parents().hasClass('input-group')) {
-                    error.appendTo(element.parent().parent());
-                } else {
-                    error.appendTo(element.parent());
-                }
-            }
-        });
-    };
-
-    // Dropzone @v1.1
-    NioApp.Dropzone = function (elm, opt) {
-        if ($(elm).exists()) {
-            $(elm).each(function () {
-                var maxFiles = $(elm).data('max-files'),
-                    maxFiles = maxFiles ? maxFiles : null;
-                var maxFileSize = $(elm).data('max-file-size'),
-                    maxFileSize = maxFileSize ? maxFileSize : 256;
-                var acceptedFiles = $(elm).data('accepted-files'),
-                    acceptedFiles = acceptedFiles ? acceptedFiles : null;
-                var def = {
-                        autoDiscover: false,
-                        maxFiles: maxFiles,
-                        maxFilesize: maxFileSize,
-                        acceptedFiles: acceptedFiles
-                    },
-                    attr = opt ? extend(def, opt) : def;
-                $(this).addClass('dropzone').dropzone(attr);
-            });
-        }
-    };
-
-    // Dropzone Init @v1.0
-    NioApp.Dropzone.init = function () {
-        NioApp.Dropzone('.upload-zone', {
-            url: "/images"
-        });
-    };
-
     // Wizard @v1.0
     NioApp.Wizard = function () {
         var $wizard = $(".nk-wizard");
@@ -940,7 +875,6 @@
         NioApp.Knob.init();
         NioApp.Range.init();
         NioApp.Select2.init();
-        NioApp.Dropzone.init();
         NioApp.Slider.init();
         NioApp.DataTable.init();
         NioApp.Tagify.init();
@@ -971,13 +905,10 @@
     NioApp.init = function () {
         NioApp.coms.docReady.push(NioApp.OtherInit);
         NioApp.coms.docReady.push(NioApp.Prettify);
-        NioApp.coms.docReady.push(NioApp.ColorBG);
-        NioApp.coms.docReady.push(NioApp.ColorTXT);
         NioApp.coms.docReady.push(NioApp.Copied);
         NioApp.coms.docReady.push(NioApp.Ani.init);
         NioApp.coms.docReady.push(NioApp.TGL.init);
         NioApp.coms.docReady.push(NioApp.BS.init);
-        NioApp.coms.docReady.push(NioApp.Validate.init);
         NioApp.coms.docReady.push(NioApp.Picker.init);
         NioApp.coms.docReady.push(NioApp.Addons.Init);
         NioApp.coms.docReady.push(NioApp.Wizard);
