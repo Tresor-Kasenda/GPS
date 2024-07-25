@@ -23,7 +23,7 @@ final class ListsDirection extends Component
         ]);
     }
 
-    public function selected()
+    public function selected(): void
     {
 
     }

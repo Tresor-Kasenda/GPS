@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\UserStatus;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Models\Person;
@@ -11,14 +13,14 @@ use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->user = User::factory()->create([
         'email_verified_at' => now(), // Ensure the user is verified
     ]);
     Auth::login($this->user); // Authenticate the user
 });
 
-it('requires user to be authenticated to create a physical person', function () {
+it('requires user to be authenticated to create a physical person', function (): void {
     Auth::logout(); // Ensure the user is not authenticated
 
     Livewire::test(CreatePhysicPerson::class)
@@ -27,7 +29,7 @@ it('requires user to be authenticated to create a physical person', function () 
         ->assertForbidden(); // Assuming there's a way to assert that an action is forbidden due to lack of authentication
 });
 
-it('creates a physical person with valid data', function () {
+it('creates a physical person with valid data', function (): void {
     $response = Livewire::test(CreatePhysicPerson::class)
         ->set('name', 'John Doe')
         ->set('username', 'johndoe')
@@ -45,21 +47,21 @@ it('creates a physical person with valid data', function () {
     expect(Person::where('username', 'johndoe')->exists())->toBeTrue();
 });
 
-it('fails to create a physical person with invalid data', function () {
+it('fails to create a physical person with invalid data', function (): void {
     Livewire::test(CreatePhysicPerson::class)
         ->set('name', '') // Invalid name
         ->call('submit')
         ->assertHasErrors(['name' => 'required']);
 });
 
-it('fails to create a physical person with underage birthdate', function () {
+it('fails to create a physical person with underage birthdate', function (): void {
     Livewire::test(CreatePhysicPerson::class)
         ->set('birthdate', now()->subYears(17)->toDateString()) // Underage
         ->call('submit')
         ->assertHasErrors(['birthdate' => 'before']);
 });
 
-it('handles file upload for profile picture correctly', function () {
+it('handles file upload for profile picture correctly', function (): void {
     Storage::fake('public');
 
     $file = UploadedFile::fake()->image('profile.jpg');
@@ -71,7 +73,7 @@ it('handles file upload for profile picture correctly', function () {
     Storage::disk('public')->assertExists($file->hashName());
 });
 
-it('validates unique phone_number upon creation', function () {
+it('validates unique phone_number upon creation', function (): void {
     Person::create([
         'name' => 'Existing User',
         'username' => 'existinguser',

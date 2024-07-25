@@ -56,7 +56,7 @@ final class HiringPhysicPerson extends Component
     {
         $this->validate();
 
-        if (Hiring::where('person_id', $this->person->id)->exists()) {
+        if (Hiring::query()->apply($this->person->id)->exists()) {
 
             $this->dispatch('message', title: 'Cette personne exists deja dans la base des donnees', type: 'error');
 
@@ -120,13 +120,11 @@ final class HiringPhysicPerson extends Component
 
     protected function getGrade(): Model
     {
-        return Grade::query()
-            ->where('id', '=', $this->grade)
-            ->firstOrFail();
+        return Grade::first($this->grade);
     }
 
 
-    public function calculateSeniority(Hiring $hiring)
+    public function calculateSeniority(Hiring $hiring): void
     {
     }
 }
