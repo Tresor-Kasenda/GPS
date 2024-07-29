@@ -34,7 +34,7 @@ final class Login extends Component
     /**
      * Handle an incoming authentication request.
      */
-    public function login(): void
+    public function submit(): void
     {
         $this->validate();
 

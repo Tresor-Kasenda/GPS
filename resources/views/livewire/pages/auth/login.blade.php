@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <form wire:submit.prevent="login">
+    <form wire:submit.prevent="submit">
         <div class="form-group">
             <div class="form-label-group">
                 <x-ui.forms.input.label for="email" :value="__('Email')"/>
