@@ -10,7 +10,11 @@
                 <thead>
                 <x-ui.table.t-head class="nk-td-head">
                     <div class="custom-control custom-control-sm custom-checkbox notext">
-                        <input type="checkbox" class="custom-control-input" id="uid">
+                        <input
+                            wire:model="selected"
+                            type="checkbox"
+                            class="custom-control-input"
+                            id="uid">
                         <label class="custom-control-label" for="uid"></label>
                     </div>
                 </x-ui.table.t-head>
@@ -36,16 +40,13 @@
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td>
-                            <div class="user-card">
-                                <div class="user-avatar">
-                                    <img
-                                        src="{{ $person->picture }}"
-                                        alt="{{ $person->username }}"
-                                        srcset="{{ $person->picture  }}"
-                                        class="thumb"
-                                    >
-                                </div>
-                            </div>
+                            <span class="user-avatar sq md bg-info-dim">
+                                <img
+                                    src="{{ $person->picture }}"
+                                    srcset="{{ $person->picture  }}"
+                                    alt="{{ $person->username }}"
+                                >
+                            </span>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-md">
                             <div>
@@ -55,8 +56,8 @@
                                 </span>
                             </div>
                             <div>
-                                <span style="font-size: smaller;">{{ $person->gender }} </span>|
-                                <span style="font-size: smaller;"> {{ $person->marital_status }} </span>
+                                <span class="ucap fw-bold">{{ $person->gender }} </span>|
+                                <span class="ucap fw-bold"> {{ $person->marital_status }} </span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
@@ -64,7 +65,7 @@
                                 <span>{{ $person->birthday }}</span>
                             </div>
                             <div>
-                                <span style="font-size: smaller; font-style: italic;">{{ $person->birthplace }}</span>
+                                <span class="ucap fw-bold">{{ $person->birthplace }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
@@ -72,7 +73,7 @@
                                 <span>{{ $person->address }}</span>
                             </div>
                             <div>
-                                <span style="font-size: smaller; font-style: italic;">{{ $person->phone_number }}</span>
+                                <span class="ucap fw-bold">{{ $person->phone_number }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">

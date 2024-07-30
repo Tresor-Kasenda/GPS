@@ -33,6 +33,7 @@ final class Login extends Component
 
     /**
      * Handle an incoming authentication request.
+     * @throws ValidationException
      */
     public function submit(): void
     {
@@ -41,6 +42,8 @@ final class Login extends Component
         $this->authenticate();
 
         Session::regenerate();
+
+        session()->flash('success', "Bon retour" . auth()->user()->name . "sur GPS");
 
         $this->redirectIntended(default: route('dashboard', absolute: false));
     }

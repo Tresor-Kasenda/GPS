@@ -11,6 +11,7 @@ use App\Models\Assignment;
 use App\Models\Grade;
 use App\Models\Hiring;
 use App\Models\Person;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
@@ -56,7 +57,7 @@ final class HiringPhysicPerson extends Component
     {
         $this->validate();
 
-        if (Hiring::query()->apply($this->person->id)->exists()) {
+        if (Hiring::query()->where('person_id', $this->person->id)->exists()) {
 
             $this->dispatch('message', title: 'Cette personne exists deja dans la base des donnees', type: 'error');
 
@@ -124,7 +125,14 @@ final class HiringPhysicPerson extends Component
     }
 
 
-    public function calculateSeniority(Hiring $hiring): void
+    protected function calculateSeniority(Hiring $hiring): void
     {
+        $currentDate = Carbon::now();
+
+        $yearsOfService = $currentDate->diffInYears(Carbon::parse($hiring->date_commitment));
+
+        $hiring->update([
+            'seniority' => $yearsOfService,
+        ]);
     }
 }

@@ -78,7 +78,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     Route::group(['prefix' => 'engagement', 'as' => 'engagement.'], function (): void {
         Route::group(['prefix' => 'hiring'], function (): void {
             Route::get('/', ListsHiring::class)->name('lists-hiring');
-            Route::get('/add', CreateHiring::class)->name('create-hiring');
             Route::get('/{hiring}/edit', EditHiring::class)->name('edit-hiring');
         });
     });
@@ -88,4 +87,4 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

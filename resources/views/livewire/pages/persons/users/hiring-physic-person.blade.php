@@ -14,7 +14,9 @@
 
                     <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="person_id">Nom</x-ui.forms.input.label>
+                            <x-ui.forms.input.label for="person_id">
+                                {{ __('Nom') }}
+                            </x-ui.forms.input.label>
                             <x-ui.forms.input
                                 type="text"
                                 id="person_id"
@@ -29,7 +31,9 @@
 
                     <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="date_commitment">Date Engagement</x-ui.forms.input.label>
+                            <x-ui.forms.input.label for="date_commitment">
+                                {{ __('Date Engagement') }}
+                            </x-ui.forms.input.label>
                             <x-ui.forms.datepicker
                                 id="date_commitment"
                                 name="date_commitment"
@@ -44,7 +48,9 @@
 
                     <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="grade">Grade</x-ui.forms.input.label>
+                            <x-ui.forms.input.label for="grade">
+                                {{ __('Grade') }}
+                            </x-ui.forms.input.label>
                             <select
                                 id="grade"
                                 name="grade"
@@ -64,7 +70,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="matriculate">
-                                N Matricule
+                                {{ __('N° Matricule') }}
                             </x-ui.forms.input.label>
                             <x-ui.forms.input
                                 type="text"
@@ -80,7 +86,7 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="document">
-                                Doucument
+                                {{ __('Doucument') }}
                             </x-ui.forms.input.label>
 
                             <x-ui.forms.input

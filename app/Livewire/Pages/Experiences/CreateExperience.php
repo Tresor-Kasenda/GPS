@@ -55,6 +55,19 @@ final class CreateExperience extends Component
             ? $this->document->storePublicly('/documents', ['disk' => 'public'])
             : '';
 
+        $this->storeExpercience($path);
+
+        $this->dispatch('message', title: "Une nouvelle experience professionnelle a ete ajouter", type: 'success');
+
+        $this->redirect(route('persons.lists-experience', absolute: false));
+    }
+
+    /**
+     * @param string $path
+     * @return void
+     */
+    public function storeExpercience(string $path): void
+    {
         Experience::query()
             ->create([
                 'person_id' => $this->person->id,
@@ -66,9 +79,5 @@ final class CreateExperience extends Component
                 'company_phone' => $this->company_phone,
                 'document' => $path,
             ]);
-
-        $this->dispatch('message', title: "Une nouvelle experience professionnelle a ete ajouter", type: 'success');
-
-        $this->redirect(route('persons.lists-experience', absolute: false));
     }
 }

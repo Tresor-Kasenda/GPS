@@ -78,7 +78,10 @@ final class CreatePhysicPerson extends Component
 
         $this->storePerson($path);
 
-        $this->dispatch('message', title: "Operation executer avec success", type: 'success');
+        $this->dispatch(
+            'message',
+            title: "Operation executer avec success",
+            type: 'success');
 
         $this->redirect(route('persons.lists-physic-person'));
     }

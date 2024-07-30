@@ -1,5 +1,5 @@
 @props([
-    'dropdown_name'
+'dropdown_name'
 ])
 <li {{ $attributes }}>
     <div class="drodown">

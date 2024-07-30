@@ -1,15 +1,14 @@
 <x-app-layout title="Panel administration">
+    @if(session('success'))
+        <x-ui.block.notifications
+            type="success"
+            :message="session('success')"
+        />
+    @endif
     <x-ui.content.block-head
-            :title="__('TABLEAU DE BORD')"
-            :description="__('Ayez un aperçu global sur l\'ensemble du Personnel de l\'administration Publique du Haut-Katanga')"
-    >
-        <x-ui.block.button.link :route="route('dashboard')" :action="__('Mise a jours')"/>
-        <x-ui.block.dropdown dropdown_name="addUser">
-            <x-ui.block.dropdown.menu>
-                <x-ui.block.dropdown.action dropdown_name="addUser" name="Add User"/>
-            </x-ui.block.dropdown.menu>
-        </x-ui.block.dropdown>
-    </x-ui.content.block-head>
+        :title="__('TABLEAU DE BORD')"
+        :description="__('Ayez un aperçu global sur l\'ensemble du Personnel de l\'administration Publique du Haut-Katanga')"
+    ></x-ui.content.block-head>
 
     <x-ui.content.container>
         <div class="row g-gs">
@@ -32,12 +31,12 @@
                                     <div class="nk-sale-data-group flex-md-nowrap g-4">
                                         <div class="nk-sale-data">
                                             <span class="amount">14,299.59 <span class="change down text-danger"><em
-                                                            class="icon ni ni-arrow-long-down"></em>16.93%</span></span>
+                                                        class="icon ni ni-arrow-long-down"></em>16.93%</span></span>
                                             <span class="sub-title">This Month</span>
                                         </div>
                                         <div class="nk-sale-data">
                                             <span class="amount">7,299.59 <span class="change up text-success"><em
-                                                            class="icon ni ni-arrow-long-up"></em>4.26%</span></span>
+                                                        class="icon ni ni-arrow-long-up"></em>4.26%</span></span>
                                             <span class="sub-title">This Week</span>
                                         </div>
                                     </div>
@@ -66,7 +65,7 @@
                                             <div class="nk-sale-data">
                                                 <span class="amount">9.69K</span>
                                                 <span class="sub-title"><span class="change down text-danger"><em
-                                                                class="icon ni ni-arrow-long-down"></em>1.93%</span>since last month</span>
+                                                            class="icon ni ni-arrow-long-down"></em>1.93%</span>since last month</span>
                                             </div>
                                             <div class="nk-sales-ck">
                                                 <canvas class="sales-bar-chart" id="activeSubscription"></canvas>
@@ -91,7 +90,7 @@
                                             <div class="nk-sale-data">
                                                 <span class="amount">346.2</span>
                                                 <span class="sub-title"><span class="change up text-success"><em
-                                                                class="icon ni ni-arrow-long-up"></em>2.45%</span>since last week</span>
+                                                            class="icon ni ni-arrow-long-up"></em>2.45%</span>since last week</span>
                                             </div>
                                             <div class="nk-sales-ck">
                                                 <canvas class="sales-bar-chart" id="totalSubscription"></canvas>
