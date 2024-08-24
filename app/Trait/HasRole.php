@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Trait;
 
+use Illuminate\Database\Eloquent\Model;
+
 trait HasRole
 {
     /**
      * @param $permission
      * @return mixed
      */
-    public function hasPermissionTo($permission): mixed
+    public function hasPermissionTo(Model $permission): mixed
     {
         return $this
             ->roles

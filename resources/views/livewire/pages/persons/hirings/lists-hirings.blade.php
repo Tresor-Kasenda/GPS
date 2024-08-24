@@ -24,11 +24,11 @@
                         <x-ui.table.td class="nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                 <input
-                                        type="checkbox"
-                                        wire:model="selected"
-                                        class="custom-control-input"
-                                        id="uid3-{{ $hiring->id }}"
-                                        value="{{ $hiring->id }}"
+                                    type="checkbox"
+                                    wire:model="selected"
+                                    class="custom-control-input"
+                                    id="uid3-{{ $hiring->id }}"
+                                    value="{{ $hiring->id }}"
                                 >
                                 <label class="custom-control-label" for="uid3-{{ $hiring->id }}"></label>
                             </div>
@@ -37,9 +37,9 @@
                             <div class="user-card">
                                 <div class="user-avatar">
                                     <img
-                                            src="{{ $hiring->person->picture }}"
-                                            alt="{{ $hiring->person->username }}"
-                                            srcset="{{ $hiring->person->picture }}"
+                                        src="{{ $hiring->person->picture }}"
+                                        alt="{{ $hiring->person->username }}"
+                                        srcset="{{ $hiring->person->picture }}"
                                     >
                                 </div>
                             </div>
@@ -50,7 +50,8 @@
                                     {{ $hiring->person->name }} {{ $hiring->person->firstname }}
                                 </span>
                                 <div>
-                                    <span style="font-size: smaller; font-style: italic;">{{ $hiring->person->gender }}</span>
+                                    <span
+                                        style="font-size: smaller; font-style: italic;">{{ $hiring->person->gender }}</span>
                                 </div>
                             </div>
 
@@ -68,7 +69,8 @@
                                 <span>{{ $hiring->matriculate }}</span>
                             </div>
                             <div>
-                                <span style="font-size: smaller; font-style: italic;">{{ $hiring->carriers_state }}</span>
+                                <span
+                                    style="font-size: smaller; font-style: italic;">{{ $hiring->carriers_state }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">
@@ -76,14 +78,14 @@
                                 <li>
                                     <x-ui.table.action>
                                         <x-ui.table.action.link-down
-                                                icon="eye"
-                                                :href="route('persons.show-physic-person', $hiring->id)"
-                                                :action="__('Voir fiche')"
+                                            icon="eye"
+                                            :href="route('persons.show-physic-person', $hiring->id)"
+                                            :action="__('Voir fiche')"
                                         />
                                         <x-ui.table.action.link-down
-                                                icon="edit"
-                                                :href="route('engagement.edit-hiring', $hiring->id)"
-                                                :action="__('Modifier')"
+                                            icon="edit"
+                                            :href="route('engagement.edit-hiring', $hiring->id)"
+                                            :action="__('Modifier')"
                                         />
                                         <li>
                                             <button type="button" class="btn"
@@ -92,6 +94,22 @@
                                                 <span>Supprimer</span>
                                             </button>
                                         </li>
+                                        <li class="divider"></li>
+                                        <x-ui.table.action.link-down
+                                            icon="repeat-v"
+                                            :href="route('movement.create-affectation', $hiring->person->id)"
+                                            :action="__('Affectation')"
+                                        />
+                                        <x-ui.table.action.link-down
+                                            icon="share"
+                                            :href="route('persons.hiring-physic-person', $hiring->id)"
+                                            :action="__('Transfert')"
+                                        />
+                                        <x-ui.table.action.link-down
+                                            icon="swap-alt-fill"
+                                            :href="route('persons.hiring-physic-person', $hiring->id)"
+                                            :action="__('Mobiliter')"
+                                        />
                                     </x-ui.table.action>
                                 </li>
                             </ul>

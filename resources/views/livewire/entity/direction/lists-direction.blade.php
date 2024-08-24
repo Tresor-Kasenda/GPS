@@ -46,7 +46,7 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $direction->designation }}</span>
+                                <span></span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">

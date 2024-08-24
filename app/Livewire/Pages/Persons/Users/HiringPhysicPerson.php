@@ -12,9 +12,11 @@ use App\Models\Grade;
 use App\Models\Hiring;
 use App\Models\Person;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\View\View;
+use Illuminate\Foundation\Application;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -48,7 +50,7 @@ final class HiringPhysicPerson extends Component
         $this->grades = $grades->get();
     }
 
-    public function render(): View
+    public function render(): Factory|View|Application
     {
         return view('livewire.pages.persons.users.hiring-physic-person');
     }
@@ -121,15 +123,18 @@ final class HiringPhysicPerson extends Component
 
     protected function getGrade(): Model
     {
-        return Grade::first($this->grade);
+        return Grade::query()->where('id', $this->grade)->first('id');
     }
 
 
     protected function calculateSeniority(Hiring $hiring): void
     {
         $currentDate = Carbon::now();
+        $hiringDate = Carbon::parse($hiring->date_commitment);
 
-        $yearsOfService = $currentDate->diffInYears(Carbon::parse($hiring->date_commitment));
+        $yearsOfService = $hiringDate->diffInYears($currentDate);
+
+        // convert $yearsOfService to number and update seniority
 
         $hiring->update([
             'seniority' => $yearsOfService,

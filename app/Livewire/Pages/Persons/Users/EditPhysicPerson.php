@@ -85,18 +85,7 @@ final class EditPhysicPerson extends Component
 
         $this->person->fill($this->validate());
 
-        $this->person->update([
-            'name' => $this->name,
-            'username' => $this->username,
-            'firstname' => $this->firstname,
-            'gender' => $this->gender,
-            'marital_status' => $this->marital_status,
-            'birthdate' => $this->birthdate,
-            'birthplace' => $this->birthplace,
-            'phone_number' => $this->phone_number,
-            'address' => $this->address,
-            'identity_piece' => $this->identity_piece
-        ]);
+        $this->person->save();
 
         $this->dispatch('message', "Une mise a jours effectuer avec success");
 

@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\StateCarrier;
-use App\Models\Scopes\HiringPerson;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[ScopedBy(HiringPerson::class)]
 final class Hiring extends Model
 {
     use HasFactory;
@@ -45,6 +42,7 @@ final class Hiring extends Model
             'date_commitment' => 'date',
             'person_id' => 'integer',
             'carriers_state' => StateCarrier::class,
+            'seniority' => 'float'
         ];
     }
 }

@@ -79,7 +79,7 @@ test('correct password must be provided to delete account', function (): void {
 
     $this->actingAs($user);
 
-    $component = Volt::test('profile.delete-user-form')
+    $component = Livewire::test('profile.delete-user-form')
         ->set('password', 'wrong-password')
         ->call('deleteUser');
 

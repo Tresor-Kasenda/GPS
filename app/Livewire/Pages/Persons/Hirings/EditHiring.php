@@ -32,9 +32,6 @@ final class EditHiring extends Component
     #[Validate('required|string')]
     public string $carriers_state = '';
 
-    #[Validate('nullable')]
-    public $document = '';
-
     public function mount(Hiring $hiring): void
     {
         $this->date_commitment = $hiring->date_commitment->format('Y-m-d');
@@ -56,16 +53,11 @@ final class EditHiring extends Component
     {
         $this->validate();
 
-        $path = "" !== $this->document
-            ? $this->document->storePublicly('/documents', ['disk' => 'public'])
-            : $this->hiring->document;
-        $this->hiring->update([
-            'date_commitment' => $this->date_commitment,
-            'date_retirement' => $this->date_retirement,
-            'matriculate' => $this->matriculate,
-            'carriers_state' => $this->carriers_state,
-            'document' => $path,
-        ]);
+        $this->hiring->fill($this->validate());
+
+        $this->hiring->save();
+
+        $this->dispatch('message', message: "Mise a jours effectuer avec success");
 
         $this->redirect(route('engagement.lists-hiring', absolute: false));
     }

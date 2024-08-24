@@ -1,3 +1,4 @@
+@php use App\Models\Direction; @endphp
 <div>
     <x-ui.content.block-head :title="__('Nouvelle Division')">
         <x-ui.block.button.link

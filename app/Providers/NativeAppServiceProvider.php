@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
-use Native\Laravel\Facades\Window;
 use Native\Laravel\Contracts\ProvidesPhpIni;
+use Native\Laravel\Facades\Window;
 
-class NativeAppServiceProvider implements ProvidesPhpIni
+final class NativeAppServiceProvider implements ProvidesPhpIni
 {
     /**
      * Executed once the native application has been booted.

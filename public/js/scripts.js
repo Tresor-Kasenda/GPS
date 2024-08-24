@@ -539,11 +539,12 @@
                 modal.find('[href="' + tg_tab + '"]').tab('show');
             } else if (modal) {
                 var tabdef = modal.find('.nk-nav.nav-tabs');
-                var link = $(tabdef[0]).find('[data-toggle="tab"]');
+                var link = $(tabdef[0]).find('[data-bs-toggle="tab"]');
                 $(link[0]).tab('show');
             }
         });
     };
+
 
     // Dark Mode Switch @since v2.0
     NioApp.ModeSwitch = function () {
@@ -899,6 +900,7 @@
             NioApp.Validate.init();
         });
     };
+
 
     // Initial by default
     /////////////////////////////
