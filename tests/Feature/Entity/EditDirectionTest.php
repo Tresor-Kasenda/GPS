@@ -3,9 +3,8 @@
 declare(strict_types=1);
 
 use App\Livewire\Entity\Direction\EditDirection;
-use App\Models\Direction;
+use App\Models\Service;
 use App\Models\User;
-
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
@@ -14,7 +13,7 @@ beforeEach(function (): void {
 });
 
 it('updates direction with valid data', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
 
     Livewire::test(EditDirection::class, ['direction' => $direction])
         ->set('priority', '2')
@@ -32,7 +31,7 @@ it('updates direction with valid data', function (): void {
 });
 
 it('does not update direction with invalid data', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
 
     Livewire::test(EditDirection::class, ['direction' => $direction])
         ->set('priority', null)
@@ -51,7 +50,7 @@ it('does not update direction with invalid data', function (): void {
 
 // assert update
 it('assert update using id of division', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
 
     Livewire::test(EditDirection::class, ['direction' => $direction])
         ->set('priority', '2')

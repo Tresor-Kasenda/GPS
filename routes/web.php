@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Livewire\Entity\Direction\CreateDirection;
-use App\Livewire\Entity\Direction\CreateDirectionDivision;
 use App\Livewire\Entity\Direction\EditDirection;
 use App\Livewire\Entity\Direction\ListsDirection;
 use App\Livewire\Entity\Divisions\CreateOffice;
@@ -47,30 +46,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsDirection::class)->name('lists-direction');
             Route::get('/add', CreateDirection::class)->name('create-direction');
             Route::get('/{direction}/edit', EditDirection::class)->name('edit-direction');
-            Route::get('/add/{direction}/division', CreateDirectionDivision::class)->name('division-create');
-        });
-
-        Route::group(['prefix' => 'divisions'], function (): void {
-            Route::get('/', ListsDivision::class)->name('lists-division');
-            Route::get('/{division}/edit', EditDivision::class)->name('edit-division');
-            Route::get('/add/{division}/office', CreateOffice::class)->name('create-office');
-        });
-
-        Route::group(['prefix' => 'offices'], function (): void {
-            Route::get('/', ListsOffice::class)->name('lists-office');
-            Route::get('/{office}/edit', EditOffice::class)->name('edit-office');
         });
 
         Route::group(['prefix' => 'grades'], function (): void {
             Route::get('/', ListsGrades::class)->name('lists-grades');
             Route::get('/add', CreateGrades::class)->name('create-grades');
             Route::get('/{grade}/edit', EditGrades::class)->name('edit-grades');
-        });
-
-        Route::group(['prefix' => 'position'], function (): void {
-            Route::get('/', ListsPosition::class)->name('lists-position');
-            Route::get('/add', CreatePosition::class)->name('create-position');
-            Route::get('/{position}/edit', EditPosition::class)->name('edit-position');
         });
     });
 
@@ -96,7 +77,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsAffectations::class)->name('affectations-lists');
             Route::get('/{person}/affectation', CreateAffectation::class)->name('create-affectation');
         });
-
     });
 
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function (): void {

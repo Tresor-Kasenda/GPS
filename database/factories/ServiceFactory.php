@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Division;
-use App\Models\Office;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends Factory<Office>
+ * @extends Factory<Service>
  */
-final class OfficeFactory extends Factory
+final class ServiceFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,10 +21,9 @@ final class OfficeFactory extends Factory
     public function definition(): array
     {
         return [
-            'division_id' => Division::factory(),
-            'priority' => fake()->postcode,
-            'abbreviation' => fake()->postcode,
-            'designation' => fake()->text,
+            'priority' => Str::random(5),
+            'abbreviation' => $this->faker->title,
+            'designation' => $this->faker->realText(),
         ];
     }
 }

@@ -3,13 +3,12 @@
 declare(strict_types=1);
 
 use App\Livewire\Entity\Direction\CreateDirectionDivision;
-use App\Models\Direction;
-
+use App\Models\Service;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
 it('creates division with valid data', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
 
     Livewire::test(CreateDirectionDivision::class, ['direction' => $direction])
         ->set('priority', '1')
@@ -26,7 +25,7 @@ it('creates division with valid data', function (): void {
 });
 
 it('does not create division with invalid data', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
 
     Livewire::test(CreateDirectionDivision::class, ['direction' => $direction])
         ->set('priority', null)
@@ -43,7 +42,7 @@ it('does not create division with invalid data', function (): void {
 });
 
 it('does not create division with duplicate data', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
     $direction->divisions()->create([
         'priority' => '1',
         'abbreviation' => 'A',
@@ -65,7 +64,7 @@ it('does not create division with duplicate data', function (): void {
 });
 
 it('creates division with valid data when user is authenticated', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
 
     Livewire::test(CreateDirectionDivision::class, ['direction' => $direction])
         ->set('priority', '1')
@@ -82,7 +81,7 @@ it('creates division with valid data when user is authenticated', function (): v
 });
 
 it('does not create division when user is not authenticated', function (): void {
-    $direction = Direction::factory()->create();
+    $direction = Service::factory()->create();
 
     Livewire::actingAs(null)
         ->test(CreateDirectionDivision::class, ['direction' => $direction])

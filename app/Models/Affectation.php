@@ -30,7 +30,7 @@ final class Affectation extends Model
 
     public function direction(): BelongsTo
     {
-        return $this->belongsTo(Direction::class, 'direction_id');
+        return $this->belongsTo(Service::class, 'direction_id');
     }
 
     public function division(): BelongsTo

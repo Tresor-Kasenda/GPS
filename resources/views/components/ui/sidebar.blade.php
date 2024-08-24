@@ -33,23 +33,11 @@
         <x-ui.block.sidebar.link-sub :route="route('entity.lists-direction')" :name="__('Liste de Directions')"/>
     </x-ui.block.sidebar.menu-link>
 
-    <x-ui.block.sidebar.menu-link :title="__('Division')" icon="bookmark">
-        <x-ui.block.sidebar.link-sub :route="route('entity.lists-division')" :name="__('Liste de Divisions')"/>
-    </x-ui.block.sidebar.menu-link>
-
-    <x-ui.block.sidebar.menu-link :title="__('Bureau')" icon="arrow-up">
-        <x-ui.block.sidebar.link-sub :route="route('entity.lists-office')" :name="__('Liste de Bureaux')"/>
-    </x-ui.block.sidebar.menu-link>
-
     <x-ui.block.sidebar.menu-link :title="__('Grade')" icon="block-over">
         <x-ui.block.sidebar.link-sub :route="route('entity.lists-grades')" :name="__('Liste de Grades')"/>
         <x-ui.block.sidebar.link-sub :route="route('entity.create-grades')" :name="__('Nouveau Grade')"/>
     </x-ui.block.sidebar.menu-link>
 
-    <x-ui.block.sidebar.menu-link :title="__('Fonction')" icon="align-center">
-        <x-ui.block.sidebar.link-sub :route="route('entity.lists-position')" :name="__('Liste de Fonctions')"/>
-        <x-ui.block.sidebar.link-sub :route="route('entity.create-position')" :name="__('Nouvelle Fonction')"/>
-    </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.separator-link :name="__('PARAMETRE')"/>
 

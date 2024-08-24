@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Entity\Direction;
 
-use App\Models\Direction;
+use App\Models\Service;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -17,7 +17,7 @@ final class ListsDirection extends Component
     public function render(): View
     {
         return view('livewire.entity.direction.lists-direction', [
-            'directions' => Direction::query()
+            'directions' => Service::query()
                 ->orderByDesc('created_at')
                 ->get()
         ]);

@@ -16,7 +16,7 @@ return new class () extends Migration {
     {
         Schema::create('assignments', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(App\Models\Hiring::class)
+            $table->foreignIdFor(App\Models\Person::class)
                 ->constrained()
                 ->onUpdate('cascade');
             $table->foreignIdFor(Grade::class)

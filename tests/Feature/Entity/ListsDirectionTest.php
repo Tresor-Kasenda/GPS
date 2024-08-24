@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Direction;
+use App\Models\Service;
 use App\Models\User;
-
 use function Pest\Laravel\actingAs;
 
 beforeEach(function (): void {
@@ -13,7 +12,7 @@ beforeEach(function (): void {
 
 describe('directions', function (): void {
     it('should return a list of directions', function (): void {
-        $directions = Direction::factory(5)->create();
+        $directions = Service::factory(5)->create();
         actingAs($this->user)
             ->get(route('entity.lists-direction'))
             ->assertSee($directions->first()->priority)
@@ -22,7 +21,7 @@ describe('directions', function (): void {
 
     // should delete
     it('should delete a direction', function (): void {
-        $direction = Direction::factory()->create();
+        $direction = Service::factory()->create();
         actingAs($this->user)
             ->call('delete', $direction->id)
             ->assertDispatched('message', 'Direction deleted successfully');

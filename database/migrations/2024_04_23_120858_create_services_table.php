@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Division;
+use App\Enums\LevelEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +13,17 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('offices', function (Blueprint $table): void {
+        Schema::create('services', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Division::class)
-                ->nullable()
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->string('priority');
+            $table->string('title');
+            $table->enum('level', [
+                LevelEnum::DIRECTION->value,
+                LevelEnum::DIVISION->value,
+                LevelEnum::OFFICES->value,
+                LevelEnum::CELLULE->value
+            ])->default(LevelEnum::DIRECTION->value);
             $table->string('abbreviation')->unique();
-            $table->string('designation')->nullable();
+            $table->mediumText('designation')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('directions');
     }
 };

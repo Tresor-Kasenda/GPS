@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\Direction;
-use App\Models\Division;
-use App\Models\Hiring;
-use App\Models\Office;
-use App\Models\Position;
+use App\Models\Service;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,23 +15,14 @@ return new class () extends Migration {
     {
         Schema::create('affectations', function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Hiring::class)
+            $table->foreignIdFor(App\Models\Person::class)
                 ->constrained()
                 ->onUpdate('cascade');
-            $table->foreignIdFor(Direction::class)
-                ->constrained()
-                ->onUpdate('cascade');
-            $table->foreignIdFor(Division::class)
-                ->constrained()
-                ->onUpdate('cascade');
-            $table->foreignIdFor(Office::class)
-                ->constrained()
-                ->onUpdate('cascade');
-            $table->foreignIdFor(Position::class)
+            $table->foreignIdFor(Service::class)
                 ->constrained()
                 ->onUpdate('cascade');
             $table->date('date_affectation');
-            $table->string('position')->nullable(); // fonction actuelle (a saisir)
+            $table->string('position')->nullable();
             $table->string('document')->nullable();
             $table->timestamps();
         });

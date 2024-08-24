@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Entity\Direction;
 
-use App\Models\Direction;
+use App\Models\Service;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -33,7 +33,7 @@ final class CreateDirection extends Component
     {
         $this->validate();
 
-        Direction::query()->create($this->validate());
+        Service::query()->create($this->validate());
 
         $this->dispatch('message', title: 'Direction ajoutée avec succès', type: 'success');
 

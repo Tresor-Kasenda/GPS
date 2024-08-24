@@ -3,9 +3,8 @@
 declare(strict_types=1);
 
 use App\Livewire\Entity\Direction\CreateDirection;
-use App\Models\Direction;
+use App\Models\Service;
 use App\Models\User;
-
 use function Pest\Laravel\assertDatabaseHas;
 
 beforeEach(function (): void {
@@ -14,7 +13,7 @@ beforeEach(function (): void {
 
 describe('Create Direction', function (): void {
     test('create direction', function (): void {
-        $direction = Direction::factory()->create();
+        $direction = Service::factory()->create();
 
         Livewire::test(CreateDirection::class)
             ->set('priority', $direction->priority)
@@ -41,11 +40,11 @@ describe('Create Direction', function (): void {
                 'designation' => 'required',
             ]);
 
-        expect(Direction::count())->toBe(0);
+        expect(Service::count())->toBe(0);
     });
 
     test('create direction with unique validation', function (): void {
-        $direction = Direction::factory()->create();
+        $direction = Service::factory()->create();
 
         Livewire::test(CreateDirection::class)
             ->set('priority', $direction->priority)
@@ -66,7 +65,7 @@ describe('Create Direction', function (): void {
             ->set('designation', $designation)
             ->call('submit');
 
-        expect(Direction::count())->toBe(0);
+        expect(Service::count())->toBe(0);
     })->with([
         'priority' => ['', '1', null],
         'abbreviation' => ['', '1', null],

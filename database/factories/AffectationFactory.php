@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Affectation;
-use App\Models\Direction;
 use App\Models\Division;
 use App\Models\Hiring;
 use App\Models\Office;
 use App\Models\Position;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,7 +26,7 @@ final class AffectationFactory extends Factory
     {
         return [
             'hiring_id' => Hiring::factory(),
-            'direction_id' => Direction::factory(),
+            'direction_id' => Service::factory(),
             'division_id' => Division::factory(),
             'office_id' => Office::factory(),
             'position_id' => Position::factory(),
