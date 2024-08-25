@@ -59,10 +59,10 @@ final class HiringPhysicPerson extends Component
     {
         $this->validate();
 
-        if (Hiring::query()->where('person_id', $this->person->id)->exists()) {
+        $hirings = Hiring::query()->where('person_id', $this->person->id)->get();
 
-            $this->dispatch('message', title: 'Cette personne exists deja dans la base des donnees', type: 'error');
-
+        if ($hirings->isNotEmpty()) {
+            $this->addError('person_id', 'Cette personne a déjà un engagement');
             return;
         }
 
@@ -134,10 +134,8 @@ final class HiringPhysicPerson extends Component
 
         $yearsOfService = $hiringDate->diffInYears($currentDate);
 
-        // convert $yearsOfService to number and update seniority
-
         $hiring->update([
-            'seniority' => $yearsOfService,
+            'seniority' => (int)$yearsOfService,
         ]);
     }
 }

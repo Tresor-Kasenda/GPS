@@ -8,7 +8,7 @@
     <x-ui.block.links
         :route="route('engagement.lists-hiring')"
         icon="swap-v"
-        :title="__('Engagement')"
+        :title="__('Agents')"
     />
 
     <x-ui.block.sidebar.separator-link :name="__('GESTION MOUVEMENT')"/>

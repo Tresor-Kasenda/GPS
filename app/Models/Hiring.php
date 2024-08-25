@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\StateCarrier;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,33 +13,20 @@ final class Hiring extends Model
     use HasFactory;
 
     protected $fillable = [
-        'person_id',
-        'date_commitment',
-        'seniority',
-        'matriculate',
-        'carriers_state',
-        'document',
+        'service_id',
+        'hiring_date',
+        'reference',
     ];
 
-    public function person(): BelongsTo
+    public function service(): BelongsTo
     {
-        return $this->belongsTo(Person::class);
-    }
-
-    protected function commitment(): Attribute
-    {
-        return new Attribute(
-            get: fn($value) => Carbon::parse($value)->format('d/m/Y'),
-        );
+        return $this->belongsTo(Service::class);
     }
 
     protected function casts(): array
     {
         return [
-            'date_commitment' => 'date',
-            'person_id' => 'integer',
-            'carriers_state' => StateCarrier::class,
-            'seniority' => 'float'
+            'hiring_date' => 'date'
         ];
     }
 }

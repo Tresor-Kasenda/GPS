@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Models\Hiring;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
 
 final class HiringSeeder extends Seeder
@@ -14,6 +15,8 @@ final class HiringSeeder extends Seeder
      */
     public function run(): void
     {
-        Hiring::factory()->create(3);
+        Hiring::factory()
+            ->for(Service::factory())
+            ->create(3);
     }
 }

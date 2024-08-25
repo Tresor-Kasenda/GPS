@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\LevelEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Service extends Model
 {
@@ -18,6 +19,11 @@ final class Service extends Model
         'abbreviation',
         'designation'
     ];
+
+    public function services(): HasMany
+    {
+        return $this->hasMany(Hiring::class);
+    }
 
     protected function casts(): array
     {
