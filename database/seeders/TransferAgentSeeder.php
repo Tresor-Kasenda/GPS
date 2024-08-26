@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\TransferAgent;
 use Illuminate\Database\Seeder;
 
-class TransferAgentSeeder extends Seeder
+final class TransferAgentSeeder extends Seeder
 {
     /**
      * Run the database seeds.

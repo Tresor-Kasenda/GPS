@@ -1,8 +1,6 @@
-import "./bootstrap";
 import {notification} from "./notification.js";
 import datePicker from "./components/datePicker.js";
 import fileUpload from "./components/file-upload.js";
-import dropzone from "./components/dropzone.js";
 
 document.addEventListener("livewire:init", () => {
     /**
@@ -16,4 +14,3 @@ document.addEventListener("livewire:init", () => {
 
 Alpine.data("datepicker", datePicker);
 Alpine.data("fileUpload", fileUpload);
-Alpine.data('dropzone', dropzone);

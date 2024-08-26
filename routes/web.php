@@ -2,14 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Livewire\Entity\Direction\CreateDirection;
-use App\Livewire\Entity\Direction\EditDirection;
-use App\Livewire\Entity\Direction\ListsDirection;
 use App\Livewire\Entity\Grades\CreateGrades;
 use App\Livewire\Entity\Grades\EditGrades;
 use App\Livewire\Entity\Grades\ListsGrades;
-use App\Livewire\Pages\Persons\Hirings\EditHiring;
-use App\Livewire\Pages\Persons\Hirings\ListsHiring;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
@@ -29,12 +24,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
 
     Route::group(['prefix' => 'entity', 'as' => 'entity.'], function (): void {
 
-        Route::group(['prefix' => 'direction'], function (): void {
-            Route::get('/', ListsDirection::class)->name('lists-direction');
-            Route::get('/add', CreateDirection::class)->name('create-direction');
-            Route::get('/{direction}/edit', EditDirection::class)->name('edit-direction');
-        });
-
         Route::group(['prefix' => 'grades'], function (): void {
             Route::get('/', ListsGrades::class)->name('lists-grades');
             Route::get('/add', CreateGrades::class)->name('create-grades');
@@ -52,16 +41,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
         });
     });
 
-    Route::group(['prefix' => 'engagement', 'as' => 'engagement.'], function (): void {
-        Route::group(['prefix' => 'hiring'], function (): void {
-            Route::get('/', ListsHiring::class)->name('lists-hiring');
-            Route::get('/{hiring}/edit', EditHiring::class)->name('edit-hiring');
-        });
-    });
-
-    Route::group(['prefix' => 'movement', 'as' => 'movement.'], function () {
-
-    });
 
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function (): void {
 

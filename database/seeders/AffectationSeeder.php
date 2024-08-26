@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Affectation;
@@ -7,7 +9,7 @@ use App\Models\Agent;
 use App\Models\CompanyFunction;
 use Illuminate\Database\Seeder;
 
-class AffectationSeeder extends Seeder
+final class AffectationSeeder extends Seeder
 {
     /**
      * Run the database seeds.

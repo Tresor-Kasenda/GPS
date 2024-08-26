@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Agent;
 use Illuminate\Database\Seeder;
 
-class AgentSeeder extends Seeder
+final class AgentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
