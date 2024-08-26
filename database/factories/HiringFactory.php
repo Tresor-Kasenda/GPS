@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Hiring;
-use App\Models\Person;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,11 +21,9 @@ final class HiringFactory extends Factory
     public function definition(): array
     {
         return [
-            'person_id' => Person::factory(),
-            'date_commitment' => $this->faker->date(),
-            'date_retirement' => $this->faker->date(),
-            'matriculate' => $this->faker->randomDigit(),
-            'document' => $this->faker->realText(),
+            'service_id' => Service::factory(),
+            'hiring_date' => $this->faker->date(),
+            'reference' => $this->faker->word(),
         ];
     }
 }

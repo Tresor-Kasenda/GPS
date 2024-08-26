@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Agent;
 use Illuminate\Database\Seeder;
 
 class AgentSeeder extends Seeder
@@ -11,6 +12,7 @@ class AgentSeeder extends Seeder
      */
     public function run(): void
     {
-
+        // Create 10 agents
+        Agent::factory(10)->create();
     }
 }
