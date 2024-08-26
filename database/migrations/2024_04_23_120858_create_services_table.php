@@ -24,6 +24,10 @@ return new class () extends Migration {
             ])->default(LevelEnum::DIRECTION->value);
             $table->string('abbreviation')->unique();
             $table->mediumText('designation')->nullable();
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->constrained('services')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

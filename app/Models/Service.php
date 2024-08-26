@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\LevelEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Service extends Model
@@ -17,12 +18,18 @@ final class Service extends Model
         'title',
         'level',
         'abbreviation',
-        'designation'
+        'designation',
+        'parent_id'
     ];
 
     public function services(): HasMany
     {
-        return $this->hasMany(Hiring::class);
+        return $this->hasMany(Service::class, 'parent_id');
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'parent_id');
     }
 
     protected function casts(): array

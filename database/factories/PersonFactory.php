@@ -29,11 +29,8 @@ final class PersonFactory extends Factory
             'gender' => Arr::random(Gender::cases()),
             'marital_status' => Arr::random(MaritalStatus::cases()),
             'birthdate' => fake()->date(),
-            'birthplace' => fake()->city,
             'phone_number' => fake()->phoneNumber,
             'address' => fake()->address,
-            'profile_picture' => fake()->imageUrl(),
-            'identity_card' => fake()->iso8601
         ];
     }
 }
