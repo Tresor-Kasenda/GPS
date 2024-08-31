@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Agent extends Model
 {
@@ -27,6 +28,11 @@ final class Agent extends Model
     public function hiring(): BelongsTo
     {
         return $this->belongsTo(Hiring::class);
+    }
+
+    public function affectations(): HasMany
+    {
+        return $this->hasMany(Affectation::class);
     }
 
     protected function casts(): array

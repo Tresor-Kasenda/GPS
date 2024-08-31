@@ -32,7 +32,7 @@ final class Affectation extends Model
     protected function casts(): array
     {
         return [
-            'date_affectation' => 'datetime'
+            'date_affectation' => 'date'
         ];
     }
 }

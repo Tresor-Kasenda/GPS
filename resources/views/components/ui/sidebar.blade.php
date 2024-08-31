@@ -14,7 +14,7 @@
     <x-ui.block.sidebar.separator-link :name="__('GESTION MOUVEMENT')"/>
 
     <x-ui.block.sidebar.menu-link :title="__('Mouvement Agent')" icon="shuffle">
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Affectation')"/>
+        <x-ui.block.sidebar.link-sub :route="route('agent.affectations-lists')" :name="__('Affectation')"/>
         <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Transfert')"/>
         <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Mobilité')"/>
     </x-ui.block.sidebar.menu-link>
@@ -36,6 +36,11 @@
     <x-ui.block.sidebar.menu-link :title="__('Grade')" icon="block-over">
         <x-ui.block.sidebar.link-sub :route="route('entity.lists-grades')" :name="__('Liste de Grades')"/>
         <x-ui.block.sidebar.link-sub :route="route('entity.create-grades')" :name="__('Nouveau Grade')"/>
+    </x-ui.block.sidebar.menu-link>
+
+    <x-ui.block.sidebar.menu-link :title="__('Fonction')" icon="bookmark">
+        <x-ui.block.sidebar.link-sub :route="route('entity.create-function')" :name="__('Nouvelle fonction')"/>
+        <x-ui.block.sidebar.link-sub :route="route('entity.functions-lists')" :name="__('Liste des fonctions')"/>
     </x-ui.block.sidebar.menu-link>
 
 

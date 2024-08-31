@@ -2,12 +2,18 @@
 
 declare(strict_types=1);
 
+use App\Livewire\Entity\Functions\CreateFunction;
+use App\Livewire\Entity\Functions\EditFunction;
+use App\Livewire\Entity\Functions\ListsFunctions;
 use App\Livewire\Entity\Grades\CreateGrades;
 use App\Livewire\Entity\Grades\EditGrades;
 use App\Livewire\Entity\Grades\ListsGrades;
 use App\Livewire\Entity\Services\CreateService;
 use App\Livewire\Entity\Services\EditService;
 use App\Livewire\Entity\Services\ListsServices;
+use App\Livewire\Pages\Affectations\AgentAffectation;
+use App\Livewire\Pages\Affectations\EditAgentAffectation;
+use App\Livewire\Pages\Affectations\ListsAffectations;
 use App\Livewire\Pages\Agents\EditAgents;
 use App\Livewire\Pages\Agents\ListsAgents;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
@@ -32,6 +38,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsAgents::class)->name('agents-lists');
             Route::get('/{agent}/hiring', EditAgents::class)->name('agents-edit');
         });
+
+        Route::group(['prefix' => 'affectation'], function () {
+            Route::get('/', ListsAffectations::class)->name('affectations-lists');
+            Route::get('/{agent}/affectation/create', AgentAffectation::class)->name('agent-affectation');
+            Route::get('/{affectation}/agent/edit', EditAgentAffectation::class)->name('affectation-agent-edit');
+        });
     });
 
     Route::group(['prefix' => 'entity', 'as' => 'entity.'], function (): void {
@@ -46,6 +58,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsGrades::class)->name('lists-grades');
             Route::get('/add', CreateGrades::class)->name('create-grades');
             Route::get('/{grade}/edit', EditGrades::class)->name('edit-grades');
+        });
+
+        Route::group(['prefix' => 'functions'], function () {
+            Route::get('/', ListsFunctions::class)->name('functions-lists');
+            Route::get('/create', CreateFunction::class)->name('create-function');
+            Route::get('/{function}/edit', EditFunction::class)->name('edit-function');
         });
     });
 
