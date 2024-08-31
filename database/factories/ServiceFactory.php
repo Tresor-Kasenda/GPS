@@ -21,9 +21,8 @@ final class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'priority' => Str::random(5),
-            'abbreviation' => $this->faker->title,
-            'designation' => $this->faker->realText(),
+            'title' => Str::random(5),
+            'type' => $this->faker->title,
         ];
     }
 }

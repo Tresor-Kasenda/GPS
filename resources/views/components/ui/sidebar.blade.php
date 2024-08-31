@@ -28,9 +28,9 @@
 
     <x-ui.block.sidebar.separator-link :name="__('GESTION ENTITE')"/>
 
-    <x-ui.block.sidebar.menu-link :title="__('Direction')" icon="bookmark">
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Nouvelle Direction')"/>
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Liste de Directions')"/>
+    <x-ui.block.sidebar.menu-link :title="__('Service')" icon="bookmark">
+        <x-ui.block.sidebar.link-sub :route="route('entity.create-service')" :name="__('Nouveu Service')"/>
+        <x-ui.block.sidebar.link-sub :route="route('entity.services-lists')" :name="__('Liste des Servicecs')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Grade')" icon="block-over">

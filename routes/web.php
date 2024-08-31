@@ -5,6 +5,9 @@ declare(strict_types=1);
 use App\Livewire\Entity\Grades\CreateGrades;
 use App\Livewire\Entity\Grades\EditGrades;
 use App\Livewire\Entity\Grades\ListsGrades;
+use App\Livewire\Entity\Services\CreateService;
+use App\Livewire\Entity\Services\EditService;
+use App\Livewire\Entity\Services\ListsServices;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
@@ -23,6 +26,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 
     Route::group(['prefix' => 'entity', 'as' => 'entity.'], function (): void {
+
+        Route::group(['prefix' => 'services'], function () {
+            Route::get('/', ListsServices::class)->name('services-lists');
+            Route::get('/create', CreateService::class)->name('create-service');
+            Route::get('/{service}/edit', EditService::class)->name('edit-service');
+        });
 
         Route::group(['prefix' => 'grades'], function (): void {
             Route::get('/', ListsGrades::class)->name('lists-grades');

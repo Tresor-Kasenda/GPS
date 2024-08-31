@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\LevelEnum;
+use App\Enums\TypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,18 +16,12 @@ return new class () extends Migration {
         Schema::create('services', function (Blueprint $table): void {
             $table->id();
             $table->string('title');
-            $table->enum('level', [
-                LevelEnum::DIRECTION->value,
-                LevelEnum::DIVISION->value,
-                LevelEnum::OFFICES->value,
-                LevelEnum::CELLULE->value
-            ])->default(LevelEnum::DIRECTION->value);
-            $table->string('abbreviation')->unique();
-            $table->mediumText('designation')->nullable();
-            $table->foreignId('parent_id')
-                ->nullable()
-                ->constrained('services')
-                ->onDelete('cascade');
+            $table->enum('type', [
+                TypeEnum::DIRECTION->value,
+                TypeEnum::DIVISION->value,
+                TypeEnum::OFFICES->value,
+                TypeEnum::CELLULE->value
+            ])->default(TypeEnum::DIRECTION->value);
             $table->timestamps();
         });
     }
