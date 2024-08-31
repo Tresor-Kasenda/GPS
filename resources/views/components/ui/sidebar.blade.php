@@ -6,7 +6,7 @@
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.links
-        :route="route('persons.lists-physic-person')"
+        :route="route('agent.agents-lists')"
         icon="swap-v"
         :title="__('Agents')"
     />

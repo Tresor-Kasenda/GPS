@@ -2,7 +2,7 @@
     <x-ui.content.block-head :title="__('Nouvelle Engagement')">
         <x-ui.block.button.link
             icon="arrow-long-left"
-            :route="route('engagement.lists-hiring')"
+            :route="route('agent.agents-lists')"
             :action="__('Retour')"
         />
     </x-ui.content.block-head>
@@ -31,73 +31,74 @@
 
                     <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="date_commitment">
+                            <x-ui.forms.input.label for="hiring_date">
                                 {{ __('Date Engagement') }}
                             </x-ui.forms.input.label>
                             <x-ui.forms.datepicker
-                                id="date_commitment"
-                                name="date_commitment"
+                                id="hiring_date"
+                                name="hiring_date"
                                 time="false"
                                 date-format="Y-m-d"
-                                wire:model.live="date_commitment"
+                                wire:model.live="hiring_date"
                                 placeholder="Selectionnez la date d'engagemnt"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('date_commitment')" class="mt-2"/>
+                            <x-ui.forms.input.error :messages="$errors->get('hiring_date')" class="mt-2"/>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="grade">
-                                {{ __('Grade') }}
+                            <x-ui.forms.input.label for="matricule">
+                                {{ __('N° matricule') }}
+                            </x-ui.forms.input.label>
+                            <x-ui.forms.input
+                                id="matricule"
+                                name="matricule"
+                                time="false"
+                                date-format="Y-m-d"
+                                wire:model.live="matricule"
+                                placeholder="Selectionnez la date d'engagemnt"
+                            />
+                            <x-ui.forms.input.error :messages="$errors->get('matricule')" class="mt-2"/>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <x-ui.forms.input.label for="service_id">
+                                {{ __('Service') }}
                             </x-ui.forms.input.label>
                             <select
-                                id="grade"
-                                name="grade"
-                                wire:model.live="grade"
+                                id="service_id"
+                                name="service_id"
+                                wire:model.live="service_id"
                                 class="form-select js-select2"
-                                data-placeholder="grade">
-                                @foreach($grades as $grade)
-                                    <option wire:key="{{ $grade->id }}" value="{{ $grade->id }}">
-                                        {{ $grade->code }}
+                                data-placeholder="service_id">
+                                @foreach($services as $service)
+                                    <option wire:key="{{ $service->id }}" value="{{ $service->id }}">
+                                        {{ $service->title }}
                                     </option>
                                 @endforeach
                             </select>
-                            <x-ui.forms.input.error :messages="$errors->get('grade')" class="mt-2"/>
+                            <x-ui.forms.input.error :messages="$errors->get('service_id')" class="mt-2"/>
                         </div>
                     </div>
 
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="matriculate">
-                                {{ __('N° Matricule') }}
-                            </x-ui.forms.input.label>
-                            <x-ui.forms.input
-                                type="text"
-                                id="matriculate"
-                                name="matriculate"
-                                wire:model.live="matriculate"
-                                placeholder="Saisissez le numero matricule de l'agent"
-                            />
-                            <x-ui.forms.input.error :messages="$errors->get('matriculate')" class="mt-2"/>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="document">
-                                {{ __('Doucument') }}
+                            <x-ui.forms.input.label for="reference">
+                                {{ __('Reference') }}
                             </x-ui.forms.input.label>
 
                             <x-ui.forms.input
                                 type="file"
-                                id="document"
-                                name="document"
-                                wire:model.live="document"
+                                id="reference"
+                                name="reference"
+                                wire:model.live="reference"
                                 placeholder="Selectionnez le document"
                             />
 
-                            <x-ui.forms.input.error :messages="$errors->get('document')" class="mt-2"/>
+                            <x-ui.forms.input.error :messages="$errors->get('reference')" class="mt-2"/>
                         </div>
                     </div>
 

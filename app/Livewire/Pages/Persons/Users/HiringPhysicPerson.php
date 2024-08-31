@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Persons\Users;
 
+use App\Enums\UserStatus;
+use App\Models\Agent;
 use App\Models\Hiring;
 use App\Models\Person;
 use App\Models\Service;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Application;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -30,8 +34,11 @@ final class HiringPhysicPerson extends Component
     #[Validate('required|date|date_format:Y-m-d')]
     public ?string $hiring_date = '';
 
-    #[Validate('required|string|min:6')]
-    public ?string $reference = '';
+    #[Validate('required|string')]
+    public ?string $matricule = '';
+
+    #[Validate('nullable|file')]
+    public $reference = '';
 
     public function mount(Person $person): void
     {
@@ -45,19 +52,72 @@ final class HiringPhysicPerson extends Component
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function submit(): void
     {
         $this->validate();
 
-        $hiring = Hiring::find($this->person->id);
+        $path = "" !== $this->reference
+            ? $this->reference->storePublicly('/', ['disk' => 'public'])
+            : "";
 
-        if ($hiring->isNotEmpty()) {
-            $this->addError('person_id', 'Cette personne a déjà un engagement');
-            return;
-        }
+        $hiring = $this->storeHiring($path);
 
-        $this->dispatch('message', title: 'Operation executer avec success', type: 'success');
+        $this->storeAgent($hiring);
 
-        $this->redirect(route('engagement.lists-hiring', absolute: true));
+        $this->updatePerson();
+
+        $this->dispatch('message', message: "un agent a ete ajouter", type: 'success');
+
+        $this->redirect(route('agent.agents-lists', absolute: false));
+    }
+
+    /**
+     * @param string $path
+     * @return Hiring|Model
+     */
+    protected function storeHiring(string $path): Hiring|Model
+    {
+        return Hiring::query()->create([
+            'service_id' => $this->service_id,
+            'hiring_date' => $this->hiring_date,
+            'reference' => $path
+        ]);
+    }
+
+    /**
+     * @param Model|Hiring $hiring
+     * @return Agent|Model
+     */
+    protected function storeAgent(Model|Hiring $hiring): Model|Agent
+    {
+        $seniority = $this->calculateSeniority($hiring);
+        return Agent::query()
+            ->create([
+                'hiring_id' => $hiring->id,
+                'person_id' => $this->person->id,
+                'person_number' => $this->matricule,
+                'seniority' => $seniority
+            ]);
+    }
+
+    /**
+     * @param Hiring $hiring
+     * @return float
+     */
+    protected function calculateSeniority(Hiring $hiring): float
+    {
+        $currentDate = Carbon::now();
+
+        return $currentDate->diffInYears(Carbon::parse($hiring->date_commitment));
+    }
+
+    public function updatePerson(): void
+    {
+        $this->person->update([
+            'status' => UserStatus::PROGRESSING->value
+        ]);
     }
 }
