@@ -35,6 +35,11 @@ final class Agent extends Model
         return $this->hasMany(Affectation::class);
     }
 
+    public function mobilities(): HasMany
+    {
+        return $this->hasMany(MobilityAgent::class);
+    }
+
     protected function casts(): array
     {
         return [

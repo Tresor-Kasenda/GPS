@@ -16,6 +16,9 @@ use App\Livewire\Pages\Affectations\EditAgentAffectation;
 use App\Livewire\Pages\Affectations\ListsAffectations;
 use App\Livewire\Pages\Agents\EditAgents;
 use App\Livewire\Pages\Agents\ListsAgents;
+use App\Livewire\Pages\Mobility\CreateMobility;
+use App\Livewire\Pages\Mobility\EditMobility;
+use App\Livewire\Pages\Mobility\ListsMobility;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
@@ -43,6 +46,13 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsAffectations::class)->name('affectations-lists');
             Route::get('/{agent}/affectation/create', AgentAffectation::class)->name('agent-affectation');
             Route::get('/{affectation}/agent/edit', EditAgentAffectation::class)->name('affectation-agent-edit');
+        });
+
+
+        Route::group(['prefix' => 'mobility'], function () {
+            Route::get('/', ListsMobility::class)->name('mobility-lists');
+            Route::get('/{agent}/mobility/create', CreateMobility::class)->name('mobility-create');
+            Route::get('/{mobility}/agent/edit', EditMobility::class)->name('mobility-edit');
         });
     });
 
