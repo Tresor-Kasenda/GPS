@@ -39,20 +39,11 @@ final class CreatePhysicPerson extends Component
     #[Validate('required|date|before:-18 years')]
     public string|null $birthdate = '';
 
-    #[Validate('required|string|max:255|min:3|alpha')]
-    public string|null $birthplace = '';
-
     #[Validate('required|numeric|digits:10|unique:people,phone_number')]
     public string|null $phone_number = '';
 
     #[Validate('required|string|max:255')]
     public string|null $address = '';
-
-    #[Validate('nullable|image|mimes:jpeg,png,jpg')]
-    public $profile_picture = '';
-
-    #[Validate('nullable|string|max:255|min:6|unique:people,identity_piece')]
-    public string|null $identity_piece = '';
 
     public array $genders = [];
     public array $maritals = [];
@@ -72,11 +63,7 @@ final class CreatePhysicPerson extends Component
     {
         $this->validate();
 
-        $path = "" !== $this->profile_picture
-            ? $this->profile_picture->storePublicly('/', ['disk' => 'public'])
-            : "";
-
-        $this->storePerson($path);
+        $this->storePerson();
 
         $this->dispatch(
             'message',
@@ -87,7 +74,7 @@ final class CreatePhysicPerson extends Component
         $this->redirect(route('persons.lists-physic-person'));
     }
 
-    protected function storePerson(?string $path): void
+    protected function storePerson(): void
     {
         Person::query()->create([
             'name' => $this->name,
@@ -97,11 +84,8 @@ final class CreatePhysicPerson extends Component
             'marital_status' => $this->marital_status,
             'status' => UserStatus::PENDING->value,
             'birthdate' => $this->birthdate,
-            'birthplace' => $this->birthplace,
             'phone_number' => $this->phone_number,
             'address' => $this->address,
-            'identity_piece' => $this->identity_piece,
-            'profile_picture' => $path
         ]);
     }
 }

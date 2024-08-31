@@ -62,10 +62,7 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $person->birthday }}</span>
-                            </div>
-                            <div>
-                                <span class="ucap fw-bold">{{ $person->birthplace }}</span>
+                                <span>{{ $person->birthdate->format('Y-m-d') }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">

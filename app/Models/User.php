@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Trait\HasRole;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-final class User extends Authenticatable implements MustVerifyEmail
+final class User extends Authenticatable
 {
     use HasFactory;
-    use HasRole;
     use Notifiable;
 
     /**

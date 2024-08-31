@@ -22,7 +22,7 @@
                                 wire:model.live="name"
                                 placeholder="Saisissez le nom"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('name')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('name')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -35,7 +35,7 @@
                                 wire:model.live="username"
                                 placeholder="Saisissez le post-nom"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('username')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('username')" class="mt-2"/>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
                                 wire:model.live="firstname"
                                 placeholder="Saisissez le prenom"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('firstname')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('firstname')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -61,7 +61,7 @@
                                     <option wire:key="{{ $gender }}" value="{{ $gender }}">{{ $gender }}</option>
                                 @endforeach
                             </select>
-                            <x-ui.forms.input.error :messages="$errors->get('gender')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('gender')" class="mt-2"/>
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@
                                     <option wire:key="{{ $marital }}" value="{{ $marital }}">{{ $marital }}</option>
                                 @endforeach
                             </select>
-                            <x-ui.forms.input.error :messages="$errors->get('marital_status')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('marital_status')" class="mt-2"/>
                         </div>
                     </div>
 
@@ -89,25 +89,10 @@
                                 wire:model.live="birthdate"
                                 placeholder="Saisissez la date de naissance"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('birthdate')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('birthdate')" class="mt-2"/>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="birthplace">
-                                Lieu de naissance
-                            </x-ui.forms.input.label>
-                            <x-ui.forms.input
-                                type="text"
-                                id="birthplace"
-                                name="birthplace"
-                                wire:model.live="birthplace"
-                                placeholder="Saisissez le lieu de naissance"
-                            />
-                            <x-ui.forms.input.error :messages="$errors->get('birthplace')" class="mt-2" />
-                        </div>
-                    </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="phone_number">
@@ -120,7 +105,7 @@
                                 wire:model.live="phone_number"
                                 placeholder="Saisissez le numero de telephone"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('phone_number')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('phone_number')" class="mt-2"/>
                         </div>
                     </div>
 
@@ -136,43 +121,11 @@
                                 wire:model.live="address"
                                 placeholder="Saisissez l'address"
                             />
-                            <x-ui.forms.input.error :messages="$errors->get('address')" class="mt-2" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="identity_piece">
-                                N Piece d'identiter
-                            </x-ui.forms.input.label>
-                            <x-ui.forms.input
-                                type="text"
-                                id="identity_piece"
-                                name="identity_piece"
-                                wire:model.live="identity_piece"
-                                placeholder="Saisir le numero de piece d'identiter"
-                            />
-                            <x-ui.forms.input.error :messages="$errors->get('identity_piece')" class="mt-2" />
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 col-sm-12">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="profile_picture">
-                                Photo de profile
-                            </x-ui.forms.input.label>
-
-                            <x-ui.forms.file-upload
-                                multiple="true"
-                                :max-file-size="5"
-                                file-types="'image/jpg,image/jpeg,image/png,image/gif,image/svg'"
-                                wire:model="profile_picture"
-                            />
-
-                            <x-ui.forms.input.error :messages="$errors->get('profile_picture')" class="mt-2" />
+                            <x-ui.forms.input.error :messages="$errors->get('address')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-12">
-                        <x-ui.block.button.submit :action="__('Enregistrer')" />
+                        <x-ui.block.button.submit :action="__('Enregistrer')"/>
                     </div>
                 </div>
             </x-ui.forms.layout>

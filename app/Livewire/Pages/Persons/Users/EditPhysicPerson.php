@@ -38,19 +38,13 @@ final class EditPhysicPerson extends Component
     public string|null $marital_status = '';
 
     #[Validate('required|date|before:-18 years')]
-    public string|null $birthdate = '';
-
-    #[Validate('required|string|max:255|min:3|alpha')]
-    public string|null $birthplace = '';
+    public $birthdate = '';
 
     #[Validate('required|numeric|digits:10')]
     public string|null $phone_number = '';
 
     #[Validate('required|string|max:255')]
     public string|null $address = '';
-
-    #[Validate('nullable|string|max:255|min:6')]
-    public string|null $identity_piece = '';
 
     public array $genders = [];
     public array $maritals = [];
@@ -61,10 +55,8 @@ final class EditPhysicPerson extends Component
         $this->username = $person->username;
         $this->firstname = $person->firstname;
         $this->birthdate = $person->birthdate->format('Y-m-d');
-        $this->birthplace = $person->birthplace;
         $this->phone_number = $person->phone_number;
         $this->address = $person->address;
-        $this->identity_piece = $person->identity_piece;
         $this->genders = Gender::cases();
         $this->maritals = MaritalStatus::cases();
     }
@@ -77,11 +69,6 @@ final class EditPhysicPerson extends Component
     public function submit(): void
     {
         $this->validate();
-
-        if ($this->person->identity_piece !== $this->identity_piece) {
-            $this->dispatch('message', title: "L'identiter du piece d'identiter est differente");
-            return;
-        }
 
         $this->person->fill($this->validate());
 

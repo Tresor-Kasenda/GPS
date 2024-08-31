@@ -16,6 +16,11 @@ final class ShowPhysicPerson extends Component
 {
     public Person $person;
 
+    public function mount(Person $person): void
+    {
+        $this->person = $person;
+    }
+
     public function render(): View
     {
         return view('livewire.pages.persons.users.show-physic-person');
