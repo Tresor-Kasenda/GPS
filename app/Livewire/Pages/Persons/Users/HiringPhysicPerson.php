@@ -111,7 +111,7 @@ final class HiringPhysicPerson extends Component
     {
         $currentDate = Carbon::now();
 
-        return $currentDate->diffInYears(Carbon::parse($hiring->date_commitment));
+        return $currentDate->diffInYears(Carbon::parse($hiring->hiring_date));
     }
 
     public function updatePerson(): void

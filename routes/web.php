@@ -8,6 +8,7 @@ use App\Livewire\Entity\Grades\ListsGrades;
 use App\Livewire\Entity\Services\CreateService;
 use App\Livewire\Entity\Services\EditService;
 use App\Livewire\Entity\Services\ListsServices;
+use App\Livewire\Pages\Agents\EditAgents;
 use App\Livewire\Pages\Agents\ListsAgents;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
@@ -29,6 +30,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     Route::group(['prefix' => 'agents', 'as' => 'agent.'], function () {
         Route::group(['prefix' => 'agent'], function () {
             Route::get('/', ListsAgents::class)->name('agents-lists');
+            Route::get('/{agent}/hiring', EditAgents::class)->name('agents-edit');
         });
     });
 

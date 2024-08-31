@@ -42,7 +42,7 @@
                                     <x-ui.table.action>
                                         <x-ui.table.action.link-down
                                             icon="edit"
-                                            :href="route('entity.edit-service', $agent->id)"
+                                            :href="route('agent.agents-edit', $agent->id)"
                                             :action="__('Modifier')"
                                         />
                                         <li>
@@ -52,6 +52,27 @@
                                                 <span>Supprimer</span>
                                             </button>
                                         </li>
+                                        <li class="divider"></li>
+                                        <x-ui.table.action.link-down
+                                            icon="swap"
+                                            :href="route('persons.hiring-physic-person', $agent->id)"
+                                            :action="__('Affectation')"
+                                        />
+                                        <x-ui.table.action.link-down
+                                            icon="user-add"
+                                            :href="route('persons.hiring-physic-person', $agent->id)"
+                                            :action="__('Transfert')"
+                                        />
+                                        <x-ui.table.action.link-down
+                                            icon="user-add"
+                                            :href="route('persons.hiring-physic-person', $agent->id)"
+                                            :action="__('Attribution grade')"
+                                        />
+                                        <x-ui.table.action.link-down
+                                            icon="user-add"
+                                            :href="route('persons.hiring-physic-person', $agent->id)"
+                                            :action="__('Mobiliter')"
+                                        />
                                     </x-ui.table.action>
                                 </li>
                             </ul>
