@@ -24,6 +24,9 @@ use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
 use App\Livewire\Pages\Persons\Users\ListsPhysicPerson;
 use App\Livewire\Pages\Persons\Users\ShowPhysicPerson;
+use App\Livewire\Pages\Transfers\CreateTransfers;
+use App\Livewire\Pages\Transfers\EditTransfers;
+use App\Livewire\Pages\Transfers\ListsTransfers;
 use App\Livewire\Settings\Setting;
 use App\Livewire\Settings\Users\CreateUsers;
 use App\Livewire\Settings\Users\EditUsers;
@@ -53,6 +56,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsMobility::class)->name('mobility-lists');
             Route::get('/{agent}/mobility/create', CreateMobility::class)->name('mobility-create');
             Route::get('/{mobility}/agent/edit', EditMobility::class)->name('mobility-edit');
+        });
+
+        Route::group(['prefix' => 'transfer'], function () {
+            Route::get('/', ListsTransfers::class)->name('lists-transfers');
+            Route::get('/{agent}/transfer/create', CreateTransfers::class)->name('create-transfers');
+            Route::get('/{mobility}/transfer/edit', EditTransfers::class)->name('edit-transfers');
         });
     });
 

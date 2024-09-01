@@ -15,7 +15,7 @@
 
     <x-ui.block.sidebar.menu-link :title="__('Mouvement Agent')" icon="shuffle">
         <x-ui.block.sidebar.link-sub :route="route('agent.affectations-lists')" :name="__('Affectation')"/>
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Transfert')"/>
+        <x-ui.block.sidebar.link-sub :route="route('agent.lists-transfers')" :name="__('Transfert')"/>
         <x-ui.block.sidebar.link-sub :route="route('agent.mobility-lists')" :name="__('Mobilité')"/>
     </x-ui.block.sidebar.menu-link>
 

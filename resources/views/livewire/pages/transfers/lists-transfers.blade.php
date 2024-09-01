@@ -1,5 +1,5 @@
 <div>
-    <x-ui.content.block-head :title="__('Listes des agents')"/>
+    <x-ui.content.block-head :title="__('Listes des mobiliters')"/>
 
     <x-ui.content.container>
         <x-ui.block.card class="mb-4 card-preview">
@@ -7,33 +7,39 @@
                 <thead>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Nom')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Prenom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Date Engagement')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Matricule')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Date de transfer')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Service')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Motif')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
                 <tbody>
-                @foreach($agents as $agent)
-                    <x-ui.table.tr wire:loading.class.delay="opacity-20" wire:key="table-{{ $agent->id }}">
+                @foreach($transfers as $transfer)
+                    <x-ui.table.tr wire:loading.class.delay="opacity-20" wire:key="table-{{ $transfer->id }}">
                         <x-ui.table.td class="tb-col-md">
                             <div>
                                 <span class="tb-amount">
-                                    {{ $agent->person->name }}
+                                    {{ $transfer->agent->person->name }}
                                 </span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $agent->person->firstname }}</span>
+                                <span>{{ $transfer->agent->person->firstname }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $agent->hiring->hiring_date->format('Y-m-d') }}</span>
+                                <span>{{ $transfer->transfer_date->format('Y-m-d') }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $agent->person_number }}</span>
+                                <span>{{ $transfer->service->title }}</span>
+                            </div>
+                        </x-ui.table.td>
+                        <x-ui.table.td class="tb-col-lg">
+                            <div>
+                                <span>{{ $transfer->start_date->motif }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">
@@ -42,37 +48,16 @@
                                     <x-ui.table.action>
                                         <x-ui.table.action.link-down
                                             icon="edit"
-                                            :href="route('agent.agents-edit', $agent->id)"
+                                            :href="route('agent.edit-transfers', $mobility->id)"
                                             :action="__('Modifier')"
                                         />
                                         <li>
                                             <button type="button" class="btn"
-                                                    wire:click="deleteDirection({{ $agent->id }})">
+                                                    wire:click="deleteDirection({{ $mobility->id }})">
                                                 <em class="icon ni ni-trash"></em>
                                                 <span>Supprimer</span>
                                             </button>
                                         </li>
-                                        <li class="divider"></li>
-                                        <x-ui.table.action.link-down
-                                            icon="swap"
-                                            :href="route('agent.agent-affectation', $agent->id)"
-                                            :action="__('Affectation')"
-                                        />
-                                        <x-ui.table.action.link-down
-                                            icon="send"
-                                            :href="route('agent.mobility-create', $agent->id)"
-                                            :action="__('Mobiliter')"
-                                        />
-                                        <x-ui.table.action.link-down
-                                            icon="minimize-alt"
-                                            :href="route('agent.create-transfers', $agent->id)"
-                                            :action="__('Transfert')"
-                                        />
-                                        <x-ui.table.action.link-down
-                                            icon="user-add"
-                                            :href="route('persons.hiring-physic-person', $agent->id)"
-                                            :action="__('Attribution grade')"
-                                        />
                                     </x-ui.table.action>
                                 </li>
                             </ul>
