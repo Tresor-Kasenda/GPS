@@ -40,6 +40,9 @@ final class EditPhysicPerson extends Component
     #[Validate('required|date|before:-18 years')]
     public $birthdate = '';
 
+    #[Validate('required|string|max:255')]
+    public string|null $birthplace = '';
+
     #[Validate('required|numeric|digits:10')]
     public string|null $phone_number = '';
 
@@ -59,6 +62,7 @@ final class EditPhysicPerson extends Component
         $this->address = $person->address;
         $this->genders = Gender::cases();
         $this->maritals = MaritalStatus::cases();
+        $this->birthplace = $person->birthplace;
     }
 
     public function render(): View

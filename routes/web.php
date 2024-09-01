@@ -19,6 +19,9 @@ use App\Livewire\Pages\Agents\ListsAgents;
 use App\Livewire\Pages\Mobility\CreateMobility;
 use App\Livewire\Pages\Mobility\EditMobility;
 use App\Livewire\Pages\Mobility\ListsMobility;
+use App\Livewire\Pages\Persons\Hirings\CreateHirings;
+use App\Livewire\Pages\Persons\Hirings\EditHirings;
+use App\Livewire\Pages\Persons\Hirings\ListsHirings;
 use App\Livewire\Pages\Persons\Users\CreatePhysicPerson;
 use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
@@ -75,8 +78,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
 
         Route::group(['prefix' => 'grades'], function (): void {
             Route::get('/', ListsGrades::class)->name('lists-grades');
-            Route::get('/add', CreateGrades::class)->name('create-grades');
-            Route::get('/{grade}/edit', EditGrades::class)->name('edit-grades');
         });
 
         Route::group(['prefix' => 'functions'], function () {
@@ -93,6 +94,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/{person}/edit', EditPhysicPerson::class)->name('edit-physic-person');
             Route::get('/{person}/show', ShowPhysicPerson::class)->name('show-physic-person');
             Route::get('/{person}/hiring', HiringPhysicPerson::class)->name('hiring-physic-person');
+        });
+
+        Route::group(['prefix' => 'hiring'], function (): void {
+            Route::get('/', ListsHirings::class)->name('lists-hirings');
+            Route::get('/add', CreateHirings::class)->name('create-hirings');
+            Route::get('/{hiring}/edit', EditHirings::class)->name('edit-hirings');
         });
     });
 

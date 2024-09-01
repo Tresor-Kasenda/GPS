@@ -14,11 +14,8 @@ return new class () extends Migration {
     {
         Schema::create('grades', function (Blueprint $table): void {
             $table->id();
-            $table->string('priority');
-            $table->string('level'); // niveau grade
-            $table->string('tier'); // echelon
-            $table->string('code', 10)->unique(); // sigle
-            $table->text('description');
+            $table->string('level');
+            $table->string('designation');
             $table->timestamps();
         });
     }

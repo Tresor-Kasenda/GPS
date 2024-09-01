@@ -14,22 +14,23 @@
 
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="title">Nom service</x-ui.forms.input.label>
+                            <x-ui.forms.input.label for="title">Designation</x-ui.forms.input.label>
                             <x-ui.forms.input
                                 type="text"
                                 id="title"
                                 name="title"
                                 wire:model.live="title"
-                                placeholder="Ex: Direction Generale"
+                                placeholder="Saisir le nom du service"
                             />
                             <x-ui.forms.input.error :messages="$errors->get('title')" class="mt-2"/>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="type">Genre</x-ui.forms.input.label>
+                            <x-ui.forms.input.label for="type">Type</x-ui.forms.input.label>
                             <select id="type" name="type" wire:model.live="type" class="form-select js-select2"
                                     data-placeholder="type">
+                                <option selected>Selectionner le type</option>
                                 @foreach($types as $type)
                                     <option wire:key="{{ $type }}" value="{{ $type }}">{{ $type }}</option>
                                 @endforeach

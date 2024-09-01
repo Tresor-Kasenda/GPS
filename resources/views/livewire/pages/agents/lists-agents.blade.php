@@ -1,13 +1,14 @@
 <div>
-    <x-ui.content.block-head :title="__('Listes des agents')"/>
+    <x-ui.content.block-head :title="__('Carrieres')"/>
 
     <x-ui.content.container>
         <x-ui.block.card class="mb-4 card-preview">
             <x-ui.table data-export-title="Exportez" data-auto-responsive="true">
                 <thead>
-                <x-ui.table.t-head class="tb-col-md" :title="__('Nom')"/>
+                <x-ui.table.t-head class="tb-col-md" :title="__('Nom Post-nom et Prenom')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Prenom')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Date Engagement')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Grade initial')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Matricule')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
@@ -29,6 +30,11 @@
                         <x-ui.table.td class="tb-col-lg">
                             <div>
                                 <span>{{ $agent->hiring->hiring_date->format('Y-m-d') }}</span>
+                            </div>
+                        </x-ui.table.td>
+                        <x-ui.table.td class="tb-col-lg">
+                            <div>
+                                <span>{{ $agent->grade->level }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">

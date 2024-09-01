@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\StateCarrier;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,11 +19,18 @@ final class Agent extends Model
         'hiring_id',
         'person_number',
         'seniority',
+        'status',
+        'grade_id'
     ];
 
     public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class);
+    }
+
+    public function grade(): BelongsTo
+    {
+        return $this->belongsTo(Grade::class);
     }
 
     public function hiring(): BelongsTo
@@ -44,6 +52,7 @@ final class Agent extends Model
     {
         return [
             'seniority' => 'integer',
+            'status' => StateCarrier::class
         ];
     }
 }

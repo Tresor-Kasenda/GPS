@@ -21,7 +21,7 @@ final class DatabaseSeeder extends Seeder
             // ServiceSeeder::class,
             // DivisionSeeder::class
             //OfficeSeeder::class
-            //GradeSeeder::class
+            GradeSeeder::class
             // PersonSeeder::class
             //            HiringSeeder::class
         ]);

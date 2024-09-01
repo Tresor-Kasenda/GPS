@@ -8,16 +8,19 @@ enum StateCarrier: string
 {
     case ACTIVE = 'active';
 
-    case INACTIVE = 'inactive';
+    case INACTIVE = 'en disponibilité';
 
-    case LIABILITIES = 'passif';
+    case PENDING = 'en congé';
+
+    case PROGRESSING = 'detaché';
+
+    case RESIGNATION = 'suspendu';
 
     public static function getAlls(): array
     {
         return [
             self::ACTIVE,
             self::INACTIVE,
-            self::LIABILITIES,
         ];
     }
 }

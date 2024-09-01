@@ -95,6 +95,22 @@
 
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
+                            <x-ui.forms.input.label for="birthplace">
+                                Lieu de naissance
+                            </x-ui.forms.input.label>
+                            <x-ui.forms.input
+                                type="text"
+                                id="birthplace"
+                                name="birthplace"
+                                wire:model.live="birthplace"
+                                placeholder="Saisissez le lieu de naissance"
+                            />
+                            <x-ui.forms.input.error :messages="$errors->get('birthplace')" class="mt-2"/>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
                             <x-ui.forms.input.label for="phone_number">
                                 Contact
                             </x-ui.forms.input.label>

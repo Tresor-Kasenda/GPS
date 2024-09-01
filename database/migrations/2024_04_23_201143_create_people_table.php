@@ -20,12 +20,14 @@ return new class () extends Migration {
             $table->string('name');
             $table->string('username')->nullable();
             $table->string('firstname')->nullable();
+            $table->integer('age')->nullable();
 
             $table->enum('gender', [
                 'Homme',
                 'Femme',
                 'Neutre'
             ])->default(Gender::OTHER->value);
+
             $table->enum('marital_status', [
                 'Marié(e)',
                 'Célibataire',
@@ -44,6 +46,7 @@ return new class () extends Migration {
             ])->default(UserStatus::PENDING->value);
 
             $table->date('birthdate')->nullable();
+            $table->date('birthplace')->nullable();
             $table->string('phone_number')->unique()->nullable();
             $table->string('address')->nullable();
             $table->timestamps();

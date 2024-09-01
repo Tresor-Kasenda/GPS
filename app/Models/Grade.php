@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\GradeEnum;
+use App\Enums\GradeLevelEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,15 +18,21 @@ final class Grade extends Model
      * @var string[] |array<string,string>
      */
     protected $fillable = [
-        'priority',
         'level',
-        'tier',
-        'code',
-        'description',
+        'designation',
     ];
 
-    public function assignments(): HasMany
+    public function agents(): HasMany
     {
-        return $this->hasMany(Assignment::class);
+        return $this->hasMany(Agent::class);
+    }
+
+
+    protected function casts(): array
+    {
+        return [
+            'designation' => GradeEnum::class,
+            'level' => GradeLevelEnum::class,
+        ];
     }
 }

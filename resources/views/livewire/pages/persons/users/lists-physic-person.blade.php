@@ -1,5 +1,6 @@
+@php use App\Enums\UserStatus; @endphp
 <div>
-    <x-ui.content.block-head :title="__('Liste des personnels')">
+    <x-ui.content.block-head :title="__('Personne Physique')">
         <x-ui.block.button.link :route="route('persons.add-physic-person')" :action="__('Ajoutez une Personne')"/>
     </x-ui.content.block-head>
 
@@ -20,8 +21,8 @@
                 </x-ui.table.t-head>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Profile')"/>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Nom, Sexe et Etat-Civil')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Naissance')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Adresse et Contact')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Date et Lieu Naissance')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Etat et Age')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
                 <tbody>
@@ -60,17 +61,27 @@
                                 <span class="ucap fw-bold"> {{ $person->marital_status }} </span>
                             </div>
                         </x-ui.table.td>
-                        <x-ui.table.td class="tb-col-lg">
+                        <x-ui.table.td class="tb-col-md">
                             <div>
-                                <span>{{ $person->birthdate->format('Y-m-d') }}</span>
+                                <span class="tb-amount">
+                                    {{ $person->birthdate->format('Y-m-d') }}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="ucap fw-bold">{{ $person->birthplace }} </span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $person->address }}</span>
+                                <span @class([
+                                    'badge md',
+                                    'badge-primary' => $person->status === UserStatus::PROGRESSING,
+                                    'badge-warning' => $person->status === UserStatus::PENDING,
+                                    'badge-danger' => $person->status === UserStatus::REVOKED,
+                                ])>{{ $person->status }}</span>
                             </div>
                             <div>
-                                <span class="ucap fw-bold">{{ $person->phone_number }}</span>
+                                <span>{{ $person->age }} ans</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">
@@ -110,7 +121,7 @@
                                         <x-ui.table.action.link-down
                                             icon="user-add"
                                             :href="route('persons.hiring-physic-person', $person->id)"
-                                            :action="__('Engagement')"
+                                            :action="__('Effectuer engagement')"
                                         />
                                     </x-ui.table.action>
                                 </li>

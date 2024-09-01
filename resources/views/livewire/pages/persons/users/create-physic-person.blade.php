@@ -1,5 +1,5 @@
 <div>
-    <x-ui.content.block-head :title="__('Ajoutez une Personne')">
+    <x-ui.content.block-head :title="__('Créer une Personne')">
         <x-ui.block.button.link
             icon="arrow-long-left"
             :route="route('persons.lists-physic-person')"
@@ -57,6 +57,7 @@
                             <x-ui.forms.input.label for="gender">Genre</x-ui.forms.input.label>
                             <select id="gender" name="gender" wire:model.live="gender" class="form-select js-select2"
                                     data-placeholder="gender">
+                                <option>Selectionner le sexe</option>
                                 @foreach($genders as $gender)
                                     <option wire:key="{{ $gender }}" value="{{ $gender }}">{{ $gender }}</option>
                                 @endforeach
@@ -70,6 +71,7 @@
                             <x-ui.forms.input.label for="marital_status">Etat civil</x-ui.forms.input.label>
                             <select id="marital_status" name="marital_status" wire:model.live="marital_status"
                                     class="form-select js-select2" data-placeholder="marital_status">
+                                <option>Selectionner l'Etat civil</option>
                                 @foreach($maritals as $marital)
                                     <option wire:key="{{ $marital }}" value="{{ $marital }}">{{ $marital }}</option>
                                 @endforeach
@@ -90,6 +92,22 @@
                                 placeholder="Saisissez la date de naissance"
                             />
                             <x-ui.forms.input.error :messages="$errors->get('birthdate')" class="mt-2"/>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <x-ui.forms.input.label for="birthplace">
+                                Lieu de naissance
+                            </x-ui.forms.input.label>
+                            <x-ui.forms.input
+                                type="text"
+                                id="birthplace"
+                                name="birthplace"
+                                wire:model.live="birthplace"
+                                placeholder="Saisissez le lieu de naissance"
+                            />
+                            <x-ui.forms.input.error :messages="$errors->get('birthplace')" class="mt-2"/>
                         </div>
                     </div>
 
@@ -124,6 +142,7 @@
                             <x-ui.forms.input.error :messages="$errors->get('address')" class="mt-2"/>
                         </div>
                     </div>
+
                     <div class="col-12">
                         <x-ui.block.button.submit :action="__('Enregistrer')"/>
                     </div>

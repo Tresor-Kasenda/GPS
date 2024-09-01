@@ -39,6 +39,9 @@ final class CreatePhysicPerson extends Component
     #[Validate('required|date|before:-18 years')]
     public string|null $birthdate = '';
 
+    #[Validate('required|string|max:255')]
+    public string|null $birthplace = '';
+
     #[Validate('required|numeric|digits:10|unique:people,phone_number')]
     public string|null $phone_number = '';
 
@@ -63,6 +66,21 @@ final class CreatePhysicPerson extends Component
     {
         $this->validate();
 
+        $person = Person::query()
+            ->where('name', '=', $this->name)
+            ->where('username', '=', $this->username)
+            ->where('firstname', '=', $this->firstname)
+            ->where('birthdate', '=', $this->birthdate)
+            ->first();
+
+        if ($person) {
+            $this->addError('name', 'Cette personne existe');
+            $this->addError('username', 'Cette personne existe');
+            $this->addError('firstname', 'Cette personne existe');
+            $this->addError('birthdate', 'Cette personne existe');
+            return;
+        }
+
         $this->storePerson();
 
         $this->dispatch(
@@ -86,6 +104,8 @@ final class CreatePhysicPerson extends Component
             'birthdate' => $this->birthdate,
             'phone_number' => $this->phone_number,
             'address' => $this->address,
+            'birthplace' => $this->birthplace,
+            'age' => now()->diffInYears($this->birthdate)
         ]);
     }
 }

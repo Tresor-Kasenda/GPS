@@ -28,8 +28,10 @@ final class Person extends Model
         'marital_status',
         'status',
         'birthdate',
+        'birthplace',
         'phone_number',
         'address',
+        'age'
     ];
 
     public function hiring(): HasOne
@@ -54,6 +56,7 @@ final class Person extends Model
             'marital_status' => MaritalStatus::class,
             'birthdate' => 'date',
             'status' => UserStatus::class,
+            'age' => 'integer'
         ];
     }
 }
