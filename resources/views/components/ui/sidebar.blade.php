@@ -42,7 +42,6 @@
         <x-ui.block.sidebar.link-sub :route="route('entity.functions-lists')" :name="__('Liste des fonctions')"/>
     </x-ui.block.sidebar.menu-link>
 
-
     <x-ui.block.sidebar.separator-link :name="__('PARAMETRE')"/>
 
     <x-ui.block.sidebar.menu-link :title="__('Parametre')" icon="shield">
