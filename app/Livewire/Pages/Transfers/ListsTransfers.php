@@ -18,6 +18,7 @@ class ListsTransfers extends Component
     {
         return view('livewire.pages.transfers.lists-transfers', [
             'transfers' => TransferAgent::query()
+                ->with(['sourceService', 'service', 'agent'])
                 ->orderByDesc('created_at')
                 ->get()
         ]);

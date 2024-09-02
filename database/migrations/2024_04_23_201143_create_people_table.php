@@ -37,18 +37,19 @@ return new class () extends Migration {
             ])->default(MaritalStatus::NEUTRAL->value);
 
             $table->enum('status', [
-                "en_attente_d_engagement",
-                "engagement_en_cours",
-                "demission",
-                "decede",
-                "retraite",
-                "revoque"
+                UserStatus::PROGRESSING->value,
+                UserStatus::PENDING->value,
+                UserStatus::DECEASED->value,
+                UserStatus::RETIRED->value,
+                UserStatus::RESIGNATION->value,
+                UserStatus::REVOKED->value
             ])->default(UserStatus::PENDING->value);
 
             $table->date('birthdate')->nullable();
             $table->date('birthplace')->nullable();
             $table->string('phone_number')->unique()->nullable();
             $table->string('address')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
 
         });

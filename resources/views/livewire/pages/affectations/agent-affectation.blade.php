@@ -1,5 +1,8 @@
 <div>
-    <x-ui.content.block-head :title="__('Nouvelle affectation')">
+    <x-ui.content.block-head
+        :title="__('Nouvelle affectation')"
+        :description="'Nom: '. $agent->person->name .' ||  Post-Nom: '. $agent->person->username .  ' || Prenom: '. $agent->person->firstname"
+    >
         <x-ui.block.button.link
             icon="arrow-long-left"
             :route="route('agent.affectations-lists')"
@@ -14,23 +17,6 @@
 
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
-                            <x-ui.forms.input.label for="agent_id">
-                                {{ __('Nom') }}
-                            </x-ui.forms.input.label>
-                            <x-ui.forms.input
-                                type="text"
-                                id="agent_id"
-                                name="agent_id"
-                                value="{{ $agent->person->name }}"
-                                readonly
-                                placeholder="Saisissez le nom"
-                            />
-                            <x-ui.forms.input.error :messages="$errors->get('agent_id')" class="mt-2"/>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
                             <x-ui.forms.input.label for="company_function_id">
                                 {{ __('Nouvelle fonction') }}
                             </x-ui.forms.input.label>
@@ -40,6 +26,7 @@
                                 wire:model.live="company_function_id"
                                 class="form-select js-select2"
                                 data-placeholder="company_function_id">
+                                <option>Selectionnez une fonction</option>
                                 @foreach($functions as $function)
                                     <option
                                         wire:key="{{ $function->id }}"
@@ -67,24 +54,6 @@
                                 placeholder="Selectionnez la date d'engagemnt"
                             />
                             <x-ui.forms.input.error :messages="$errors->get('date_affectation')" class="mt-2"/>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="motif">
-                                {{ __('Reference') }}
-                            </x-ui.forms.input.label>
-
-                            <x-ui.forms.input
-                                type="file"
-                                id="motif"
-                                name="motif"
-                                wire:model.live="motif"
-                                placeholder="Selectionnez le document"
-                            />
-
-                            <x-ui.forms.input.error :messages="$errors->get('motif')" class="mt-2"/>
                         </div>
                     </div>
 

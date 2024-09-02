@@ -1,13 +1,12 @@
 <div>
-    <x-ui.content.block-head :title="__('Listes des affectations')"/>
+    <x-ui.content.block-head :title="__('Affectations')"/>
 
     <x-ui.content.container>
         <x-ui.block.card class="mb-4 card-preview">
             <x-ui.table data-export-title="Exportez" data-auto-responsive="true">
                 <thead>
-                <x-ui.table.t-head class="tb-col-md" :title="__('Nom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Prenom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Date Affectation')"/>
+                <x-ui.table.t-head class="tb-col-md" :title="__('Agent')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Date')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Fonction')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
@@ -17,13 +16,8 @@
                         <x-ui.table.td class="tb-col-md">
                             <div>
                                 <span class="tb-amount">
-                                    {{ $affectation->agent->person->name }}
+                                    {{ $affectation->agent->person->name. ' ' .$affectation->agent->person->username . ' ' .$affectation->agent->person->firstname }}
                                 </span>
-                            </div>
-                        </x-ui.table.td>
-                        <x-ui.table.td class="tb-col-lg">
-                            <div>
-                                <span>{{ $affectation->agent->person->firstname }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">

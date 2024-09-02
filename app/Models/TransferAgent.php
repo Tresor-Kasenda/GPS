@@ -17,6 +17,7 @@ final class TransferAgent extends Model
         'service_id',
         'transfer_date',
         'motif',
+        'source_service_id'
     ];
 
     public function agent(): BelongsTo
@@ -27,6 +28,11 @@ final class TransferAgent extends Model
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function sourceService(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'source_service_id');
     }
 
     protected function casts(): array

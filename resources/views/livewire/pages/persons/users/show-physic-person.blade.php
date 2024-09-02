@@ -14,7 +14,7 @@
                         <div class="card-inner">
                             <div class="user-card user-card-s2">
                                 <div class="user-avatar lg bg-primary">
-                                    <img src="./images/avatar/b-sm.jpg" alt="">
+                                    <img src="{{ $person->image }}" alt="{{ $person->firstname }}">
                                 </div>
                                 <div class="user-info">
                                     <div class="badge bg-light rounded-pill ucap">{{ $person->gender }}</div>

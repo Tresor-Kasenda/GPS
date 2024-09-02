@@ -18,12 +18,9 @@ final class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
-            // ServiceSeeder::class,
-            // DivisionSeeder::class
-            //OfficeSeeder::class
-            GradeSeeder::class
-            // PersonSeeder::class
-            //            HiringSeeder::class
+            ServiceSeeder::class,
+            GradeSeeder::class,
+            CompanyFunctionSeeder::class
         ]);
     }
 }

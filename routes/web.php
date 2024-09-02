@@ -16,6 +16,7 @@ use App\Livewire\Pages\Affectations\EditAgentAffectation;
 use App\Livewire\Pages\Affectations\ListsAffectations;
 use App\Livewire\Pages\Agents\EditAgents;
 use App\Livewire\Pages\Agents\ListsAgents;
+use App\Livewire\Pages\Agents\ShowAgents;
 use App\Livewire\Pages\Mobility\CreateMobility;
 use App\Livewire\Pages\Mobility\EditMobility;
 use App\Livewire\Pages\Mobility\ListsMobility;
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     Route::group(['prefix' => 'agents', 'as' => 'agent.'], function () {
         Route::group(['prefix' => 'agent'], function () {
             Route::get('/', ListsAgents::class)->name('agents-lists');
+            Route::get('/{agent}/detail', ShowAgents::class)->name('show-agents');
             Route::get('/{agent}/hiring', EditAgents::class)->name('agents-edit');
         });
 
@@ -64,7 +66,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
         Route::group(['prefix' => 'transfer'], function () {
             Route::get('/', ListsTransfers::class)->name('lists-transfers');
             Route::get('/{agent}/transfer/create', CreateTransfers::class)->name('create-transfers');
-            Route::get('/{mobility}/transfer/edit', EditTransfers::class)->name('edit-transfers');
+            Route::get('/{transfer}/transfer/edit', EditTransfers::class)->name('edit-transfers');
         });
     });
 

@@ -1,14 +1,13 @@
 <div>
-    <x-ui.content.block-head :title="__('Listes des mobiliters')"/>
+    <x-ui.content.block-head :title="__('Mobilité')"/>
 
     <x-ui.content.container>
         <x-ui.block.card class="mb-4 card-preview">
             <x-ui.table data-export-title="Exportez" data-auto-responsive="true">
                 <thead>
-                <x-ui.table.t-head class="tb-col-md" :title="__('Nom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Prenom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Date de Mobiliter')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Type Mobiliter')"/>
+                <x-ui.table.t-head class="tb-col-md" :title="__('Agent')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Date')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Motif')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Date debut')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Date de fin')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
@@ -19,13 +18,8 @@
                         <x-ui.table.td class="tb-col-md">
                             <div>
                                 <span class="tb-amount">
-                                    {{ $mobility->agent->person->name }}
+                                    {{ $mobility->agent->person->name. ' ' .$mobility->agent->person->username . ' ' .$mobility->agent->person->firstname }}
                                 </span>
-                            </div>
-                        </x-ui.table.td>
-                        <x-ui.table.td class="tb-col-lg">
-                            <div>
-                                <span>{{ $mobility->agent->person->firstname }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">

@@ -27,7 +27,6 @@ class EditAgentAffectation extends Component
     #[Validate('required|string|date|before_or_equal:today')]
     public $date_affectation;
 
-
     public function mount(Affectation $affectation): void
     {
         $this->affectation = $affectation->load(['agent.person', 'companyFunction'])->first();

@@ -31,7 +31,8 @@ final class Person extends Model
         'birthplace',
         'phone_number',
         'address',
-        'age'
+        'age',
+        'image'
     ];
 
     public function hiring(): HasOne
@@ -43,6 +44,13 @@ final class Person extends Model
     {
         return new Attribute(
             get: fn($value) => Carbon::parse($value)->format('d/m/Y'),
+        );
+    }
+
+    protected function image(): Attribute
+    {
+        return new Attribute(
+            get: fn($value) => asset('storage/' . $value),
         );
     }
 

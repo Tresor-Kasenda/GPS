@@ -48,7 +48,7 @@ class EditHirings extends Component
 
         $this->hiring->first($this->validate());
 
-        $this->dispatch('message', message: "un engaement a ete modifier", type: 'success');
+        $this->dispatch('message', title: "Un engagement a ete modifier", type: 'success');
 
         $this->redirect(route('persons.lists-hirings', absolute: false));
     }

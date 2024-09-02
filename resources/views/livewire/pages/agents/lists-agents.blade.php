@@ -1,3 +1,4 @@
+@php use App\Enums\StateCarrier; @endphp
 <div>
     <x-ui.content.block-head :title="__('Carrieres')"/>
 
@@ -6,10 +7,11 @@
             <x-ui.table data-export-title="Exportez" data-auto-responsive="true">
                 <thead>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Nom Post-nom et Prenom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Prenom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Date Engagement')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Grade initial')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Matricule')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Ancienneter')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Service initiale')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Etat')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
                 <tbody>
@@ -18,23 +20,13 @@
                         <x-ui.table.td class="tb-col-md">
                             <div>
                                 <span class="tb-amount">
-                                    {{ $agent->person->name }}
+                                    {{ $agent->person->name. ' ' . $agent->person->username. ' ' . $agent->person->firstname }}
                                 </span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $agent->person->firstname }}</span>
-                            </div>
-                        </x-ui.table.td>
-                        <x-ui.table.td class="tb-col-lg">
-                            <div>
-                                <span>{{ $agent->hiring->hiring_date->format('Y-m-d') }}</span>
-                            </div>
-                        </x-ui.table.td>
-                        <x-ui.table.td class="tb-col-lg">
-                            <div>
-                                <span>{{ $agent->grade->level }}</span>
+                                <span>{{ $agent->grade->designation }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
@@ -42,10 +34,39 @@
                                 <span>{{ $agent->person_number }}</span>
                             </div>
                         </x-ui.table.td>
+                        <x-ui.table.td class="tb-col-lg">
+                            <div>
+                                <span>{{ $agent->seniority }}</span>
+                            </div>
+                        </x-ui.table.td>
+                        <x-ui.table.td class="tb-col-lg">
+                            <div>
+                                <span>{{ $agent->hiring->service->title }}</span>
+                            </div>
+                        </x-ui.table.td>
+                        <x-ui.table.td class="tb-col-lg">
+                            <div>
+                                <span
+                                    @class([
+                                        'badge lg',
+                                        'bg-primary' => $agent->status === StateCarrier::PROGRESSING,
+                                        'bg-secondary' => $agent->status === StateCarrier::PENDING,
+                                        'bg-success' => $agent->status === StateCarrier::ACTIVE,
+                                        'bg-warning' => $agent->status === StateCarrier::INACTIVE,
+                                        'bg-danger' => $agent->status === StateCarrier::RESIGNATION,
+                                    ])
+                                >{{ $agent->status }}</span>
+                            </div>
+                        </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">
                             <ul class="nk-tb-actions gx-1">
                                 <li>
                                     <x-ui.table.action>
+                                        <x-ui.table.action.link-down
+                                            icon="eye"
+                                            :href="route('agent.show-agents', $agent->id)"
+                                            :action="__('Voir')"
+                                        />
                                         <x-ui.table.action.link-down
                                             icon="edit"
                                             :href="route('agent.agents-edit', $agent->id)"

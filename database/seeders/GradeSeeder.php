@@ -29,8 +29,6 @@ final class GradeSeeder extends Seeder
             ['level' => GradeLevelEnum::NEWS->value, 'designation' => GradeEnum::NU->value],
         ];
 
-        collect($grades)->each(function (array $grade): void {
-            Grade::create($grade);
-        });
+        collect($grades)->each(fn(array $grade) => Grade::create($grade));
     }
 }

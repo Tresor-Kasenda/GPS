@@ -8,6 +8,7 @@ use App\Enums\Gender;
 use App\Enums\MaritalStatus;
 use App\Enums\UserStatus;
 use App\Models\Person;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -48,6 +49,9 @@ final class CreatePhysicPerson extends Component
     #[Validate('required|string|max:255')]
     public string|null $address = '';
 
+    #[Validate('nullable|image|max:5120')]
+    public $image;
+
     public array $genders = [];
     public array $maritals = [];
 
@@ -62,26 +66,37 @@ final class CreatePhysicPerson extends Component
         return view('livewire.pages.persons.users.create-physic-person');
     }
 
-    public function submit(): void
+    /**
+     * @return RedirectResponse|void
+     */
+    public function submit()
     {
         $this->validate();
 
         $person = Person::query()
-            ->where('name', '=', $this->name)
-            ->where('username', '=', $this->username)
-            ->where('firstname', '=', $this->firstname)
-            ->where('birthdate', '=', $this->birthdate)
+            ->where('name', $this->name)
+            ->where('username', $this->username)
+            ->where('firstname', $this->firstname)
+            ->where('birthdate', $this->birthdate)
+            ->where('phone_number', $this->phone_number)
             ->first();
 
         if ($person) {
-            $this->addError('name', 'Cette personne existe');
-            $this->addError('username', 'Cette personne existe');
-            $this->addError('firstname', 'Cette personne existe');
-            $this->addError('birthdate', 'Cette personne existe');
-            return;
+            return redirect()->back()->withErrors([
+                'name' => 'Cette personne existe déjà',
+                'username' => 'Cette personne existe déjà',
+                'firstname' => 'Cette personne existe déjà',
+                'birthdate' => 'Cette personne existe déjà',
+                'phone_number' => 'Cette personne existe déjà',
+            ]);
         }
 
-        $this->storePerson();
+        $path = "" !== $this->image
+            ? $this->image->storePublicly('/', ['disk' => 'public'])
+            : "";
+
+
+        $this->storePerson($path);
 
         $this->dispatch(
             'message',
@@ -92,8 +107,10 @@ final class CreatePhysicPerson extends Component
         $this->redirect(route('persons.lists-physic-person'));
     }
 
-    protected function storePerson(): void
+    protected function storePerson(string $path): void
     {
+        $age = now()->diffInYears($this->birthdate);
+
         Person::query()->create([
             'name' => $this->name,
             'username' => $this->username,
@@ -105,7 +122,8 @@ final class CreatePhysicPerson extends Component
             'phone_number' => $this->phone_number,
             'address' => $this->address,
             'birthplace' => $this->birthplace,
-            'age' => now()->diffInYears($this->birthdate)
+            'image' => $path,
+            'age' => $age
         ]);
     }
 }

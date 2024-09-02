@@ -9,16 +9,6 @@
         <x-ui.block.card class="mb-4 card-preview">
             <x-ui.table data-export-title="Exportez" data-auto-responsive="true">
                 <thead>
-                <x-ui.table.t-head class="nk-td-head">
-                    <div class="custom-control custom-control-sm custom-checkbox notext">
-                        <input
-                            wire:model="selected"
-                            type="checkbox"
-                            class="custom-control-input"
-                            id="uid">
-                        <label class="custom-control-label" for="uid"></label>
-                    </div>
-                </x-ui.table.t-head>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Profile')"/>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Nom, Sexe et Etat-Civil')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Date et Lieu Naissance')"/>
@@ -28,23 +18,11 @@
                 <tbody>
                 @foreach($persons as $person)
                     <x-ui.table.tr wire:loading.class.delay="opacity-20" wire:key="table-{{ $person->id }}">
-                        <x-ui.table.td class="nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input
-                                    type="checkbox"
-                                    wire:model="selected"
-                                    class="custom-control-input"
-                                    id="uid3-{{ $person->id }}"
-                                    value="{{ $person->id }}"
-                                >
-                                <label class="custom-control-label" for="uid3-{{ $person->id }}"></label>
-                            </div>
-                        </x-ui.table.td>
                         <x-ui.table.td>
                             <span class="user-avatar sq md bg-info-dim">
                                 <img
-                                    src="{{ $person->picture }}"
-                                    srcset="{{ $person->picture  }}"
+                                    src="{{ $person->image }}"
+                                    srcset="{{ $person->image  }}"
                                     alt="{{ $person->username }}"
                                 >
                             </span>
@@ -75,9 +53,9 @@
                             <div>
                                 <span @class([
                                     'badge md',
-                                    'badge-primary' => $person->status === UserStatus::PROGRESSING,
-                                    'badge-warning' => $person->status === UserStatus::PENDING,
-                                    'badge-danger' => $person->status === UserStatus::REVOKED,
+                                    'bg-success' => $person->status === UserStatus::PROGRESSING,
+                                    'bg-primary' => $person->status === UserStatus::PENDING,
+                                    'bg-danger' => $person->status === UserStatus::REVOKED,
                                 ])>{{ $person->status }}</span>
                             </div>
                             <div>

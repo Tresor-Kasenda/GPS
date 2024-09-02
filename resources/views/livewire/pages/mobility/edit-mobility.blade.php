@@ -1,5 +1,8 @@
 <div>
-    <x-ui.content.block-head :title="__('Ajouter une mobility')">
+    <x-ui.content.block-head
+        :title="__('Editer mobilité')"
+        :description="'Nom: '. $mobility->agent->person->name .' ||  Post-Nom: '. $mobility->agent->person->username .  ' || Prenom: '. $mobility->agent->person->firstname"
+    >
         <x-ui.block.button.link
             icon="arrow-long-left"
             :route="route('agent.mobility-lists')"
@@ -11,24 +14,6 @@
         <x-ui.block.card class="mb-4">
             <x-ui.forms.layout wire:submit.prevent="submit">
                 <div class="row g-gs">
-
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="form-group">
-                            <x-ui.forms.input.label for="agent_id">
-                                {{ __('Nom') }}
-                            </x-ui.forms.input.label>
-                            <x-ui.forms.input
-                                type="text"
-                                id="agent_id"
-                                name="agent_id"
-                                value="{{ $mobility->agent->person->name }}"
-                                readonly
-                                placeholder="Saisissez le nom"
-                            />
-                            <x-ui.forms.input.error :messages="$errors->get('agent_id')" class="mt-2"/>
-                        </div>
-                    </div>
-
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="mobility_date">
@@ -49,17 +34,24 @@
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="mobility_type">
-                                {{ __('Type') }}
+                                {{ __('Motif') }}
                             </x-ui.forms.input.label>
-
-                            <x-ui.forms.input
-                                type="text"
+                            <select
                                 id="mobility_type"
                                 name="mobility_type"
                                 wire:model.live="mobility_type"
-                                placeholder="Selectionnez le document"
-                            />
-
+                                class="form-select js-select2"
+                                data-placeholder="mobility_type">
+                                <option>Selectionnez un type</option>
+                                @foreach($types as $type)
+                                    <option
+                                        wire:key="{{ $type }}"
+                                        value="{{ $type }}"
+                                    >
+                                        {{ $type }}
+                                    </option>
+                                @endforeach
+                            </select>
                             <x-ui.forms.input.error :messages="$errors->get('mobility_type')" class="mt-2"/>
                         </div>
                     </div>

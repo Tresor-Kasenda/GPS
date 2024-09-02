@@ -24,10 +24,6 @@ class AgentAffectation extends Component
     #[Validate('required|string|date|before_or_equal:today')]
     public $date_affectation;
 
-    #[Validate('nullable|file')]
-    public $motif = '';
-
-
     public function mount(Agent $agent): void
     {
         $this->agent = $agent->load('person');
@@ -44,14 +40,9 @@ class AgentAffectation extends Component
     {
         $this->validate();
 
-        $path = "" !== $this->motif
-            ? $this->motif->storePublicly('/', ['disk' => 'public'])
-            : "";
-
         $this->agent->affectations()->create([
             'company_function_id' => $this->company_function_id,
             'date_affectation' => $this->date_affectation,
-            'motif' => $path,
         ]);
 
         $this->dispatch('message', message: "une nouvelle affectation a ete ajouter", type: 'success');

@@ -15,12 +15,4 @@ enum StateCarrier: string
     case PROGRESSING = 'detaché';
 
     case RESIGNATION = 'suspendu';
-
-    public static function getAlls(): array
-    {
-        return [
-            self::ACTIVE,
-            self::INACTIVE,
-        ];
-    }
 }

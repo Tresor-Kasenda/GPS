@@ -95,7 +95,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="birthplace">
                                 Lieu de naissance
@@ -111,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="phone_number">
                                 Contact
@@ -127,7 +127,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
                             <x-ui.forms.input.label for="address">
                                 Adresse
@@ -140,6 +140,23 @@
                                 placeholder="Saisissez l'address"
                             />
                             <x-ui.forms.input.error :messages="$errors->get('address')" class="mt-2"/>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <x-ui.forms.input.label for="image">
+                                Photo de profile
+                            </x-ui.forms.input.label>
+
+                            <x-ui.forms.file-upload
+                                multiple="false"
+                                :max-file-size="1"
+                                file-types="'image/jpg,image/jpeg,image/png,image/gif,image/svg'"
+                                wire:model="image"
+                            />
+
+                            <x-ui.forms.input.error :messages="$errors->get('image')" class="mt-2"/>
                         </div>
                     </div>
 

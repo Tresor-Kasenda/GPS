@@ -43,7 +43,7 @@ class CreateHirings extends Component
             'reference' => $this->reference
         ]);
 
-        $this->dispatch('message', message: "un engaement a ete ajouter", type: 'success');
+        $this->dispatch('message', title: "Un engagement a ete ajouter", type: 'success');
 
         $this->redirect(route('persons.lists-hirings', absolute: false));
     }

@@ -62,7 +62,7 @@ final class HiringPhysicPerson extends Component
 
         $this->updatePerson();
 
-        $this->dispatch('message', message: "un agent a ete ajouter", type: 'success');
+        $this->dispatch('message', title: "Un engagement viens d'etre effectuer", type: 'success');
 
         $this->redirect(route('agent.agents-lists', absolute: false));
     }
