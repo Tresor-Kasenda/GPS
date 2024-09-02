@@ -8,7 +8,7 @@
     <x-ui.block.sidebar.menu-link :title="__('Gestion Carriere')" icon="arrow-to-down">
         <x-ui.block.sidebar.link-sub :route="route('persons.lists-hirings')" :name="__('Engagement')"/>
         <x-ui.block.sidebar.link-sub :route="route('agent.agents-lists')" :name="__('Carriere Agent')"/>
-        <x-ui.block.sidebar.link-sub :route="route('agent.agents-lists')" :name="__('Attribution Grade')"/>
+        <x-ui.block.sidebar.link-sub :route="route('agent.lists-promotions')" :name="__('Promotion')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.separator-link :name="__('GESTION MOUVEMENT')"/>

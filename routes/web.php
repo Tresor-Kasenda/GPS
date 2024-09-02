@@ -28,6 +28,9 @@ use App\Livewire\Pages\Persons\Users\EditPhysicPerson;
 use App\Livewire\Pages\Persons\Users\HiringPhysicPerson;
 use App\Livewire\Pages\Persons\Users\ListsPhysicPerson;
 use App\Livewire\Pages\Persons\Users\ShowPhysicPerson;
+use App\Livewire\Pages\Promotions\CreatePromotions;
+use App\Livewire\Pages\Promotions\EditPromotions;
+use App\Livewire\Pages\Promotions\ListsPromotions;
 use App\Livewire\Pages\Transfers\CreateTransfers;
 use App\Livewire\Pages\Transfers\EditTransfers;
 use App\Livewire\Pages\Transfers\ListsTransfers;
@@ -67,6 +70,12 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsTransfers::class)->name('lists-transfers');
             Route::get('/{agent}/transfer/create', CreateTransfers::class)->name('create-transfers');
             Route::get('/{transfer}/transfer/edit', EditTransfers::class)->name('edit-transfers');
+        });
+
+        Route::group(['prefix' => 'promotion'], function () {
+            Route::get('/', ListsPromotions::class)->name('lists-promotions');
+            Route::get('/{agent}/promotion/create', CreatePromotions::class)->name('create-promotions');
+            Route::get('/{promotion}/promotion/edit', EditPromotions::class)->name('edit-promotions');
         });
     });
 

@@ -65,7 +65,7 @@
                                         <x-ui.table.action.link-down
                                             icon="eye"
                                             :href="route('agent.show-agents', $agent->id)"
-                                            :action="__('Voir')"
+                                            :action="__('Voir Profil Agent')"
                                         />
                                         <x-ui.table.action.link-down
                                             icon="edit"
@@ -83,22 +83,27 @@
                                         <x-ui.table.action.link-down
                                             icon="swap"
                                             :href="route('agent.agent-affectation', $agent->id)"
-                                            :action="__('Affectation')"
+                                            :action="__('Affecter Agent')"
                                         />
                                         <x-ui.table.action.link-down
                                             icon="send"
                                             :href="route('agent.mobility-create', $agent->id)"
-                                            :action="__('Mobiliter')"
+                                            :action="__('Gerer Mobilité')"
                                         />
                                         <x-ui.table.action.link-down
                                             icon="minimize-alt"
                                             :href="route('agent.create-transfers', $agent->id)"
-                                            :action="__('Transfert')"
+                                            :action="__('Transferer Agent')"
+                                        />
+                                        <x-ui.table.action.link-down
+                                            icon="user-add"
+                                            :href="route('agent.create-promotions', $agent->id)"
+                                            :action="__('Donner Promotion')"
                                         />
                                         <x-ui.table.action.link-down
                                             icon="user-add"
                                             :href="route('persons.hiring-physic-person', $agent->id)"
-                                            :action="__('Attribution grade')"
+                                            :action="__('Arreter Carriere')"
                                         />
                                     </x-ui.table.action>
                                 </li>

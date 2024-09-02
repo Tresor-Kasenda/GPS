@@ -1,7 +1,7 @@
 @php use App\Enums\UserStatus; @endphp
 <div>
     <x-ui.content.block-head :title="__('Personne Physique')">
-        <x-ui.block.button.link :route="route('persons.add-physic-person')" :action="__('Ajoutez une Personne')"/>
+        <x-ui.block.button.link :route="route('persons.add-physic-person')" :action="__('Créer Personne')"/>
     </x-ui.content.block-head>
 
     <x-ui.content.container>
@@ -81,7 +81,7 @@
                                         <x-ui.table.action.link-down
                                             icon="eye"
                                             :href="route('persons.show-physic-person', $person->id)"
-                                            :action="__('Voir fiche')"
+                                            :action="__('Voir Profil Personne')"
                                         />
                                         <x-ui.table.action.link-down
                                             icon="edit"
@@ -99,7 +99,7 @@
                                         <x-ui.table.action.link-down
                                             icon="user-add"
                                             :href="route('persons.hiring-physic-person', $person->id)"
-                                            :action="__('Effectuer engagement')"
+                                            :action="__('Effectuer Engagement')"
                                         />
                                     </x-ui.table.action>
                                 </li>
