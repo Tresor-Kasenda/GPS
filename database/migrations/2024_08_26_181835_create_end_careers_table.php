@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\ReasonEnum;
 use App\Models\Agent;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,7 +20,12 @@ return new class () extends Migration {
                 ->constrained()
                 ->cascadeOnDelete();
             $table->date('end_date'); // date fin
-            $table->string('end_reason'); // type fin
+            $table->enum('end_reason', [
+                ReasonEnum::RESIGNATION->value,
+                ReasonEnum::DECEASED->value,
+                ReasonEnum::RETIRED->value,
+                ReasonEnum::REVOKED->value
+            ])->default(ReasonEnum::RESIGNATION->value); // type fin
             $table->timestamps();
         });
     }

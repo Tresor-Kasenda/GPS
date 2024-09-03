@@ -102,7 +102,7 @@
                                         />
                                         <x-ui.table.action.link-down
                                             icon="user-add"
-                                            :href="route('persons.hiring-physic-person', $agent->id)"
+                                            :href="route('agent.carriers-end-create', $agent->id)"
                                             :action="__('Arreter Carriere')"
                                         />
                                     </x-ui.table.action>

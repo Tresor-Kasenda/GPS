@@ -53,6 +53,11 @@ final class Agent extends Model
         return $this->hasMany(MobilityAgent::class);
     }
 
+    public function endCarriers(): HasMany
+    {
+        return $this->hasMany(EndCareer::class);
+    }
+
     public function promotions(): HasMany
     {
         return $this->hasMany(LevelAttribution::class);

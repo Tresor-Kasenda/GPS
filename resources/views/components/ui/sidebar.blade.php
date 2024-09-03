@@ -20,10 +20,10 @@
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.menu-link :title="__('Cessassion Service')" icon="stop">
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Mise à la retraite')"/>
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Décès')"/>
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Demission')"/>
-        <x-ui.block.sidebar.link-sub :route="route('persons.lists-physic-person')" :name="__('Révocation')"/>
+        <x-ui.block.sidebar.link-sub :route="route('agent.lists-end-carriers')" :name="__('Mise à la retraite')"/>
+        <x-ui.block.sidebar.link-sub :route="route('agent.lists-end-deceased')" :name="__('Décès')"/>
+        <x-ui.block.sidebar.link-sub :route="route('agent.lists-end-designation')" :name="__('Demission')"/>
+        <x-ui.block.sidebar.link-sub :route="route('agent.lists-end-revoked')" :name="__('Révocation')"/>
     </x-ui.block.sidebar.menu-link>
 
     <x-ui.block.sidebar.separator-link :name="__('GESTION ENTITE')"/>

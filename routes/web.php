@@ -17,6 +17,12 @@ use App\Livewire\Pages\Affectations\ListsAffectations;
 use App\Livewire\Pages\Agents\EditAgents;
 use App\Livewire\Pages\Agents\ListsAgents;
 use App\Livewire\Pages\Agents\ShowAgents;
+use App\Livewire\Pages\EndCarrier\CreateEndCarriers;
+use App\Livewire\Pages\EndCarrier\EditEndCarriers;
+use App\Livewire\Pages\EndCarrier\ListsEndCarriers;
+use App\Livewire\Pages\EndCarrier\ListsEndDeceased;
+use App\Livewire\Pages\EndCarrier\ListsEndDesignation;
+use App\Livewire\Pages\EndCarrier\ListsEndRevoked;
 use App\Livewire\Pages\Mobility\CreateMobility;
 use App\Livewire\Pages\Mobility\EditMobility;
 use App\Livewire\Pages\Mobility\ListsMobility;
@@ -47,6 +53,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 
     Route::group(['prefix' => 'agents', 'as' => 'agent.'], function () {
+
         Route::group(['prefix' => 'agent'], function () {
             Route::get('/', ListsAgents::class)->name('agents-lists');
             Route::get('/{agent}/detail', ShowAgents::class)->name('show-agents');
@@ -58,7 +65,6 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/{agent}/affectation/create', AgentAffectation::class)->name('agent-affectation');
             Route::get('/{affectation}/agent/edit', EditAgentAffectation::class)->name('affectation-agent-edit');
         });
-
 
         Route::group(['prefix' => 'mobility'], function () {
             Route::get('/', ListsMobility::class)->name('mobility-lists');
@@ -76,6 +82,15 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsPromotions::class)->name('lists-promotions');
             Route::get('/{agent}/promotion/create', CreatePromotions::class)->name('create-promotions');
             Route::get('/{promotion}/promotion/edit', EditPromotions::class)->name('edit-promotions');
+        });
+
+        Route::group(['prefix' => 'fin-carriers'], function () {
+            Route::get('/retired', ListsEndCarriers::class)->name('lists-end-carriers');
+            Route::get('/deces', ListsEndDeceased::class)->name('lists-end-deceased');
+            Route::get('/revocation', ListsEndRevoked::class)->name('lists-end-revoked');
+            Route::get('/demission', ListsEndDesignation::class)->name('lists-end-designation');
+            Route::get('/{agent}/carriers/create', CreateEndCarriers::class)->name('carriers-end-create');
+            Route::get('/{career}/carriers/edit', EditEndCarriers::class)->name('edit-end-carriers');
         });
     });
 
