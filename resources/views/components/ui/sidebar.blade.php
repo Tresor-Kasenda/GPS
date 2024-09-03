@@ -46,7 +46,6 @@
 
     <x-ui.block.sidebar.menu-link :title="__('Parametre')" icon="shield">
         <x-ui.block.sidebar.link-sub :route="route('settings.users.lists')" :name="__('Utilisateur')"/>
-        <x-ui.block.sidebar.link-sub :route="route('settings.index')" :name="__('Parametre')"/>
     </x-ui.block.sidebar.menu-link>
 
 </x-ui.block.sidebar>

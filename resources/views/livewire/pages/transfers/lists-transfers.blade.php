@@ -16,9 +16,9 @@
                     <x-ui.table.tr wire:loading.class.delay="opacity-20" wire:key="table-{{ $transfer->id }}">
                         <x-ui.table.td class="tb-col-md">
                             <div>
-                                <span class="tb-amount">
+                                <a href="{{ route('agent.show-agents', $transfer->agent->id) }}" class="tb-amount">
                                     {{ $transfer->agent->person->name. ' ' .$transfer->agent->person->username . ' ' .$transfer->agent->person->firstname }}
-                                </span>
+                                </a>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">

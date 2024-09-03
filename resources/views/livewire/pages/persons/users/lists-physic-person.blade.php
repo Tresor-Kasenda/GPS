@@ -64,18 +64,6 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">
                             <ul class="nk-tb-actions gx-1">
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title="Send Email">
-                                        <em class="icon ni ni-mail-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip"
-                                       data-bs-placement="top" title="Suspend">
-                                        <em class="icon ni ni-user-cross-fill"></em>
-                                    </a>
-                                </li>
                                 <li>
                                     <x-ui.table.action>
                                         <x-ui.table.action.link-down
