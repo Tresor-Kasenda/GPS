@@ -1,6 +1,6 @@
-@php use App\Enums\StateCarrier; @endphp
+@php use App\Enums\StateCarrier;use App\Models\Affectation;use App\Models\LevelAttribution;use App\Models\TransferAgent; @endphp
 <div>
-    <x-ui.content.block-head :title="__('Detail agent')">
+    <x-ui.content.block-head :title="__('Profil Agent')">
         <x-ui.block.button.link
             icon="arrow-long-left"
             :route="route('agent.agents-lists')"
@@ -42,23 +42,42 @@
                             <div class="row g-3">
                                 <div class="col-sm-6 col-md-4 col-lg-12">
                                     <span class="sub-text">Nom et Post-Nom:</span>
-                                    <span>{{ $agent->person->name }} {{ $agent->person->username }}</span>
+                                    <span>{{ $agent->person->name }} {{ $agent->person->username }} {{ $agent->person->firstname }}</span>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
-                                    <span class="sub-text">Prenom:</span>
-                                    <span>{{ $agent->person->firstname }}</span>
+                                    <span class="sub-text">Fonction Actuel:</span>
+                                    @php
+                                        $fonction = Affectation::where('agent_id', $agent->id)->first();
+                                        $promotion = LevelAttribution::where('agent_id', $agent->id)->first();
+                                        $actuel;
+                                        if ($promotion->grade_id) {
+                                            $actuel = $promotion->grade->designation;
+                                        } else {
+                                            $actuel = $agent->hiring->service->designation;
+                                        }
+                                        $transfer = TransferAgent::where('agent_id', $agent->id)->first();
+                                    @endphp
+                                    <span>{{ $fonction->companyFunction->name_function }}</span>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
-                                    <span class="sub-text">Genre:</span>
-                                    <span>{{ $agent->person->gender }}</span>
+                                    <span class="sub-text">Grade Actuel:</span>
+                                    <span>{{ $actuel }}</span>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
-                                    <span class="sub-text">Etat civil:</span>
-                                    <span>{{ $agent->person->marital_status }}</span>
+                                    <span class="sub-text">Service Actuel:</span>
+                                    <span>{{ $transfer->service->title }}</span>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
-                                    <span class="sub-text">Date de naissance:</span>
-                                    <span>{{ $agent->person->birthdate }}</span>
+                                    <span class="sub-text">Matricule:</span>
+                                    <span>{{ $agent->person_number }}</span>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-12">
+                                    <span class="sub-text">Ancienneté:</span>
+                                    <span>{{ $agent->seniority }} ans</span>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-12">
+                                    <span class="sub-text">Date d'engagement:</span>
+                                    <span>{{ $agent->hiring->hiring_date->format('d-m-Y') }}</span>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
                                     <span class="sub-text">Adresse:</span>
@@ -80,115 +99,206 @@
                             <div class="accordion-item">
                                 <a href="#" class="accordion-head" data-bs-toggle="collapse"
                                    data-bs-target="#accordion-item-2-1">
-                                    <h6 class="title">Identiter</h6>
+                                    <h6 class="title">Affectation</h6>
                                     <span class="accordion-icon"></span>
                                 </a>
                                 <div class="accordion-body collapse show" id="accordion-item-2-1"
                                      data-bs-parent="#accordion-2">
                                     <div class="accordion-inner">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                            laborum.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
+                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
+                                            <div class="nk-tb-item nk-tb-head">
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">N°</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Date</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Fonction</span>
+                                                </div>
+                                            </div>
+                                            @foreach($agent->affectations as $affectation)
+                                                <div class="nk-tb-item">
+                                                    <div class="nk-tb-col">
+                                                        <span>{{ $affectation->id }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                    <span class="tb-product">
+                                                        <span
+                                                            class="title">{{ $affectation->date_affectation->format('d-m-Y') }}</span>
+                                                    </span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $affectation->companyFunction->name_function }}</span>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse"
                                    data-bs-target="#accordion-item-2-2">
-                                    <h6 class="title">Grade</h6>
+                                    <h6 class="title">Transfert</h6>
                                     <span class="accordion-icon"></span>
                                 </a>
                                 <div class="accordion-body collapse" id="accordion-item-2-2"
                                      data-bs-parent="#accordion-2">
                                     <div class="accordion-inner">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                            laborum.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
+                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
+                                            <div class="nk-tb-item nk-tb-head">
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">N°</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Service Provenance</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Service Actuel</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Date</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Motif</span>
+                                                </div>
+                                            </div>
+                                            @foreach($agent->transfers as  $key => $transfer)
+                                                <div class="nk-tb-item">
+
+                                                    <div class="nk-tb-col">
+                                                        <span>{{ $key +1  }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                    <span class="tb-product">
+                                                        <span
+                                                            class="title">{{ $transfer->service->title }}</span>
+                                                    </span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $transfer->service->title }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $transfer->transfer_date->format('d-m-Y') }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $transfer->motif }}</span>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse"
                                    data-bs-target="#accordion-item-2-3">
-                                    <h6 class="title">Engagement</h6>
+                                    <h6 class="title">Mobilité</h6>
                                     <span class="accordion-icon"></span>
                                 </a>
                                 <div class="accordion-body collapse" id="accordion-item-2-3"
                                      data-bs-parent="#accordion-2">
                                     <div class="accordion-inner">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                            laborum.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
+                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
+                                            <div class="nk-tb-item nk-tb-head">
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">N°</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Date</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Type</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Date debut</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Date fin</span>
+                                                </div>
+                                            </div>
+                                            @foreach($agent->mobilities as  $key => $mobility)
+                                                <div class="nk-tb-item">
+
+                                                    <div class="nk-tb-col">
+                                                        <span>{{ $key +1  }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                    <span class="tb-product">
+                                                        <span
+                                                            class="title">{{ $mobility->mobility_date->format('d-m-Y') }}</span>
+                                                    </span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $mobility->mobility_type }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $mobility->start_date->format('d-m-Y') }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $mobility->end_date->format('d-m-Y') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse"
                                    data-bs-target="#accordion-item-2-4">
-                                    <h6 class="title">Mobiliter</h6>
+                                    <h6 class="title">Promotion</h6>
                                     <span class="accordion-icon"></span>
                                 </a>
                                 <div class="accordion-body collapse" id="accordion-item-2-4"
                                      data-bs-parent="#accordion-2">
                                     <div class="accordion-inner">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                            laborum.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse"
-                                   data-bs-target="#accordion-item-2-5">
-                                    <h6 class="title">Affectation</h6>
-                                    <span class="accordion-icon"></span>
-                                </a>
-                                <div class="accordion-body collapse" id="accordion-item-2-5"
-                                     data-bs-parent="#accordion-2">
-                                    <div class="accordion-inner">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit anim id est
-                                            laborum.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
+                                        <div class="nk-tb-list nk-tb-ulist is-compact card">
+                                            <div class="nk-tb-item nk-tb-head">
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">N°</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Grade</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Date</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="sub-text">Motif</span>
+                                                </div>
+                                            </div>
+                                            @foreach($agent->promotions as  $key => $promotion)
+                                                <div class="nk-tb-item">
+
+                                                    <div class="nk-tb-col">
+                                                        <span>{{ $key +1  }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                    <span class="tb-product">
+                                                        <span
+                                                            class="title">{{ $promotion->grade->designation }}</span>
+                                                    </span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $promotion->date_allocated->format('d-m-Y') }}</span>
+                                                    </div>
+                                                    <div class="nk-tb-col">
+                                                        <span
+                                                            class="amount">{{ $promotion->motif_attribution }}</span>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>

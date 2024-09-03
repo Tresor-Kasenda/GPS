@@ -1,5 +1,5 @@
 <div>
-    <x-ui.content.block-head :title="__('Detail agent')">
+    <x-ui.content.block-head :title="__('Profil Personne')">
         <x-ui.block.button.link
             icon="arrow-long-left"
             :route="route('persons.lists-physic-person')"

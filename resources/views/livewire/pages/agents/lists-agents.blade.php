@@ -1,4 +1,4 @@
-@php use App\Enums\StateCarrier; @endphp
+@php use App\Enums\StateCarrier;use App\Models\Affectation;use App\Models\LevelAttribution;use App\Models\TransferAgent; @endphp
 <div>
     <x-ui.content.block-head :title="__('Carrieres')"/>
 
@@ -7,15 +7,16 @@
             <x-ui.table data-export-title="Exportez" data-auto-responsive="true">
                 <thead>
                 <x-ui.table.t-head class="tb-col-md" :title="__('Nom Post-nom et Prenom')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Grade initial')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Sexe')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Matricule')"/>
-                <x-ui.table.t-head class="tb-col-lg" :title="__('Ancienneter')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Grade')"/>
+                <x-ui.table.t-head class="tb-col-lg" :title="__('Fonction')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Service initiale')"/>
                 <x-ui.table.t-head class="tb-col-lg" :title="__('Etat')"/>
                 <x-ui.table.t-head class=" tb-col-md" :title="__('Action')"/>
                 </thead>
                 <tbody>
-                @foreach($agents as $agent)
+                @foreach($agents as $key =>  $agent)
                     <x-ui.table.tr wire:loading.class.delay="opacity-20" wire:key="table-{{ $agent->id }}">
                         <x-ui.table.td class="tb-col-md">
                             <div>
@@ -27,7 +28,7 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $agent->grade->designation }}</span>
+                                <span>{{ $agent->person->gender }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
@@ -36,13 +37,24 @@
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
+                            @php
+                                $fonction = Affectation::firstWhere('agent_id', $agent->id);
+                                $promotion = LevelAttribution::firstWhere('agent_id', $agent->id);
+                                $actuel = $promotion->grade_id ? $promotion->grade->designation : $agent->hiring->service->designation;
+                                $transfer = TransferAgent::firstWhere('agent_id', $agent->id);
+                            @endphp
                             <div>
-                                <span>{{ $agent->seniority }}</span>
+                                <span>{{ $actuel }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $agent->hiring->service->title }}</span>
+                                <span>{{ $fonction->companyFunction->name_function }}</span>
+                            </div>
+                        </x-ui.table.td>
+                        <x-ui.table.td class="tb-col-lg">
+                            <div>
+                                <span>{{ $transfer->service->title }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
