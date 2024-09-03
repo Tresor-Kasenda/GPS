@@ -47,17 +47,14 @@
                                 <div class="col-sm-6 col-md-4 col-lg-12">
                                     <span class="sub-text">Fonction Actuel:</span>
                                     @php
-                                        $fonction = Affectation::where('agent_id', $agent->id)->first();
-                                        $promotion = LevelAttribution::where('agent_id', $agent->id)->first();
-                                        $actuel;
-                                        if ($promotion->grade_id) {
-                                            $actuel = $promotion->grade->designation;
-                                        } else {
-                                            $actuel = $agent->hiring->service->designation;
-                                        }
-                                        $transfer = TransferAgent::where('agent_id', $agent->id)->first();
+                                        $fonction = Affectation::firstWhere('agent_id', $agent->id);
+                                        $promotion = LevelAttribution::firstWhere('agent_id', $agent->id);
+                                        $actuel = $promotion ? $promotion->grade->designation : $agent->hiring->service->designation;
+                                        $transfer = TransferAgent::firstWhere('agent_id', $agent->id);
+                                        $function = $fonction ? $fonction->companyFunction->name_function : "";
+                                        $transfert = $transfer ? $transfer->service->title : ""
                                     @endphp
-                                    <span>{{ $fonction->companyFunction->name_function }}</span>
+                                    <span>{{ $function }}</span>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
                                     <span class="sub-text">Grade Actuel:</span>
@@ -65,7 +62,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
                                     <span class="sub-text">Service Actuel:</span>
-                                    <span>{{ $transfer->service->title }}</span>
+                                    <span>{{ $transfert }}</span>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-12">
                                     <span class="sub-text">Matricule:</span>

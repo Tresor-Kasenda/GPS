@@ -40,8 +40,10 @@
                             @php
                                 $fonction = Affectation::firstWhere('agent_id', $agent->id);
                                 $promotion = LevelAttribution::firstWhere('agent_id', $agent->id);
-                                $actuel = $promotion->grade_id ? $promotion->grade->designation : $agent->hiring->service->designation;
+                                $actuel = $promotion ? $promotion->grade->designation : $agent->hiring->service->designation;
                                 $transfer = TransferAgent::firstWhere('agent_id', $agent->id);
+                                $function = $fonction ? $fonction->companyFunction->name_function : "";
+                                $transfert = $transfer ? $transfer->service->title : ""
                             @endphp
                             <div>
                                 <span>{{ $actuel }}</span>
@@ -49,12 +51,12 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $fonction->companyFunction->name_function }}</span>
+                                <span>{{ $function }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $transfer->service->title }}</span>
+                                <span>{{ $transfert }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
