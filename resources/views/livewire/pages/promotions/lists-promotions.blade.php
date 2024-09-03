@@ -27,7 +27,7 @@
                         </x-ui.table.td>
                         <x-ui.table.td class="tb-col-lg">
                             <div>
-                                <span>{{ $promotion->date_allocated->foramt('d-m-Y') }}</span>
+                                <span>{{ $promotion->date_allocated->format('d-m-Y') }}</span>
                             </div>
                         </x-ui.table.td>
                         <x-ui.table.td class="nk-tb-col-tools">
@@ -36,7 +36,7 @@
                                     <x-ui.table.action>
                                         <x-ui.table.action.link-down
                                             icon="edit"
-                                            :href="route('agent.affectation-agent-edit', $promotion->id)"
+                                            :href="route('agent.edit-promotions', $promotion->id)"
                                             :action="__('Modifier')"
                                         />
                                         <li>

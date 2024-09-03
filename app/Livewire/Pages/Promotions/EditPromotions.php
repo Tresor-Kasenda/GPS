@@ -45,6 +45,8 @@ class EditPromotions extends Component
 
     public function submit(): void
     {
+        $this->validate();
+
         $currentGradeId = $this->promotion->agent->grade_id;
 
         if ($this->grade_id === $currentGradeId) {
