@@ -46,7 +46,7 @@ return new class () extends Migration {
             ])->default(UserStatus::PENDING->value);
 
             $table->date('birthdate')->nullable();
-            $table->date('birthplace')->nullable();
+            $table->string('birthplace')->nullable();
             $table->string('phone_number')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('image')->nullable();
