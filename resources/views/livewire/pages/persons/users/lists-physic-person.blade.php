@@ -77,11 +77,15 @@
                                             :action="__('Modifier')"
                                         />
                                         <li>
-                                            <button type="button" class="btn"
-                                                    wire:click="deletePerson({{ $person->id }})">
-                                                <em class="icon ni ni-delete"></em>
-                                                <span>Supprimer</span>
-                                            </button>
+                                            <form method="post"
+                                                  action="{{ route('delete-physic-person', $person->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn">
+                                                    <em class="icon ni ni-delete"></em>
+                                                    <span>Supprimer</span>
+                                                </button>
+                                            </form>
                                         </li>
                                         <li class="divider"></li>
                                         <x-ui.table.action.link-down

@@ -46,11 +46,15 @@
                                             :action="__('Modifier')"
                                         />
                                         <li>
-                                            <button type="button" class="btn"
-                                                    wire:click="deleteDirection({{ $hiring->id }})">
-                                                <em class="icon ni ni-trash"></em>
-                                                <span>Supprimer</span>
-                                            </button>
+                                            <form method="post"
+                                                  action="{{ route('persons.delete-hiring', $hiring->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn">
+                                                    <em class="icon ni ni-delete"></em>
+                                                    <span>Supprimer</span>
+                                                </button>
+                                            </form>
                                         </li>
                                     </x-ui.table.action>
                                 </li>

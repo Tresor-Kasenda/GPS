@@ -88,11 +88,15 @@
                                             :action="__('Modifier')"
                                         />
                                         <li>
-                                            <button type="button" class="btn"
-                                                    wire:click="deleteDirection({{ $agent->id }})">
-                                                <em class="icon ni ni-trash"></em>
-                                                <span>Supprimer</span>
-                                            </button>
+                                            <form method="post"
+                                                  action="{{ route('agent.delete-agent', $agent->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn">
+                                                    <em class="icon ni ni-delete"></em>
+                                                    <span>Supprimer</span>
+                                                </button>
+                                            </form>
                                         </li>
                                         <li class="divider"></li>
                                         <x-ui.table.action.link-down

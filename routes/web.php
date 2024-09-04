@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Pages\DeleteAffectationController;
+use App\Http\Controllers\Pages\DeleteAgentController;
+use App\Http\Controllers\Pages\DeleteAMobilityController;
+use App\Http\Controllers\Pages\DeleteHiringController;
+use App\Http\Controllers\Pages\DeletePromotionController;
+use App\Http\Controllers\Pages\DeleteTransferController;
+use App\Http\Controllers\Pages\Persons\DeletePersonController;
 use App\Livewire\Entity\Functions\CreateFunction;
 use App\Livewire\Entity\Functions\EditFunction;
 use App\Livewire\Entity\Functions\ListsFunctions;
@@ -50,7 +58,7 @@ Route::redirect('/', '/login')->name('welcome');
 
 Route::group(['middleware' => ['auth', 'verified']], function (): void {
 
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::get('dashboard', DashboardController::class)->name('dashboard');
 
     Route::group(['prefix' => 'agents', 'as' => 'agent.'], function () {
 
@@ -58,30 +66,35 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsAgents::class)->name('agents-lists');
             Route::get('/{agent}/detail', ShowAgents::class)->name('show-agents');
             Route::get('/{agent}/hiring', EditAgents::class)->name('agents-edit');
+            Route::delete('/{agent}/delete', DeleteAgentController::class)->name('delete-agent');
         });
 
         Route::group(['prefix' => 'affectation'], function () {
             Route::get('/', ListsAffectations::class)->name('affectations-lists');
             Route::get('/{agent}/affectation/create', AgentAffectation::class)->name('agent-affectation');
             Route::get('/{affectation}/agent/edit', EditAgentAffectation::class)->name('affectation-agent-edit');
+            Route::delete('/{affectation}/delete', DeleteAffectationController::class)->name('delete-affectation');
         });
 
         Route::group(['prefix' => 'mobility'], function () {
             Route::get('/', ListsMobility::class)->name('mobility-lists');
             Route::get('/{agent}/mobility/create', CreateMobility::class)->name('mobility-create');
             Route::get('/{mobility}/agent/edit', EditMobility::class)->name('mobility-edit');
+            Route::delete('/{mobility}/delete', DeleteAMobilityController::class)->name('delete-mobility');
         });
 
         Route::group(['prefix' => 'transfer'], function () {
             Route::get('/', ListsTransfers::class)->name('lists-transfers');
             Route::get('/{agent}/transfer/create', CreateTransfers::class)->name('create-transfers');
             Route::get('/{transfer}/transfer/edit', EditTransfers::class)->name('edit-transfers');
+            Route::delete('/{transfer}/delete', DeleteTransferController::class)->name('delete-transfer');
         });
 
         Route::group(['prefix' => 'promotion'], function () {
             Route::get('/', ListsPromotions::class)->name('lists-promotions');
             Route::get('/{agent}/promotion/create', CreatePromotions::class)->name('create-promotions');
             Route::get('/{promotion}/promotion/edit', EditPromotions::class)->name('edit-promotions');
+            Route::delete('/{promotion}/delete', DeletePromotionController::class)->name('delete-promotion');
         });
 
         Route::group(['prefix' => 'fin-carriers'], function () {
@@ -126,6 +139,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/', ListsHirings::class)->name('lists-hirings');
             Route::get('/add', CreateHirings::class)->name('create-hirings');
             Route::get('/{hiring}/edit', EditHirings::class)->name('edit-hirings');
+            Route::delete('/{hiring}/delete', DeleteHiringController::class)->name('delete-hiring');
         });
     });
 
@@ -140,6 +154,9 @@ Route::group(['middleware' => ['auth', 'verified']], function (): void {
             Route::get('/{user}/edit', EditUsers::class)->name('edit');
         });
     });
+
+
+    Route::delete('/{person}/delete', DeletePersonController::class)->name('delete-physic-person');
 });
 
 require __DIR__ . '/auth.php';
