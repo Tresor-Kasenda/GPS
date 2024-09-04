@@ -17,7 +17,7 @@
                     <div class="col-lg-6 col-xxl-12">
                         <div class="col-sm-6 col-lg-12 col-xxl-6">
                             <div class="card card-bordered">
-                                <div class="card-inner gap-4">
+                                <div class="card-inner">
                                     <div class="card-title-group align-start mb-2">
                                         <div class="card-title">
                                             <h6 class="title">Effectif par service</h6>
