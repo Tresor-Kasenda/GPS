@@ -8,6 +8,7 @@ use App\Enums\Gender;
 use App\Enums\MaritalStatus;
 use App\Enums\UserStatus;
 use App\Models\Person;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -82,13 +83,8 @@ final class CreatePhysicPerson extends Component
             ->first();
 
         if ($person) {
-            return redirect()->back()->withErrors([
-                'name' => 'Cette personne existe déjà',
-                'username' => 'Cette personne existe déjà',
-                'firstname' => 'Cette personne existe déjà',
-                'birthdate' => 'Cette personne existe déjà',
-                'phone_number' => 'Cette personne existe déjà',
-            ]);
+            $this->addError('name', 'Cette personne existe deja dans la base de donnees');
+            return;
         }
 
         $path = "" !== $this->image
@@ -109,7 +105,7 @@ final class CreatePhysicPerson extends Component
 
     protected function storePerson(string $path): void
     {
-        $age = now()->diffInYears($this->birthdate);
+        $age = Carbon::parse($this->birthdate)->diffInYears(now());
 
         Person::query()->create([
             'name' => $this->name,
