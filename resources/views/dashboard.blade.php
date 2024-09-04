@@ -17,7 +17,7 @@
                     <div class="col-lg-6 col-xxl-12">
                         <div class="col-sm-6 col-lg-12 col-xxl-6">
                             <div class="card card-bordered">
-                                <div class="card-inner">
+                                <div class="card-inner gap-4">
                                     <div class="card-title-group align-start mb-2">
                                         <div class="card-title">
                                             <h6 class="title">Effectif par service</h6>
@@ -28,26 +28,47 @@
                                             <span>DFPP</span>
                                             <span class="sub-title">
                                                 <span class="change down text-danger">
-                                                    <em class="icon ni ni-arrow-long-down"></em>
-                                                    1.93%
+
                                                 </span>
                                             </span>
                                         </div>
+                                    </div>
+                                    <div class="flex-column gap-4">
                                         <div class="nk-sale-data flex justify-between align-items-center">
-                                            <span>DFPP</span>
+                                            <span>DRHKAT</span>
                                             <span class="sub-title">
                                                 <span class="change down text-danger">
-                                                    <em class="icon ni ni-arrow-long-down"></em>
-                                                    1.93%
+
                                                 </span>
                                             </span>
                                         </div>
+                                    </div>
+                                    <div class="flex-column gap-4">
                                         <div class="nk-sale-data flex justify-between align-items-center">
-                                            <span>DFPP</span>
+                                            <span>DRHKAT</span>
                                             <span class="sub-title">
                                                 <span class="change down text-danger">
-                                                    <em class="icon ni ni-arrow-long-down"></em>
-                                                    1.93%
+
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-column gap-4">
+                                        <div class="nk-sale-data flex justify-between align-items-center">
+                                            <span>DPCEEM</span>
+                                            <span class="sub-title">
+                                                <span class="change down text-danger">
+
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-column gap-4">
+                                        <div class="nk-sale-data flex justify-between align-items-center">
+                                            <span>DPM</span>
+                                            <span class="sub-title">
+                                                <span class="change down text-danger">
+
                                                 </span>
                                             </span>
                                         </div>
